@@ -417,3 +417,24 @@ documentation about the format, see :
    (synopsis "JUnit XML reports generation for alcotest tests")
    (description "JUnit XML reports generation for alcotest tests")
    (license #f)))
+
+;; via guix import opam junit_ounit
+
+(define-public ocaml-junit-ounit
+(package
+  (name "ocaml-junit-ounit")
+  (version "2.0.2")
+  (source
+   (origin
+     (method url-fetch)
+     (uri
+      "https://github.com/Khady/ocaml-junit/releases/download/2.0.2/junit-2.0.2.tbz")
+     (sha256
+      (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
+  (build-system dune-build-system)
+  (propagated-inputs (list ocaml-odoc ocaml-ounit ocaml-junit))
+  (properties `((upstream-name . "junit_ounit")))
+  (home-page "https://github.com/Khady/ocaml-junit")
+  (synopsis "JUnit XML reports generation for OUnit tests")
+  (description "JUnit XML reports generation for OUnit tests")
+  (license #f)))
