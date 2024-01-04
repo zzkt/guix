@@ -1,3 +1,24 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2024 nik gaffney <nik@fo.am>
+;;;
+;;; This file is (not yet) part of GNU Guix.
+;;;
+;;; GNU Guix is free software; you can redistribute it and/or modify it
+;;; under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation; either version 3 of the License, or (at
+;;; your option) any later version.
+;;;
+;;; GNU Guix is distributed in the hope that it will be useful, but
+;;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; via unofficial channels
+;;;  https://repo.fo.am/zzkt/guix
+
 (define-module (zzkt soupault)
   #:use-module (guix)
   #:use-module (guix build-system dune)
@@ -5,7 +26,6 @@
   #:use-module (gnu packages ocaml)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:))
-
 
 (define-public soupault
   (package
@@ -65,15 +85,8 @@ generator mode is optional, you can use it as post-processor for existing sites.
 ;; ocaml-jingoo
 ;; ocaml-tsort
 ;; ocaml-lua-ml
-
-;; -> to check
-
 ;; ocaml-qcheck-core
-;; ocaml-yojson
 ;; ocaml-iter
-;; ocaml-gen
-;; ocaml-csexp
-;; ocaml-uutf
 
 ;; via guix import opam containers
 
@@ -299,5 +312,46 @@ documentation about the format, see :
    (propagated-inputs (list ocaml-odoc))
    (home-page "https://github.com/lindig/lua-ml")
    (synopsis "An embeddable Lua 2.5 interpreter implemented in OCaml")
+   (description #f)
+   (license license:bsd-2)))
+
+;;  via guix import opam qcheck-core
+
+(define-public ocaml-qcheck-core
+  (package
+   (name "ocaml-qcheck-core")
+   (version "0.21.3")
+   (source
+    (origin
+     (method url-fetch)
+     (uri "https://github.com/c-cube/qcheck/archive/v0.21.3.tar.gz")
+     (sha256
+      (base32 "1ar416qlrb2qrnlm7vw7lzg860nrg9vw8p3rnx16xy8ryj6z5pix"))))
+   (build-system dune-build-system)
+   (propagated-inputs (list ocaml-odoc))
+   (native-inputs (list ocaml-alcotest))
+   (home-page "https://github.com/c-cube/qcheck/")
+   (synopsis "Core qcheck library")
+   (description #f)
+   (license license:bsd-2)))
+
+;;  via guix import opam iter
+
+(define-public ocaml-iter
+  (package
+   (name "ocaml-iter")
+   (version "1.8")
+   (source
+    (origin
+     (method url-fetch)
+     (uri "https://github.com/c-cube/iter/releases/download/v1.8/iter-1.8.tbz")
+     (sha256
+      (base32 "08rhykcizbs21mri4zx1b6vg42a4wybl238cla5bmi79bah9qwzq"))))
+   (build-system dune-build-system)
+   (propagated-inputs (list ocaml-odoc))
+   (native-inputs (list ocaml-qcheck-core ocaml-ounit2 ocaml-mdx))
+   (home-page "https://github.com/c-cube/iter/")
+   (synopsis
+    "Simple abstraction over `iter` functions, intended to iterate efficiently on collections while performing some transformations")
    (description #f)
    (license license:bsd-2)))
