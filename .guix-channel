@@ -1,0 +1,10 @@
+;; -*- mode: scheme; -*-
+
+(channel
+ (version 0)
+ (name 'zzkt)
+ (news-file "news.scm")
+ (directory "packages")
+ (url "https://gitlab.com/zzkt/guix")
+ (branch "endless"))
+

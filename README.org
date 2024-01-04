@@ -1,0 +1,14 @@
+
+* A (non)guix channel
+
+#+BEGIN_SRC scheme
+  (channel
+   (name 'zzkt)
+   (url "https://gitlab.com/zzkt/guix")
+   (branch "endless")
+   (introduction
+    (make-channel-introduction
+     "8f8414a8213d340d3dbc54e5166941fd5dc68727"
+     (openpgp-fingerprint
+      "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))
+#+END_SRC

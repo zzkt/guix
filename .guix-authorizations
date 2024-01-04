@@ -1,0 +1,8 @@
+;; -*- mode: scheme; -*-
+
+(authorizations
+ (version 0)
+
+ ;; OpenPGP keys currently authorized to sign commits in this repository.
+ (("24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"
+   (name "nik gaffney"))))
