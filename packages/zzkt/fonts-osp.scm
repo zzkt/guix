@@ -71,7 +71,8 @@
      (origin
       (method git-fetch)
       (uri (git-reference
-            (url "https://gitlab.constantvzw.org/osp/foundry.libertinage")))
+            (url "https://gitlab.constantvzw.org/osp/foundry.libertinage")
+            (commit "")))
       (sha256
        (base32
         "10bv9kksmbsi1zf0gylywgxch6sp8c2pkyn1y6c3vs1ivhfjn9m5"))))
@@ -97,7 +98,8 @@ Every section of the book was assigned one font variation. The book reflects on 
      (origin
       (method git-fetch)
       (uri (git-reference
-            (url "https://gitlab.constantvzw.org/osp/foundry.fluxisch-else")))
+            (url "https://gitlab.constantvzw.org/osp/foundry.fluxisch-else")
+            (commit "")))
       (sha256
        (base32
         "0nn41gnwgnydkarjv212fdspnv29qyhrd6y2pkpwy53ds1l04p8s"))))
@@ -121,7 +123,8 @@ More precisely in this case, George Maciunas of the Fluxus group used an IBM com
      (origin
       (method git-fetch)
       (uri (git-reference
-            (url "https://gitlab.constantvzw.org/osp/foundry.sans-guilt")))
+            (url "https://gitlab.constantvzw.org/osp/foundry.sans-guilt")
+            (commit "")))
       (sha256
        (base32
         "0nn41gnwgnydkarjv212fdspnv29qyhrd6y2pkpwy53ds1l04p8s"))))
@@ -144,7 +147,8 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
      (origin
       (method git-fetch)
       (uri (git-reference
-            (url "https://gitlab.constantvzw.org/osp/foundry.work-avec")))
+            (url "https://gitlab.constantvzw.org/osp/foundry.work-avec")
+            (commit "")))
       (sha256
        (base32
         "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
@@ -166,7 +170,8 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
      (origin
       (method git-fetch)
       (uri (git-reference
-            (url "https://gitlab.constantvzw.org/osp/foundry.crickx")))
+            (url "https://gitlab.constantvzw.org/osp/foundry.crickx")
+            (commit "")))
       (sha256
        (base32
         "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
