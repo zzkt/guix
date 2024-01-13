@@ -64,36 +64,62 @@
 
 ;; guix package -i fontconfig
 ;; fc-cache -rv
+;; fc-list
+
+;; (define-public
+;;   (package
+;;     (name "")
+;;     (version "")
+;;     (source (origin
+;;               (method url-fetch)
+;;               (uri "")
+;;               (sha256
+;;                (base32
+;;                 ""))))
+;;     (build-system font-build-system)
+;;     (home-page "")
+;;     (synopsis " ")
+;;     (description "")
+;;     (license license:silofl1.1)))
+
 
 ;; various foundries
 
 ;; https://velvetyne.fr/
 
-;; https://velvetyne.fr/fonts/degheest/
-;; https://velvetyne.fr/fonts/fungal/
-;; https://velvetyne.fr/fonts/sligoil/
-;; https://velvetyne.fr/fonts/outward/
-;; https://velvetyne.fr/fonts/karrik/
-;; https://velvetyne.fr/fonts/cirruscumulus/
-;; https://velvetyne.fr/fonts/le-murmure/
-;; https://velvetyne.fr/fonts/resistance/
-;; https://velvetyne.fr/fonts/gulax/
-;; https://velvetyne.fr/fonts/lineal/
+;; - [ ] Amdal
+;; - [ ] Anthony
+;; - [ ] Avara
+;; - [ ] BackOut
+;; - [ ] Basteleur
+;; - [x] BianZhiDai
+;; - [ ] CirrusCumulus
+;; - [ ] Compagnon
+;; - [ ] Degheest
+;; - [ ] Façade
+;; - [ ] Format 1452
+;; - [ ] Fungal
+;; - [ ] Grotesk
+;; - [ ] Gulax
+;; - [ ] Jgs font
+;; - [ ] Kaeru Kaeru
+;; - [ ] Karrik
+;; - [ ] Le Murmure
+;; - [ ] Lineal
+;; - [ ] Lithops
+;; - [ ] Mess
+;; - [ ] Mourier
+;; - [ ] Ouroboros
+;; - [ ] Outward
+;; - [ ] PicNic
+;; - [ ] Pilowlava
+;; - [ ] Sligoil
+;; - [ ] TINY
+;; - [ ] Typefesse
+;; - [ ] VG5000
 
 
-;; font-velvetyne-degheest
-;; font-velvetyne-fungal
-;; font-velvetyne-sligoil
-;; font-velvetyne-outward
-;; font-velvetyne-karrik
-;; font-velvetyne-cirruscumulus
-;; font-velvetyne-le-murmure
-;; font-velvetyne-resistance
-;; font-velvetyne-gulax
-;; font-velvetyne-lineal
-
-;; https://velvetyne.fr/fonts/bianzhidai/
-;; https://github.com/sdfggvfvj/bianzhidai-2.0
+;; bianzhidai - https://velvetyne.fr/fonts/bianzhidai/
 
 (define-public font-velvetyne-bianzhidai
   (package
@@ -110,6 +136,86 @@
     (synopsis "BianZhiDai is a font inspired by shading characters in ASCII art and woven plastic bags.")
     (description "BianZhiDai is a font inspired by shading characters in ASCII art and 编织袋 (woven plastic bag in Simple Chinese). BianZhiDai is good with colors, especially in combination with different fill/stroke colors. Try it, and play it. Besides, the whole font is modular based, so you can customize it in Glyphs any way you like.")
     (license license:silofl1.1)))
+
+;; font-velvetyne-cirruscumulus
+
+;; degheest family - https://velvetyne.fr/fonts/degheest/
+
+(define-public font-velvetyne-degheest
+  (package
+    (name "font-velvetyne-degheest")
+    (version "")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.com/Eugenie-B/degheest-types/")
+            (commit "")))
+      (sha256
+       (base32
+        "0js6h8ch9dbha2lkcmhpy5qmryzi09pjkryqzngg0kn4k2cyg1bw"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/degheest")
+    (synopsis "A font family of Ange Degheest’s remarkable typefaces and lettering work.")
+    (description "After discovering Ange Degheest’s archives at the Rennes School of Fine Arts, we decided to put together an exhibition that attempted to finally give the designer the full recognition she deserves. In this exhibition, visitors learnt about Degheest’s life story and professional achievements, and discovered many original archival documents that had never previously been presented to the public. In addition to this historical research, we revived some of Ange Degheest’s most remarkable typefaces and lettering work, which are now available in digital format.
+
+To revive means: to resurrect, to reactivate, to renew; and in many ways our work consisted in a kind of resurrection. We had indeed to reactivate the memory of Ange Degheest by diving in her archives, by exhuming the story of a woman who lived through many ages and locations. Only once we had acquired a good grasp of her life story, were we able to revive her typefaces. Reviving her designs and distributing them widely, free of charge, is our way to honour Ange Degheest’s memory and to give them a new life in the 21st century.
+
+Deheest is a project by Ange Degheest, Eugénie Bidaut, Oriane Charvieux, Mandy Elbé, Luna Delabre, Camille Depalle, Justine Herbel, May Jolivet and Benjamin Gomez, created in Atelier de création typographique from EESAB Rennes.")
+    (license license:silofl1.1)))
+
+;; font-velvetyne-fungal
+
+(define-public font-velvetyne-fungal
+  (package
+    (name "font-velvetyne-fungal")
+    (version "")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.com/velvetyne/fungal/")
+            (commit "")))
+      (sha256
+       (base32
+        "0ab552f5f3fm7l7dj7jgg0klj66giwgyl1nx21rqvqdr6vf2zmch"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/fungal")
+    (synopsis "Libre variable font inspired by mycelium growth, forked from DejaVu Sans.")
+    (description "In 2022, Hato press invited Raphaël Bastide to do a publication part of the zine series. In a wish to revive the “fan” part of fanzine, Raphaël Bastide decided to pay tribute to Wikipedia, a surviving, precious, unequaled place on the open WWW. The 16 pages riso print zine shows the encyclopedia’s interface as a post-human vestige, an artifact invaded by biomorphic figures and spreading typography. Through the pages of the zine, the reader discovers how the graphic elements are spreading like mycelium, creating an ornamental graphic network.
+
+The Fungal font is a close collaboration between Jérémy Landes and Raphaël Bastide, so the characters of the zine can grow and spread thanks to their variable design. Fungal is a fork of DejaVu Sans, a libre font, popular on Linux systems.
+
+The hypæ of the mycelium growing from each glyphs can be controlled in their length (the Grow axis) and in their thickness (the Thickness axis) allowing to fine tune the density of the rhizome growing on the page and the legibility of the text in the same move.")
+    ;; Fungal is under Bitstream Vera Fonts Copyright
+    (license license:silofl1.1)))
+
+;; https://velvetyne.fr/fonts/sligoil/
+;; font-velvetyne-sligoil
+
+;; https://velvetyne.fr/fonts/outward/
+;; font-velvetyne-outward
+
+;; https://velvetyne.fr/fonts/karrik/
+;; font-velvetyne-karrik
+
+;; https://velvetyne.fr/fonts/le-murmure/
+;; font-velvetyne-le-murmure
+
+;; https://velvetyne.fr/fonts/resistance/
+;; font-velvetyne-resistance
+
+;; https://velvetyne.fr/fonts/gulax/
+;; font-velvetyne-gulax
+
+;; https://velvetyne.fr/fonts/lineal/
+;; font-velvetyne-lineal
+
+
+
+
+
+
 
 ;; OSP
 ;;  http://osp.kitchen/foundry/
