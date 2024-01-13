@@ -66,20 +66,19 @@
 
 (define-public font-monaspace
   (package
-    (name "font-monaspace")
-    (version "1.000")
-    (source
-     (origin
-      (method url-fetch)
-      (uri "https://github.com/githubnext/monaspace/archive/refs/tags/v1.000.tar.gz"))
-     (sha256
-      (base32
-       "0lg5qwml3fv58xk92sgamxg3rni7am2m6xzzj8pcq758idiphs8d")))
-    (build-system font-build-system)
-    (home-page "https://monaspace.githubnext.com")
-    (synopsis "An innovative superfamily of fonts for code.")
-    (description "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve. It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another, allowing you to mix and match them for a more expressive typographical palette.")
-    (license license:silofl1.1)))
+   (name "font-monaspace")
+   (version "1.000")
+   (source (origin
+            (method url-fetch)
+            (uri "https://github.com/githubnext/monaspace/archive/refs/tags/v1.000.tar.gz")
+           (sha256
+            (base32
+             "0lg5qwml3fv58xk92sgamxg3rni7am2m6xzzj8pcq758idiphs8d"))))
+   (build-system font-build-system)
+   (home-page "https://monaspace.githubnext.com")
+   (synopsis "An innovative superfamily of fonts for code.")
+   (description "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve. It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another, allowing you to mix and match them for a more expressive typographical palette.")
+   (license license:silofl1.1)))
 
 ;; https://github.com/uswds/public-sans
 
@@ -87,22 +86,23 @@
 
 
 ;; testing and/or example
-(define-public font-artifika
-  (package
-    (name "font-artifika")
-    (version "1.102")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/cyrealtype/Artifika")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0nwjm44nys1qz3wyg0mm15gdjpz641xpmsz00n6m8065xrw86q7i"))))
-    (build-system font-build-system)
-    (home-page "https://github.com/cyrealtype/Artifika")
-    (synopsis "Upright italic font")
-    (description "Artifika is an upright italic font for fashionable display
-titling.")
-    (license license:silofl1.1)))
+
+;; (define-public font-artifika
+;;   (package
+;;    (name "font-artifika")
+;;    (version "1.102")
+;;    (source (origin
+;;             (method git-fetch)
+;;             (uri (git-reference
+;;                   (url "https://github.com/cyrealtype/Artifika")
+;;                   (commit (string-append "v" version))))
+;;             (file-name (git-file-name name version))
+;;             (sha256
+;;              (base32
+;;               "0nwjm44nys1qz3wyg0mm15gdjpz641xpmsz00n6m8065xrw86q7i"))))
+;;    (build-system font-build-system)
+;;    (home-page "https://github.com/cyrealtype/Artifika")
+;;    (synopsis "Upright italic font")
+;;    (description "Artifika is an upright italic font for fashionable display
+;; titling.")
+;;    (license license:silofl1.1)))
