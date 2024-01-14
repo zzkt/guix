@@ -17,7 +17,7 @@
 
 ;; as seen near  gnu/packages/fonts.scm
 
-(define-module (zzkt fonts)
+(define-module (zzkt fonts-osp)
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses) #:prefix license:)
