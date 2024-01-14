@@ -24,7 +24,6 @@
   #:use-module (guix build-system dune)
   #:use-module (guix build-system ocaml)
   #:use-module (gnu packages ocaml)
-  #:use-module (gnu packages ocaml-base)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages libevent)
   #:use-module (gnu packages pkg-config)
@@ -509,6 +508,7 @@ currently designed for Unicode Standard 3.2.")
       (base32 "1csz543wq66dcn08piabaascvbiswb1vxw1xfg4glgp8zq0mzap8"))))
    (build-system dune-build-system)
    (propagated-inputs (list dune
+                            ocaml-base
                             ocaml-odoc))
    (home-page "https://github.com/ocaml/dune")
    (synopsis "Embed locations information inside executable and libraries")
