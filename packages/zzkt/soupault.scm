@@ -580,6 +580,7 @@ https://github.com/janestreet/stdio")
 
 ;; via guix import opam sexplib0
 
+(define-public ocaml-sexplib0
 (package
   (name "ocaml-sexplib0")
   (version "0.16.0")
@@ -598,4 +599,4 @@ https://github.com/janestreet/stdio")
    "Part of Jane Street's Core library The Core suite of libraries is an industrial
 strength alternative to OCaml's standard library that was developed by Jane
 Street, the largest industrial user of OCaml.")
-  (license license:expat))%
+  (license license:expat)))
