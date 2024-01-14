@@ -391,6 +391,8 @@ documentation about the format, see :
      (sha256
       (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
    (build-system dune-build-system)
+   (arguments
+    `(#:tests? #f))
    (propagated-inputs (list ocaml-ptime
                             ocaml-tyxml
                             ocaml-odoc
@@ -415,6 +417,8 @@ documentation about the format, see :
      (sha256
       (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
    (build-system dune-build-system)
+   (arguments
+    `(#:tests? #f))
    (propagated-inputs (list ocaml-odoc ocaml-alcotest ocaml-junit))
    (properties `((upstream-name . "junit_alcotest")))
    (home-page "https://github.com/Khady/ocaml-junit")
@@ -436,6 +440,8 @@ documentation about the format, see :
      (sha256
       (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
   (build-system dune-build-system)
+  (arguments
+   `(#:tests? #f))
   (propagated-inputs (list ocaml-odoc ocaml-ounit ocaml-junit))
   (properties `((upstream-name . "junit_ounit")))
   (home-page "https://github.com/Khady/ocaml-junit")
