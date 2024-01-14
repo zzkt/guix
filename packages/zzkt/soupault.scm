@@ -510,3 +510,30 @@ currently designed for Unicode Standard 3.2.")
   (synopsis "Embed locations information inside executable and libraries")
   (description #f)
   (license license:expat)))
+
+;; via guix import opam lwt
+;; note: v5.6 is currently available in guix
+
+(define-public ocaml-lwt
+(package
+  (name "ocaml-lwt")
+  (version "5.7.0")
+  (source
+   (origin
+     (method url-fetch)
+     (uri "https://github.com/ocsigen/lwt/archive/refs/tags/5.7.0.tar.gz")
+     (sha256
+      (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
+  (build-system dune-build-system)
+  (propagated-inputs (list ocaml-dune-configurator ocaml-ocplib-endian))
+  (native-inputs (list ocaml-cppo))
+  (home-page "https://github.com/ocsigen/lwt")
+  (synopsis "Promises and event-driven I/O")
+  (description
+   "This package provides a promise is a value that may become determined in the
+future.  Lwt provides typed, composable promises.  Promises that are resolved by
+I/O are resolved by Lwt in parallel.  Meanwhile, OCaml code, including code
+creating and waiting on promises, runs in a single thread by default.  This
+reduces the need for locks or other synchronization primitives.  Code can be run
+in parallel on an opt-in basis.")
+  (license license:expat)))
