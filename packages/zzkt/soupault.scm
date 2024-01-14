@@ -550,3 +550,30 @@ creating and waiting on promises, runs in a single thread by default.  This
 reduces the need for locks or other synchronization primitives.  Code can be run
 in parallel on an opt-in basis.")
    (license license:expat)))
+
+;; via guix import opam base
+
+(define-public ocaml-base
+(package
+  (name "ocaml-base")
+  (version "0.16.3")
+  (source
+   (origin
+     (method url-fetch)
+     (uri
+      "https://github.com/janestreet/base/archive/refs/tags/v0.16.3.tar.gz")
+     (sha256
+      (base32 "0g7rrwnd3sb4pcpnvq7hc7dd7rg1gh0axxdhqwjh60dxw81ybycv"))))
+  (build-system dune-build-system)
+  (propagated-inputs (list ocaml-sexplib0 dune-configurator))
+  (home-page "https://github.com/janestreet/base")
+  (synopsis "Full standard library replacement for OCaml")
+  (description
+   "Full standard library replacement for OCaml Base is a complete and portable
+alternative to the OCaml standard library.  It provides all standard
+functionalities one would expect from a language standard library.  It uses
+consistent conventions across all of its module.  Base aims to be usable in any
+context.  As a result system dependent features such as I/O are not offered by
+Base.  They are instead provided by companion libraries such as stdio:
+https://github.com/janestreet/stdio")
+  (license license:expat)))
