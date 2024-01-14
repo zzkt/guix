@@ -391,7 +391,11 @@ documentation about the format, see :
      (sha256
       (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
    (build-system dune-build-system)
-   (propagated-inputs (list ocaml-ptime ocaml-tyxml ocaml-odoc ocaml-ounit))
+   (propagated-inputs (list ocaml-ptime
+                            ocaml-tyxml
+                            ocaml-odoc
+                            ocaml-ounit
+                            ocaml-alcotest))
    (home-page "https://github.com/Khady/ocaml-junit")
    (synopsis "JUnit XML reports generation library")
    (description "JUnit XML reports generation library")
