@@ -29,35 +29,36 @@
 
 ;; http://osp.kitchen/foundry
 
-;; - [ ] philibert
-;; - [x] fluxisch-else
-;; - [ ] ume
-;; - [ ] erbarre
-;; - [x] belgica-belgika
-;; - [x] alfphabet
-;; - [x] crickx
-;; - [ ] polsku
-;; - [ ] w-droge
-;; - [ ] vj12
-;; - [ ] sans-guilt-wafer
-;; - [x] reglo
-;; - [x] osp-din
-;; - [ ] notcouriersans
-;; - [ ] mill
-;; - [x] libertinage
-;; - [ ] le-patin-helvete
-;; - [ ] cowboy-henk
-;; - [ ] cimatics
-;; - [ ] certegeska
-;; - [ ] belogodor
 ;; - [ ] ax-28-script
-;; - [x] work-avec
-;; - [ ] metadin
-;; - [ ] limousine
-;; - [x] sans-guilt
+;; - [ ] belogodor
+;; - [ ] certegeska
+;; - [ ] cimatics
+;; - [ ] cowboy-henk
 ;; - [ ] dlf
+;; - [ ] erbarre
+;; - [ ] le-patin-helvete
+;; - [ ] limousine
 ;; - [ ] logisoso
+;; - [ ] metadin
+;; - [ ] mill
+;; - [ ] notcouriersans
+;; - [ ] philibert
+;; - [ ] polsku
+;; - [ ] sans-guilt-wafer
 ;; - [ ] skeleton
+;; - [ ] ume
+;; - [ ] vj12
+;; - [ ] w-droge
+
+;; - [x] alfphabet
+;; - [x] belgica-belgika
+;; - [x] crickx
+;; - [x] fluxisch-else
+;; - [x] libertinage
+;; - [x] osp-din
+;; - [x] reglo
+;; - [x] sans-guilt
+;; - [x] work-avec
 
 
 ;; http://osp.kitchen/foundry/libertinage/
@@ -183,9 +184,9 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
 ;; http://osp.kitchen/foundry/osp-din/
 ;; https://gitlab.constantvzw.org/osp/foundry.osp-din
 
-(define-public font-osp-osp-din
+(define-public font-osp-din
   (package
-    (name "font-osp-osp-din")
+    (name "font-osp-din")
     (version "1")
     (source
      (origin
@@ -199,7 +200,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/osp-din/")
     (synopsis "A DIN font based on the original 1932 drawings.")
-    (description "The first cut of OSP-DIN was drawn for the festival Cinema du réel 2009, when we were invited to work on a cartographic version of the programme. We drew the first cut of the open source DIN from grid based drawings similar to the original 1932 drawings of the DIN we saw during our investigative trip to Berlin in february 2008.")
+    (description "The first cut of OSP-DIN was drawn for the festival Cinema du réel 2009, when we were invited to work on a cartographic version of the programme. We drew the first cut of the open source DIN from grid based drawings similar to the original 1932 drawings of the DIN we saw during our investigative trip to Berlin in February 2008.")
     (license license:silofl1.1)))
 
 
