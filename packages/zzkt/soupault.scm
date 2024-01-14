@@ -194,6 +194,7 @@ offers flexible indentation options.")
 		        ocaml-alcotest
 		        ocaml-crowbar
 		        ocaml-junit-alcotest
+                        ocaml-ppx-sexp-value
 		        ocaml-ezjsonm))
    (home-page "https://github.com/avsm/ocaml-yaml")
    (synopsis "Parse and generate YAML 1.1/1.2 files")
