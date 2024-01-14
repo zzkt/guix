@@ -202,9 +202,7 @@ offers flexible indentation options.")
 intended to interoperable with the [Ezjsonm](https://github.com/mirage/ezjsonm)
 JSON handling library, if the simple common subset of Yaml is used.  Anchors and
 other advanced Yaml features are not implemented in the JSON compatibility
-layer.  The [Yaml module
-docs](http://anil-code.recoil.org/ocaml-yaml/yaml/Yaml/index.html) are
-browseable online.")
+layer.")
    (license license:isc)))
 
 
@@ -221,15 +219,15 @@ browseable online.")
      (sha256
       (base32 "1bsmix8qbsk04a1l2x4lrh919xq6a3pmanvgkdlc5wwp3p42q6bl"))))
    (build-system dune-build-system)
+   (arguments
+    `(#:tests? #f))
    (propagated-inputs (list ocaml-menhir))
    (native-inputs (list ocaml-lwt ocaml-ppx-expect))
    (home-page "https://github.com/hhugo/odate")
    (synopsis "Date & Duration Library")
    (description
     "Simple date and duration manipulation.  Also implement duration printer based on
-string format.  Already implemented in opalang [http://opalang.org/].  For
-documentation about the format, see :
-[http://doc.opalang.org/value/stdlib.core.date/Duration/try_generate_printer].")
+string format.")
    (license license:expat)))
 
 ;; via  guix import opam spelll
