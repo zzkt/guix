@@ -24,6 +24,7 @@
   #:use-module (guix build-system dune)
   #:use-module (guix build-system ocaml)
   #:use-module (gnu packages ocaml)
+  #:use-module (gnu packages glib)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:))
 
