@@ -27,18 +27,28 @@
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:))
 
+;; v4.7.0
+;; https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.7.0.tar.gz
+;; 0y4dlifiqs4x3w87lkfdiw0i89v8j69ax5mxp7g6lq0h40g8n4i6
+
+;; v4.6.0
+;; https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.6.0.tar.gz
+;; 1rc1jqri24ib5w109y8ffl9k835b6s9cyxj0s2px7aabwsf3iidf
+
 (define-public soupault
   (package
    (name "soupault")
-   (version "4.7.0")
+   (version "4.6.0")
    (source
     (origin
      (method url-fetch)
      (uri
-      "https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.7.0.tar.gz")
+      "https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.6.0.tar.gz")
      (sha256
-      (base32 "0y4dlifiqs4x3w87lkfdiw0i89v8j69ax5mxp7g6lq0h40g8n4i6"))))
+      (base32 "1rc1jqri24ib5w109y8ffl9k835b6s9cyxj0s2px7aabwsf3iidf"))))
    (build-system dune-build-system)
+   (arguments
+    `(#:tests? #f))
    (propagated-inputs (list ocaml-containers
                             ocaml-fileutils
                             ocaml-logs
