@@ -477,8 +477,10 @@ string format.")
      (sha256
       (base32 "0gfhpwh039jgf9bdjwz3dxbjs0h90qd100nrbp5llnc1pg823d3b"))))
    (build-system dune-build-system)
-   (propagated-inputs (list ocaml-dune-site ocaml-camlp-streams ocaml-odoc))
-   (native-inputs (list ocaml-stdlib-random))
+   (propagated-inputs (list ocaml-dune-site
+                            ocaml-camlp-streams
+                            ocaml-odoc))
+   ;; (native-inputs (list ocaml-stdlib-random))
    (home-page "https://github.com/savonet/Camomile")
    (synopsis "A Unicode library")
    (description
