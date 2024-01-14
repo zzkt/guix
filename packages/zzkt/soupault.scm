@@ -326,7 +326,7 @@ string format.")
      (sha256
       (base32 "1ar416qlrb2qrnlm7vw7lzg860nrg9vw8p3rnx16xy8ryj6z5pix"))))
    (build-system dune-build-system)
-   (propagated-inputs (list ocaml-odoc))
+   (propagated-inputs (list ocaml-ppxlib ocaml-odoc))
    (native-inputs (list ocaml-alcotest))
    (home-page "https://github.com/c-cube/qcheck/")
    (synopsis "Core qcheck library")
