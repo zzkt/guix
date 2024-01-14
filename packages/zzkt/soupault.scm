@@ -533,7 +533,7 @@ currently designed for Unicode Standard 3.2.")
    (arguments
      `(#:package "lwt"))
     (native-inputs
-     (list ocaml-cppo pkg-config))
+     (list ocaml-cppo ocaml-base pkg-config))
     (inputs
      (list glib))
     (propagated-inputs
@@ -565,7 +565,7 @@ in parallel on an opt-in basis.")
      (sha256
       (base32 "0g7rrwnd3sb4pcpnvq7hc7dd7rg1gh0axxdhqwjh60dxw81ybycv"))))
   (build-system dune-build-system)
-  (propagated-inputs (list ocaml-sexplib0 dune-configurator))
+  (propagated-inputs (list ocaml-sexplib0@0.16.0 dune-configurator))
   (home-page "https://github.com/janestreet/base")
   (synopsis "Full standard library replacement for OCaml")
   (description
@@ -577,3 +577,25 @@ context.  As a result system dependent features such as I/O are not offered by
 Base.  They are instead provided by companion libraries such as stdio:
 https://github.com/janestreet/stdio")
   (license license:expat)))
+
+;; via guix import opam sexplib0
+
+(package
+  (name "ocaml-sexplib0")
+  (version "0.16.0")
+  (source
+   (origin
+     (method url-fetch)
+     (uri
+      "https://ocaml.janestreet.com/ocaml-core/v0.16/files/sexplib0-v0.16.0.tar.gz")
+     (sha256
+      (base32 "07bhj2akd6i33h11qin4wns9qnjicf871yzji7vi4i8rd1ja5nw6"))))
+  (build-system dune-build-system)
+  (home-page "https://github.com/janestreet/sexplib0")
+  (synopsis
+   "Library containing the definition of S-expressions and some base converters")
+  (description
+   "Part of Jane Street's Core library The Core suite of libraries is an industrial
+strength alternative to OCaml's standard library that was developed by Jane
+Street, the largest industrial user of OCaml.")
+  (license license:expat))%
