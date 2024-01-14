@@ -565,7 +565,7 @@ in parallel on an opt-in basis.")
      (sha256
       (base32 "0g7rrwnd3sb4pcpnvq7hc7dd7rg1gh0axxdhqwjh60dxw81ybycv"))))
   (build-system dune-build-system)
-  (propagated-inputs (list ocaml-sexplib0@0.16.0 dune-configurator))
+  (propagated-inputs (list ocaml-sexplib0 dune-configurator))
   (home-page "https://github.com/janestreet/base")
   (synopsis "Full standard library replacement for OCaml")
   (description
