@@ -189,13 +189,14 @@ offers flexible indentation options.")
    (build-system dune-build-system)
    (propagated-inputs (list dune-configurator ocaml-ctypes ocaml-bos))
    (native-inputs (list ocaml-fmt
-		        ocaml-logs
-		        ocaml-mdx
-		        ocaml-alcotest
-		        ocaml-crowbar
-		        ocaml-junit-alcotest
+                        ocaml-logs
+                        ocaml-mdx
+                        ocaml-alcotest
+                        ocaml-crowbar
+                        ocaml-junit-alcotest
                         ocaml-ppx-sexp-value
-		        ocaml-ezjsonm))
+                        ocaml-sexplib
+                        ocaml-ezjsonm))
    (home-page "https://github.com/avsm/ocaml-yaml")
    (synopsis "Parse and generate YAML 1.1/1.2 files")
    (description
