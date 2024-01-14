@@ -513,6 +513,7 @@ currently designed for Unicode Standard 3.2.")
 
 ;; via guix import opam lwt
 ;; note: v5.6 is currently available in guix
+;; see also https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/ocaml.scm#n2800
 
 (define-public ocaml-lwt
   (package
@@ -525,9 +526,16 @@ currently designed for Unicode Standard 3.2.")
      (sha256
       (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
    (build-system dune-build-system)
-   (propagated-inputs (list dune-configurator
-                            ocaml-ocplib-endian))
-   (native-inputs (list ocaml-cppo))
+   (arguments
+     `(#:package "lwt"))
+    (native-inputs
+     (list ocaml-cppo pkg-config))
+    (inputs
+     (list glib))
+    (propagated-inputs
+     (list ocaml-mmap ocaml-ocplib-endian ocaml-result ocaml-seq libev))
+   ;; (propagated-inputs (list dune-configurator ocaml-ocplib-endian))
+   ;; (native-inputs (list ocaml-cppo))
    (home-page "https://github.com/ocsigen/lwt")
    (synopsis "Promises and event-driven I/O")
    (description
