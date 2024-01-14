@@ -25,6 +25,7 @@
   #:use-module (guix build-system ocaml)
   #:use-module (gnu packages ocaml)
   #:use-module (gnu packages glib)
+  #:use-module (gnu packages libevent)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:))
 
