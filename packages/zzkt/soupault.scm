@@ -508,6 +508,7 @@ currently designed for Unicode Standard 3.2.")
       (base32 "1csz543wq66dcn08piabaascvbiswb1vxw1xfg4glgp8zq0mzap8"))))
    (build-system dune-build-system)
    (propagated-inputs (list dune
+                            ocaml-lwt
                             ocaml-base
                             ocaml-odoc))
    (home-page "https://github.com/ocaml/dune")
