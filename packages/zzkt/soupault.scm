@@ -525,7 +525,8 @@ currently designed for Unicode Standard 3.2.")
      (sha256
       (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
    (build-system dune-build-system)
-   (propagated-inputs (list ocaml-dune-configurator ocaml-ocplib-endian))
+   (propagated-inputs (list dune-configurator
+                            ocaml-ocplib-endian))
    (native-inputs (list ocaml-cppo))
    (home-page "https://github.com/ocsigen/lwt")
    (synopsis "Promises and event-driven I/O")
