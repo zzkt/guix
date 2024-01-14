@@ -441,22 +441,49 @@ string format.")
 ;; via guix import opam junit_ounit
 
 (define-public ocaml-junit-ounit
-(package
-  (name "ocaml-junit-ounit")
-  (version "2.0.2")
-  (source
-   (origin
+  (package
+   (name "ocaml-junit-ounit")
+   (version "2.0.2")
+   (source
+    (origin
      (method url-fetch)
      (uri
       "https://github.com/Khady/ocaml-junit/releases/download/2.0.2/junit-2.0.2.tbz")
      (sha256
       (base32 "00bbx5j8vsy9fqbc04xa3lsalaxicirmbczr65bllfk1afv43agx"))))
-  (build-system dune-build-system)
-  (arguments
-   `(#:tests? #f))
-  (propagated-inputs (list ocaml-odoc ocaml-ounit ocaml-junit))
-  (properties `((upstream-name . "junit_ounit")))
-  (home-page "https://github.com/Khady/ocaml-junit")
-  (synopsis "JUnit XML reports generation for OUnit tests")
-  (description "JUnit XML reports generation for OUnit tests")
-  (license #f)))
+   (build-system dune-build-system)
+   (arguments
+    `(#:tests? #f))
+   (propagated-inputs (list ocaml-odoc ocaml-ounit ocaml-junit))
+   (properties `((upstream-name . "junit_ounit")))
+   (home-page "https://github.com/Khady/ocaml-junit")
+   (synopsis "JUnit XML reports generation for OUnit tests")
+   (description "JUnit XML reports generation for OUnit tests")
+   (license #f)))
+
+
+;; via guix import opam junit_camomile
+;; note: camomile 1.0.2 is currently available in guix
+
+(define-public ocaml-camomile
+  (package
+   (name "ocaml-camomile")
+   (version "2.0.0")
+   (source
+    (origin
+     (method url-fetch)
+     (uri
+      "https://github.com/savonet/Camomile/archive/refs/tags/v2.0.0.tar.gz")
+     (sha256
+      (base32 "0gfhpwh039jgf9bdjwz3dxbjs0h90qd100nrbp5llnc1pg823d3b"))))
+   (build-system dune-build-system)
+   (propagated-inputs (list ocaml-dune-site ocaml-camlp-streams ocaml-odoc))
+   (native-inputs (list ocaml-stdlib-random))
+   (home-page "https://github.com/savonet/Camomile")
+   (synopsis "A Unicode library")
+   (description
+    "Camomile is a Unicode library for OCaml.  Camomile provides Unicode character
+type, UTF-8, UTF-16, UTF-32 strings, conversion to/from about 200 encodings,
+collation and locale-sensitive case mappings, and more.  The library is
+currently designed for Unicode Standard 3.2.")
+   (license #f)))
