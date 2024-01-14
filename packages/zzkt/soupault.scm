@@ -222,7 +222,7 @@ browseable online.")
       (base32 "1bsmix8qbsk04a1l2x4lrh919xq6a3pmanvgkdlc5wwp3p42q6bl"))))
    (build-system dune-build-system)
    (propagated-inputs (list ocaml-menhir))
-   (native-inputs (list ocaml-ppx-expect))
+   (native-inputs (list ocaml-lwt ocaml-ppx-expect))
    (home-page "https://github.com/hhugo/odate")
    (synopsis "Date & Duration Library")
    (description

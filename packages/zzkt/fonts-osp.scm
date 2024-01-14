@@ -33,15 +33,15 @@
 ;; - [x] fluxisch-else
 ;; - [ ] ume
 ;; - [ ] erbarre
-;; - [ ] belgica-belgika
-;; - [ ] alfphabet
+;; - [x] belgica-belgika
+;; - [x] alfphabet
 ;; - [x] crickx
 ;; - [ ] polsku
 ;; - [ ] w-droge
 ;; - [ ] vj12
 ;; - [ ] sans-guilt-wafer
-;; - [ ] reglo
-;; - [ ] osp-din
+;; - [x] reglo
+;; - [x] osp-din
 ;; - [ ] notcouriersans
 ;; - [ ] mill
 ;; - [x] libertinage
@@ -79,11 +79,7 @@
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/libertinage/")
     (synopsis "A font made by copying and pasting parts of Linux Libertine glyphs.")
-    (description "The Libertinage font-set we developed for the FLOSS+Art book. It was built by copying and pasting parts of Linux Libertine glyphs or simply by all-turning glyphs.
-
-There are 27 variations, one for each letter of the Latin alphabet + the ‘Full’ version, containing all modifications.
-
-Every section of the book was assigned one font variation. The book reflects on the growing relationship between Free Software ideology, open content and digital art.")
+    (description "The Libertinage font-set we developed for the FLOSS+Art book. It was built by copying and pasting parts of Linux Libertine glyphs or simply by all-turning glyphs. There are 27 variations, one for each letter of the Latin alphabet and the ‘Full’ version, containing all modifications.")
     (license license:silofl1.1)))
 
 
@@ -132,7 +128,9 @@ More precisely in this case, George Maciunas of the Fluxus group used an IBM com
     (home-page "http://osp.kitchen/foundry/sans-guilt/")
     (synopsis "Three versions of Gill Sans based on three different sources.")
     (description "Sans Guilt MB: Based on a rasterized pdf made with the Monotype Gill Sans delivered with Mac OSX.
+
 Sans Guilt DB: Based on early sketches by Eric Gill
+
 Sans Guilt LB: Based on lead type from Royal College of Arts letterpress workshop.")
     (license license:silofl1.1)))
 
@@ -179,4 +177,93 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (home-page "http://osp.kitchen/foundry/crickx/")
     (synopsis "A digital reinterpretation of a set of adhesive letters.")
     (description "The Publi Fluor shop was situated in the northern part of Brussels, Schaerbeek, and founded by the father of Madame Christelle Crickx who was a trained letter painter. Starting to cut letters with the rounded and skilled cardboard templates drawn by her father, Madame Crickx slowly morphs the shapes by analysing how typographic niceties confuse her non-trained clients and leads to bad letters placement. She progressively removes the optical compensation of rounded tops and bottoms, straightens sides, and attaches accents for less floating parts. Those moves add a very specific orientation to this otherwise quite common bold italic sans serif display typeface.")
+    (license license:silofl1.1)))
+
+
+;; http://osp.kitchen/foundry/osp-din/
+;; https://gitlab.constantvzw.org/osp/foundry.osp-din
+
+(define-public font-osp-osp-din
+  (package
+    (name "font-osp-osp-din")
+    (version "1")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.constantvzw.org/osp/foundry.osp-din")
+            (commit "")))
+      (sha256
+       (base32
+        "08lmli9l0nbcb8mhbrd458zkzm3ni29cljzkihyq438bq5v6lzxh"))))
+    (build-system font-build-system)
+    (home-page "http://osp.kitchen/foundry/osp-din/")
+    (synopsis "A DIN font based on the original 1932 drawings.")
+    (description "The first cut of OSP-DIN was drawn for the festival Cinema du réel 2009, when we were invited to work on a cartographic version of the programme. We drew the first cut of the open source DIN from grid based drawings similar to the original 1932 drawings of the DIN we saw during our investigative trip to Berlin in february 2008.")
+    (license license:silofl1.1)))
+
+
+;; http://osp.kitchen/foundry/reglo/
+
+(define-public font-osp-reglo
+  (package
+    (name "font-osp-reglo")
+    (version "1")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.constantvzw.org/osp/foundry.reglo")
+            (commit "")))
+      (sha256
+       (base32
+        "0kk6k038pfmddz53js3r1dlhib5cv9mar27vcd772r1dadagb71j"))))
+    (build-system font-build-system)
+    (home-page "http://osp.kitchen/foundry/reglo")
+    (synopsis "Reglo is a font so tough that you can seriously mistreat it.")
+    (description "Reglo is a font so tough that you can seriously mistreat it. The font was designed by Sebastien Sanfilippo in autumn 2009 and is used for Radio Panik identity.")
+    (license license:silofl1.1)))
+
+
+;; http://osp.kitchen/foundry/alfphabet/
+
+(define-public font-osp-alfphabet
+  (package
+    (name "font-osp-alfphabet")
+    (version "1")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.constantvzw.org/osp/foundry.alfphabet")
+            (commit "")))
+      (sha256
+       (base32
+        "0xb08k470hca23lvs700316qmjn83gsp5znhmhbjfwk0vvbjq5x9"))))
+    (build-system font-build-system)
+    (home-page "http://osp.kitchen/foundry/alfphabet")
+    (synopsis "The Alfphabet family is based on the Belgian road signage lettering.")
+    (description "The Alfphabet family is based on the Belgian road signage lettering called ‘Alphabet’ in French and ‘Alfabet’ in Dutch.")
+    (license license:silofl1.1)))
+
+
+;; http://osp.kitchen/foundry/belgica-belgika/
+
+(define-public font-osp-belgica-belgika
+  (package
+    (name "font-osp-belgica-belgika")
+    (version "1")
+    (source
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika")
+            (commit "")))
+      (sha256
+       (base32
+        "1mrkrrcqf16jz1y1q4avkpp6zhsmwc07aj46ssag5dyn97kcsary"))))
+    (build-system font-build-system)
+    (home-page "http://osp.kitchen/foundry/belgica-belgika")
+    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
     (license license:silofl1.1)))
