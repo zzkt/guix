@@ -531,7 +531,7 @@ currently designed for Unicode Standard 3.2.")
       (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
    (build-system dune-build-system)
    (arguments
-    `(#:package "lwt.unix"))
+    `(#:package "lwt"))
     (native-inputs
      (list ocaml-cppo ocaml-base pkg-config))
     (inputs
