@@ -62,6 +62,7 @@
                             ocaml-ezjsonm
                             ocaml-yaml
                             ocaml-csv
+                            ocaml-lwt
                             ocaml-re
                             ocaml-odate
                             ocaml-spelll
@@ -117,11 +118,11 @@ generator mode is optional, you can use it as post-processor for existing sites.
    (build-system dune-build-system)
    (propagated-inputs (list ocaml-either dune-configurator ocaml-odoc))
    (native-inputs (list ocaml-qcheck-core
-		        ocaml-yojson
-		        ocaml-iter
-		        ocaml-gen
-		        ocaml-csexp
-		        ocaml-uutf))
+                        ocaml-yojson
+                        ocaml-iter
+                        ocaml-gen
+                        ocaml-csexp
+                        ocaml-uutf))
    (home-page "https://github.com/c-cube/ocaml-containers/")
    (synopsis
     "A modular, clean and powerful extension of the OCaml standard library")
@@ -129,7 +130,6 @@ generator mode is optional, you can use it as post-processor for existing sites.
    (license license:bsd-2)))
 
 ;; via guix import opam lambdasoup
-
 
 (define-public ocaml-lambdasoup
   (package
