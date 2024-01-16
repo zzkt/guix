@@ -36,7 +36,7 @@
      (sha256 (base32 "18c340hnx1sny87dby8wahijl1ssj1av67ff232gfwymfra6rdxm"))))
    ;; see https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
    (inputs
-    (list gawk))
+    (list gawk perl))
    (build-system cmake-build-system)
    (arguments
     `(#:tests? #f))
