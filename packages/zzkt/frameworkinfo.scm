@@ -41,7 +41,7 @@
         (file-name (git-file-name name version))
         (sha256 (base32
                  "0409cxf5aqdskazz88j9r8csb92ngi3xj59dhagvfcjffgmkwvrl"))))
-    (inputs
+    (propagated-inputs
      (list sudo dmidecode pciutils lshw))
     (build-system python-build-system)
     (arguments
