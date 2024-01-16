@@ -1,3 +1,4 @@
+;;; GNU Guix --- Functional package management for GNU
 ;;; Copyright © 2023 nik gaffney <nik@fo.am>
 ;;;
 ;;; This file is not (yet) part of GNU Guix.

@@ -16,35 +16,30 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (zzkt frameworkinfo)
+(define-module (zzkt plugdata)
   #:use-module (guix)
-  #:use-module (guix build-system python)
+  #:use-module (guix build-system gnu)
+  #:use-module (guix build-system cmake)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
-  #:use-module (gnu packages admin)
-  #:use-module (gnu packages pciutils)
-  #:use-module (gnu packages linux)
-  #:use-module (gnu packages python)
-  #:use-module (gnu packages python-xyz))
+  #:use-module (gnu packages gawk))
 
-(define-public frameworkinfo
+(define-public plugdata
   (package
-    (name "frameworkinfo")
-    (version "0.2")
-    (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-              (url "https://github.com/zzkt/frameworkinfo")
-              (commit "endless")))
-        (file-name (git-file-name name version))
-        (sha256 (base32
-		 "0a3k9xz48pbn3i7cw0iha6ww3gfzfb77m8q9kdwrmpm4hmal6c9c"))))
-    (inputs
-     (list sudo dmidecode pciutils lshw))
-    (build-system python-build-system)
-    (home-page "https://github.com/zzkt/frameworkinfo")
-    (synopsis "Show hardware info for framework laptop.")
-    (description "")
-    (license license:gpl3+)))
+   (name "plugdata")
+   (version "0.8.2")
+   (source
+    (origin
+     (method url-fetch)
+     (uri "https://github.com/plugdata-team/plugdata/archive/refs/tags/v0.8.2.tar.gz")
+     (sha256 (base32 "18c340hnx1sny87dby8wahijl1ssj1av67ff232gfwymfra6rdxm"))))
+   ;; see https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
+   (inputs
+    (list gawk))
+   (build-system cmake-build-system)
+   (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
+   (home-page "https://plugdata.org/")
+   (synopsis "A visual programming environment for audio experimentation, prototyping and education")
+   (description "A visual programming environment for audio experimentation, prototyping and education")
+   (license license:gpl3+)))

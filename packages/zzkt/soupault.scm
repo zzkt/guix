@@ -601,33 +601,3 @@ in parallel on an opt-in basis.")
 ;; strength alternative to OCaml's standard library that was developed by Jane
 ;; Street, the largest industrial user of OCaml.")
 ;;   (license license:expat)))
-
-(define-public ocaml-logs
-(package
-  (name "ocaml-logs")
-  (version "0.7.0")
-  (source
-   (origin
-     (method url-fetch)
-     (uri "https://erratique.ch/software/logs/releases/logs-0.7.0.tbz")
-     (sha256
-      (base32 "1jnmd675wmsmdwyb5mx5b0ac66g4c6gpv5s4mrx2j6pb0wla1x46"))))
-  (build-system ocaml-build-system)
-  (native-inputs (list ocaml-findlib ocamlbuild ocaml-topkg ocaml-mtime))
-  (home-page "https://erratique.ch/software/logs")
-  (synopsis "Logging infrastructure for OCaml")
-  (description
-   "Logs provides a logging infrastructure for OCaml.  Logging is performed on
-sources whose reporting level can be set independently.  Log message report is
-decoupled from logging and is handled by a reporter.  A few optional log
-reporters are distributed with the base library and the API easily allows to
-implement your own. `Logs` has no dependencies.  The optional `Logs_fmt`
-reporter on OCaml formatters depends on [Fmt][fmt].  The optional `Logs_browser`
-reporter that reports to the web browser console depends on [js_of_ocaml][jsoo].
- The optional `Logs_cli` library that provides command line support for
-controlling Logs depends on [`Cmdliner`][cmdliner].  The optional `Logs_lwt`
-library that provides Lwt logging functions depends on [`Lwt`][lwt] Logs and its
-reporters are distributed under the ISC license. [fmt]:
-http://erratique.ch/software/fmt [jsoo]: http://ocsigen.org/js_of_ocaml/
-[cmdliner]: http://erratique.ch/software/cmdliner [lwt]: http://ocsigen.org/lwt/")
-  (license license:isc)))

@@ -1,3 +1,4 @@
+;;; GNU Guix --- Functional package management for GNU
 ;;; Copyright © 2023 nik gaffney <nik@fo.am>
 ;;;
 ;;; This file is not (yet) part of GNU Guix.
@@ -15,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-;; as seen near  gnu/packages/fonts.scm
+;; as seen near gnu/packages/fonts.scm
 
 (define-module (zzkt fonts-osp)
   #:use-module (ice-9 regex)
