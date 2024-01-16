@@ -40,7 +40,7 @@
               (commit "endless")))
         (file-name (git-file-name name version))
         (sha256 (base32
-		 "0s3mz12zn9yscf8cfja7p4cxkv07i2gn5p9sbbvjkxqaxb0ipjih))))
+                 "0s3mz12zn9yscf8cfja7p4cxkv07i2gn5p9sbbvjkxqaxb0ipjih"))))
     (inputs
      (list sudo dmidecode pciutils lshw))
     (build-system python-build-system)
