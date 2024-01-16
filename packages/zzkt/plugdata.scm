@@ -39,7 +39,7 @@
     (list gawk))
    (build-system cmake-build-system)
    (arguments
-    (#:tests? #f))
+    `(#:tests? #f))
    (home-page "https://plugdata.org/")
    (synopsis "A visual programming environment for audio experimentation, prototyping and education")
    (description "A visual programming environment for audio experimentation, prototyping and education")

@@ -45,7 +45,7 @@
      (list sudo dmidecode pciutils lshw))
     (build-system python-build-system)
     (arguments
-     (#:tests? #f))
+     `(#:tests? #f))
     (home-page "https://github.com/zzkt/frameworkinfo")
     (synopsis "Show hardware info for framework laptop.")
     (description "")
