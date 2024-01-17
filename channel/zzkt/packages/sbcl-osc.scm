@@ -16,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (zzkt sbcl-osc)
+(define-module (zzkt packages sbcl-osc)
   #:use-module (guix)
   #:use-module (guix build-system asdf)
   #:use-module (gnu packages lisp-xyz)

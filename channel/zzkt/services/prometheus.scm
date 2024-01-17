@@ -10,16 +10,16 @@
   #:use-module (gnu services docker)
   #:use-module (gnu system shadow)
   #:use-module (guix gexp)
-  #:export (oci-prometheus-service-type
-            oci-prometheus-configuration
-            oci-prometheus-configuration?
-            oci-prometheus-configuration-fields
-            oci-prometheus-configuration-datadir
-            oci-prometheus-configuration-network
-            oci-prometheus-configuration-file
-            oci-prometheus-configuration-image
-            oci-prometheus-configuration-port
-            oci-prometheus-configuration->oci-container-configuration
+  #:export (prometheus-service-type
+            prometheus-configuration
+            prometheus-configuration?
+            prometheus-configuration-fields
+            prometheus-configuration-datadir
+            prometheus-configuration-network
+            prometheus-configuration-file
+            prometheus-configuration-image
+            prometheus-configuration-port
+            prometheus-configuration->container-configuration
             %prometheus-accounts
             %prometheus-activation))
 
@@ -43,7 +43,7 @@ scrape_configs:
 
 (define-maybe string)
 
-(define-configuration oci-prometheus-configuration
+(define-configuration prometheus-configuration
   (datadir
    (string "/var/lib/prometheus")
    "The directory where prometheus writes state.")
@@ -84,7 +84,7 @@ port inside the container.")
 
 (define (%prometheus-activation config)
   "Return an activation gexp for Prometheus."
-  (let ((datadir (oci-prometheus-configuration-datadir config)))
+  (let ((datadir (prometheus-configuration-datadir config)))
     #~(begin
         (use-modules (guix build utils))
         (let* ((user (getpwnam "prometheus"))
@@ -94,22 +94,22 @@ port inside the container.")
           (mkdir-p datadir)
           (chown datadir uid gid)))))
 
-(define oci-prometheus-configuration->oci-container-configuration
+(define prometheus-configuration->container-configuration
   (lambda (config)
     (let* ((datadir
-            (oci-prometheus-configuration-datadir config))
+            (prometheus-configuration-datadir config))
            (network
-            (oci-prometheus-configuration-network config))
+            (prometheus-configuration-network config))
            (image
-            (oci-prometheus-configuration-image config))
+            (prometheus-configuration-image config))
            (port
-            (oci-prometheus-configuration-port config))
+            (prometheus-configuration-port config))
            (metrics-port
-            (oci-prometheus-configuration-metrics-port config))
+            (prometheus-configuration-metrics-port config))
            (prometheus.yml
-            (oci-prometheus-configuration-file config))
+            (prometheus-configuration-file config))
            (container-config
-            (oci-container-configuration
+            (container-configuration
              (command
               '("--web.enable-lifecycle"
                 "--config.file=/etc/prometheus/prometheus.yml"
@@ -124,20 +124,20 @@ port inside the container.")
 
       (list
        (if (maybe-value-set? network)
-           (oci-container-configuration
+           (container-configuration
             (inherit container-config)
             (network network))
            container-config)))))
 
 
-(define oci-prometheus-service-type
+(define prometheus-service-type
   (service-type (name 'prometheus)
-                (extensions (list (service-extension oci-container-service-type
-                                                     oci-prometheus-configuration->oci-container-configuration)
+                (extensions (list (service-extension container-service-type
+                                                     prometheus-configuration->container-configuration)
                                   (service-extension account-service-type
                                                      (const %prometheus-accounts))
                                   (service-extension activation-service-type
                                                      %prometheus-activation)))
-                (default-value (oci-prometheus-configuration))
+                (default-value (prometheus-configuration))
                 (description
                  "Prometheus as a Shepherd Service.")))

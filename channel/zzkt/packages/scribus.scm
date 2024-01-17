@@ -23,7 +23,7 @@
 
 ;; via https://issues.guix.gnu.org/68203
 
-(define-module (zzkt scribus)
+(define-module (zzkt packages scribus)
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (guix utils)

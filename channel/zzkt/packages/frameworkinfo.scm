@@ -16,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (zzkt frameworkinfo)
+(define-module (zzkt packages frameworkinfo)
   #:use-module (guix)
   #:use-module (guix build-system python)
   #:use-module (guix git-download)
@@ -31,7 +31,7 @@
 (define-public frameworkinfo
   (package
     (name "frameworkinfo")
-    (version "0.2")
+    (version "0.3")
     (source
       (origin
         (method git-fetch)

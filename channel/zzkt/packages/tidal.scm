@@ -22,7 +22,7 @@
 ;; - supercollider
 ;; - https://github.com/musikinformatik/SuperDirt
 
-(define-module (zzkt tidal)
+(define-module (zzkt packages tidal)
   #:use-module (guix)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system cmake)

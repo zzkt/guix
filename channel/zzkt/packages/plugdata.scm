@@ -16,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (zzkt plugdata)
+(define-module (zzkt packages plugdata)
   #:use-module (guix)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system cmake)

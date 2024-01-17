@@ -1,0 +1,76 @@
+# -*- mode: org; coding: utf-8; -*-
+#+LaTeX_CLASS: zzkt-article
+#+LateX_Header: \setcounter{secnumdepth}{0}
+#+OPTIONS: toc:2 num:nil html-style:nil
+#+author:
+#+title: packaging notes & sundry
+
+* soupault install via opam
+
+#+BEGIN_SRC text
+; [zxxcxxz]  eval $(opam env --switch=default)
+; [zxxcxxz] opam install soupault=4.6.0
+[NOTE] External dependency handling not supported for OS family 'guix'.
+       You can disable this check using 'opam option --global depext=false'
+The following actions will be performed:
+  - install ocamlbuild          0.14.3   [required by logs]
+  - install ocamlfind           1.9.6    [required by logs]
+  - install seq                 base     [required by fileutils, spelll]
+  - install dune                3.12.2   [required by soupault]
+  - install uchar               0.0.2    [required by markup]
+  - install topkg               1.0.7    [required by logs]
+  - install tsort               2.1.0    [required by soupault]
+  - install stdlib-shims        0.3.0    [required by fileutils, spelll]
+  - install sexplib0            v0.16.0  [required by ezjsonm]
+  - install result              1.5      [required by ppx_deriving]
+  - install re                  1.11.0   [required by soupault]
+  - install ppx_derivers        1.2.1    [required by ppx_deriving]
+  - install pp                  1.2.0    [required by dune-private-libs]
+  - install ordering            3.12.2   [required by dyn, stdune]
+  - install ocaml-compiler-libs v0.12.4  [required by ppxlib]
+  - install menhirSdk           20231231 [required by menhir]
+  - install menhirLib           20231231 [required by otoml]
+  - install menhirCST           20231231 [required by menhir]
+  - install lua-ml              0.9.4    [required by soupault]
+  - install either              1.0.0    [required by containers]
+  - install csexp               1.5.2    [required by dune-configurator]
+  - install cppo                1.6.9    [required by ppx_deriving]
+  - install camlp-streams       5.0.1    [required by camomile, lambdasoup]
+  - install bigarray-compat     1.1.0    [required by ctypes]
+  - install base64              3.5.1    [required by soupault]
+  - install uutf                1.0.3    [required by jingoo, ezjsonm, otoml]
+  - install uucp                15.1.0   [required by jingoo]
+  - install rresult             0.7.0    [required by bos]
+  - install fmt                 0.9.0    [required by soupault]
+  - install astring             0.8.5    [required by bos]
+  - install spelll              0.4      [required by soupault]
+  - install integers            0.7.0    [required by ctypes]
+  - install fileutils           0.6.4    [required by soupault]
+  - install dyn                 3.12.2   [required by dune-private-libs]
+  - install ppxlib              0.31.0   [required by ppx_deriving]
+  - install menhir              20231231 [required by odate, jingoo, otoml]
+  - install dune-configurator   3.12.2   [required by containers, yaml]
+  - install markup              1.0.3    [required by soupault]
+  - install jsonm               1.0.2    [required by ezjsonm]
+  - install logs                0.7.0    [required by soupault]
+  - install cstruct             6.2.0    [required by eqaf, hex]
+  - install fpath               0.7.3    [required by bos]
+  - install stdune              3.12.2   [required by dune-private-libs]
+  - install ppx_deriving        5.2.1    [required by jingoo]
+  - install otoml               1.0.4    [required by soupault]
+  - install odate               0.7      [required by soupault]
+  - install ctypes              0.21.1   [required by yaml]
+  - install containers          3.13.1   [required by soupault]
+  - install lambdasoup          1.0.0    [required by soupault]
+  - install hex                 1.5.0    [required by ezjsonm]
+  - install eqaf                0.9      [required by digestif]
+  - install bos                 0.2.1    [required by yaml]
+  - install dune-private-libs   3.12.2   [required by dune-site]
+  - install jingoo              1.5.0    [required by soupault]
+  - install ezjsonm             1.3.0    [required by soupault]
+  - install digestif            1.1.4    [required by soupault]
+  - install yaml                3.2.0    [required by soupault]
+  - install dune-site           3.12.2   [required by camomile]
+  - install camomile            2.0.0    [required by soupault]
+  - install soupault            4.6.0
+#+END_SRC

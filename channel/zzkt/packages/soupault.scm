@@ -19,7 +19,7 @@
 ;;; via unofficial channels
 ;;;  https://repo.fo.am/zzkt/guix
 
-(define-module (zzkt soupault)
+(define-module (zzkt packages soupault)
   #:use-module (guix)
   #:use-module (guix build-system dune)
   #:use-module (guix build-system ocaml)

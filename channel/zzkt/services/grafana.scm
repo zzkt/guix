@@ -14,16 +14,16 @@
   #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 string-fun)
-  #:export (oci-grafana-service-type
-            oci-grafana-configuration
-            oci-grafana-configuration?
-            oci-grafana-configuration-fields
-            oci-grafana-configuration-datadir
-            oci-grafana-configuration-image
-            oci-grafana-configuration-port
-            oci-grafana-configuration-grafana.ini
-            oci-grafana-configuration-network
-            oci-grafana-configuration->oci-container-configuration
+  #:export (grafana-service-type
+            grafana-configuration
+            grafana-configuration?
+            grafana-configuration-fields
+            grafana-configuration-datadir
+            grafana-configuration-image
+            grafana-configuration-port
+            grafana-configuration-grafana.ini
+            grafana-configuration-network
+            grafana-configuration->container-configuration
 
             %grafana-accounts
             %grafana-activation
@@ -137,7 +137,7 @@
    "Everything you want to manually add to grafana.ini.")
   (prefix gf-))
 
-(define-configuration oci-grafana-configuration
+(define-configuration grafana-configuration
   (datadir
    (string "/var/lib/grafana")
    "The directory where grafana writes state.")
@@ -169,11 +169,11 @@ to \"host\" the @code{port} field will be ignored.")
 
 (define (%grafana-activation config)
   "Return an activation gexp for Grafana."
-  (let* ((datadir (oci-grafana-configuration-datadir config))
+  (let* ((datadir (grafana-configuration-datadir config))
          (grafana.ini
           (mixed-text-file
            "grafana.ini"
-           (serialize-configuration (oci-grafana-configuration-grafana.ini config)
+           (serialize-configuration (grafana-configuration-grafana.ini config)
                                     grafana-configuration-fields))))
     #~(begin
         (use-modules (guix build utils))
@@ -189,19 +189,19 @@ to \"host\" the @code{port} field will be ignored.")
            '(("/etc/grafana/grafana.ini"
               #$grafana.ini)))))))
 
-(define oci-grafana-configuration->oci-container-configuration
+(define grafana-configuration->container-configuration
   (lambda (config)
     (let* ((datadir
-            (oci-grafana-configuration-datadir config))
-           (grafana.ini (oci-grafana-configuration-grafana.ini config))
+            (grafana-configuration-datadir config))
+           (grafana.ini (grafana-configuration-grafana.ini config))
            (network
-            (oci-grafana-configuration-network config))
+            (grafana-configuration-network config))
            (image
-            (oci-grafana-configuration-image config))
+            (grafana-configuration-image config))
            (port
-            (oci-grafana-configuration-port config))
+            (grafana-configuration-port config))
            (container-config
-            (oci-container-configuration
+            (container-configuration
              (image image)
              (ports
               `((,port . "3000")))
@@ -212,19 +212,19 @@ to \"host\" the @code{port} field will be ignored.")
                 ("/etc/grafana/grafana.ini" . "/opt/bitnami/grafana/conf/grafana.ini"))))))
       (list
        (if (maybe-value-set? network)
-           (oci-container-configuration
+           (container-configuration
             (inherit container-config)
             (network network))
            container-config)))))
 
-(define oci-grafana-service-type
+(define grafana-service-type
   (service-type (name 'grafana)
-                (extensions (list (service-extension oci-container-service-type
-                                                     oci-grafana-configuration->oci-container-configuration)
+                (extensions (list (service-extension container-service-type
+                                                     grafana-configuration->container-configuration)
                                   (service-extension account-service-type
                                                      (const %grafana-accounts))
                                   (service-extension activation-service-type
                                                      %grafana-activation)))
-                (default-value (oci-grafana-configuration))
+                (default-value (grafana-configuration))
                 (description
-                 "This service install a OCI backed Grafana Shepherd Service.")))
+                 "Grafana as Shepherd Service.")))
