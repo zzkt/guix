@@ -31,12 +31,12 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
              (gnu packages shells)
              (gnu packages linux)
              (gnu packages xdisorg)
-             (gnu packages emacs-xyz)
+             (gnu packages emacs-xyz))
 #+end_src
 
 Include non-free linux kernel, modules and firmware from the  [[https://gitlab.com/nonguix/nonguix/][nonguix channel]]
 #+begin_src scheme
-             (nongnu packages linux)
+(use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 #+end_src
 
@@ -130,6 +130,7 @@ Kernel & driver details
                                         "audio"
                                         "video"
                                         "www-data"
+                                         "realtime"
                                         "lp")))
                (user-account
                 (name "www-data")
@@ -141,6 +142,9 @@ Kernel & driver details
 #+begin_src scheme
  (groups (cons* (user-group
                  (name "www-data"))
+                (user-group
+                 (system? #t)
+                 (name "realtime"))
                 %base-groups))
 #+end_src
 
@@ -196,6 +200,7 @@ Below is the list of enabled system services.  To search for any available servi
                       `(("zzk" ,(local-file "zzk_rsa.pub"))
                         ("root" ,(local-file "zzk_rsa.pub"))))))
 #+end_src
+
 *** mail
 use dovecot for local IMAP
 #+begin_src scheme
@@ -204,6 +209,43 @@ use dovecot for local IMAP
                     (dovecot-configuration
                      (mail-location "maildir:%h/Maildir:LAYOUT=fs")))
 #+end_src
+
+*** iptables
+
+=iptables= configuration to allow ssh on port 22, imaps on 993 and local smb for 192.168.0.0/16
+
+#+BEGIN_SRC scheme :session
+           (service iptables-service-type
+                    (iptables-configuration
+                     (ipv4-rules (plain-file "iptables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 137 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 138 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 139 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 445 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-port-unreachable
+COMMIT
+"))
+                     (ipv6-rules (plain-file "ip6tables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 137 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 138 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 139 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 445 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp6-port-unreachable
+COMMIT
+"))))
+#+END_SRC
 
 *** display manager
 #+begin_src scheme
@@ -219,6 +261,7 @@ use dovecot for local IMAP
                       (xorg-configuration
                        (keyboard-layout keyboard-layout)
 #+end_src
+
 Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
 #+begin_src scheme
                        (extra-config '("Section \"InputClass\"

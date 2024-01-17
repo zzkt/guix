@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-04 14:14:30+01:00)
+;; tangled from framework13-system.org on 2024-01-17 15:35:13+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -10,9 +10,9 @@
              (gnu packages shells)
              (gnu packages linux)
              (gnu packages xdisorg)
-             (gnu packages emacs-xyz)
+             (gnu packages emacs-xyz))
 
-             (nongnu packages linux)
+(use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
 (use-service-modules cups
@@ -64,6 +64,7 @@
                                         "audio"
                                         "video"
                                         "www-data"
+                                         "realtime"
                                         "lp")))
                (user-account
                 (name "www-data")
@@ -73,6 +74,9 @@
 
  (groups (cons* (user-group
                  (name "www-data"))
+                (user-group
+                 (system? #t)
+                 (name "realtime"))
                 %base-groups))
 
  (sudoers-file
@@ -114,6 +118,37 @@
            (service dovecot-service-type
                     (dovecot-configuration
                      (mail-location "maildir:%h/Maildir:LAYOUT=fs")))
+
+           (service iptables-service-type
+                    (iptables-configuration
+                     (ipv4-rules (plain-file "iptables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 137 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 138 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 139 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 445 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-port-unreachable
+COMMIT
+"))
+                     (ipv6-rules (plain-file "ip6tables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 137 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p udp -m udp --dport 138 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 139 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -p tcp -m tcp --dport 445 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp6-port-unreachable
+COMMIT
+"))))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
