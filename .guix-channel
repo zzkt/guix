@@ -4,7 +4,6 @@
  (version 0)
  (name 'zzkt)
  (news-file "news.scm")
- (directory "packages")
+ (directory "channel")
  (url "https://gitlab.com/zzkt/guix")
  (branch "endless"))
-
