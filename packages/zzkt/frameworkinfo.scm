@@ -40,7 +40,7 @@
               (commit "endless")))
         (file-name (git-file-name name version))
         (sha256 (base32
-                 "0409cxf5aqdskazz88j9r8csb92ngi3xj59dhagvfcjffgmkwvrl"))))
+                 "0j5qnz3zzs17qb9hxjjnwgba4sijm2ar8s1ba551f0v6jsidf29f"))))
     (propagated-inputs
      (list sudo dmidecode pciutils lshw))
     (build-system python-build-system)
@@ -48,5 +48,5 @@
      `(#:tests? #f))
     (home-page "https://github.com/zzkt/frameworkinfo")
     (synopsis "Show hardware info for framework laptop.")
-    (description "")
+    (description "Show information about hardware, BIOS, CPU and kernel version.")
     (license license:gpl3+)))
