@@ -78,10 +78,7 @@
      font-osp-fluxisch-else
      font-osp-din
      font-osp-crickx
-     font-osp-belgica-belgika-5th
-     font-osp-belgica-belgika-8th
-     font-osp-belgica-belgika-16th
-     font-osp-belgica-belgika-40th
+     font-osp-belgica-belgika
      font-osp-alfphabet))
    (synopsis "A collection of fonts from OSP.")
    (description "A collection of fonts from OSP including; work-avec, sans-guilt, reglo, libertinage, fluxisch-else, din, crickx, belgica-belgika, alfphabet")
@@ -280,83 +277,102 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
 
 ;; http://osp.kitchen/foundry/belgica-belgika/
 
+;; https://gitlab.constantvzw.org/osp/foundry.belgica-belgika/-/archive/master/foundry.belgica-belgika-master.zip
+;; 0c5ilf59f70fwyl5rcvqs8q1cicv5v7rhrvsj24vqsfd3ig9x1c1
+(define-public font-osp-belgica-belgika
+  (package
+   (name "font-osp-belgica-belgika")
+   (version "1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika/-/archive/master/foundry.belgica-belgika-master.zip")
+     (sha256
+      (base32
+       "0c5ilf59f70fwyl5rcvqs8q1cicv5v7rhrvsj24vqsfd3ig9x1c1"))))
+   (build-system font-build-system)
+   (home-page "http://osp.kitchen/foundry/belgica-belgika")
+   (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+   (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+   (license license:silofl1.1)))
+
 ;; http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf
 
 ;; 0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r
 
-(define-public font-osp-belgica-belgika-5th
-  (package
-   (name "font-osp-belgica-belgika-5th")
-   (version "1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf")
-     (sha256
-      (base32
-       "0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r"))))
-   (build-system font-build-system)
-   (home-page "http://osp.kitchen/foundry/belgica-belgika")
-   (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (license license:silofl1.1)))
+;; (define-public font-osp-belgica-belgika-5th
+;;   (package
+;;    (name "font-osp-belgica-belgika-5th")
+;;    (version "1")
+;;    (source
+;;     (origin
+;;      (method url-fetch)
+;;      (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf")
+;;      (sha256
+;;       (base32
+;;        "0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r"))))
+;;    (build-system font-build-system)
+;;    (home-page "http://osp.kitchen/foundry/belgica-belgika")
+;;    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (license license:silofl1.1)))
 
 ;; http://osp.kitchen/api/osp.foundry.belgica-belgika/d0c4a6eb6e0b3618b77ebe92743b8517f5368814/blob-data/belgika-8th-webfont.ttf
 ;; 0q61r98377hbr5c5s0bl5xrskriqw26wasfdgz56x4qwgi85qiz9
 
-(define-public font-osp-belgica-belgika-8th
-  (package
-   (name "font-osp-belgica-belgika-8th")
-   (version "1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/d0c4a6eb6e0b3618b77ebe92743b8517f5368814/blob-data/belgika-8th-webfont.ttf")
-     (sha256
-      (base32
-       "0q61r98377hbr5c5s0bl5xrskriqw26wasfdgz56x4qwgi85qiz9"))))
-   (build-system font-build-system)
-   (home-page "http://osp.kitchen/foundry/belgica-belgika")
-   (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (license license:silofl1.1)))
+;; (define-public font-osp-belgica-belgika-8th
+;;   (package
+;;    (name "font-osp-belgica-belgika-8th")
+;;    (version "1")
+;;    (source
+;;     (origin
+;;      (method url-fetch)
+;;      (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/d0c4a6eb6e0b3618b77ebe92743b8517f5368814/blob-data/belgika-8th-webfont.ttf")
+;;      (sha256
+;;       (base32
+;;        "0q61r98377hbr5c5s0bl5xrskriqw26wasfdgz56x4qwgi85qiz9"))))
+;;    (build-system font-build-system)
+;;    (home-page "http://osp.kitchen/foundry/belgica-belgika")
+;;    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (license license:silofl1.1)))
 
 ;; http://osp.kitchen/api/osp.foundry.belgica-belgika/5260b4052c63c359739ddd024428633bfbea3c4f/blob-data/belgika-16th-webfont.ttf
 ;; 1qdh1hn3a5vhsz0v4n4f48gghsjzl051x348y71zmc236nspzm9b
 
-(define-public font-osp-belgica-belgika-16th
-  (package
-   (name "font-osp-belgica-belgika-16th")
-   (version "1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/5260b4052c63c359739ddd024428633bfbea3c4f/blob-data/belgika-16th-webfont.ttf")
-     (sha256
-      (base32
-       "1qdh1hn3a5vhsz0v4n4f48gghsjzl051x348y71zmc236nspzm9b"))))
-   (build-system font-build-system)
-   (home-page "http://osp.kitchen/foundry/belgica-belgika")
-   (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (license license:silofl1.1)))
+;; (define-public font-osp-belgica-belgika-16th
+;;   (package
+;;    (name "font-osp-belgica-belgika-16th")
+;;    (version "1")
+;;    (source
+;;     (origin
+;;      (method url-fetch)
+;;      (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/5260b4052c63c359739ddd024428633bfbea3c4f/blob-data/belgika-16th-webfont.ttf")
+;;      (sha256
+;;       (base32
+;;        "1qdh1hn3a5vhsz0v4n4f48gghsjzl051x348y71zmc236nspzm9b"))))
+;;    (build-system font-build-system)
+;;    (home-page "http://osp.kitchen/foundry/belgica-belgika")
+;;    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (license license:silofl1.1)))
 
 ;; http://osp.kitchen/api/osp.foundry.belgica-belgika/772c8b28b82269ac022fceee3ec04fc8fb166c3c/blob-data/belgika-40th-webfont.ttf
 ;; 15sf5yj9g6kpjjhd7aj0cg0wi8rv40b0wah9ckgn4470la8n7via
 
-(define-public font-osp-belgica-belgika-40th
-  (package
-   (name "font-osp-belgica-belgika-40th")
-   (version "1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/772c8b28b82269ac022fceee3ec04fc8fb166c3c/blob-data/belgika-40th-webfont.ttf")
-     (sha256
-      (base32
-       "15sf5yj9g6kpjjhd7aj0cg0wi8rv40b0wah9ckgn4470la8n7via"))))
-   (build-system font-build-system)
-   (home-page "http://osp.kitchen/foundry/belgica-belgika")
-   (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-   (license license:silofl1.1)))
+;; (define-public font-osp-belgica-belgika-40th
+;;   (package
+;;    (name "font-osp-belgica-belgika-40th")
+;;    (version "1")
+;;    (source
+;;     (origin
+;;      (method url-fetch)
+;;      (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/772c8b28b82269ac022fceee3ec04fc8fb166c3c/blob-data/belgika-40th-webfont.ttf")
+;;      (sha256
+;;       (base32
+;;        "15sf5yj9g6kpjjhd7aj0cg0wi8rv40b0wah9ckgn4470la8n7via"))))
+;;    (build-system font-build-system)
+;;    (home-page "http://osp.kitchen/foundry/belgica-belgika")
+;;    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+;;    (license license:silofl1.1)))
