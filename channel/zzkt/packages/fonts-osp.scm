@@ -112,6 +112,8 @@ More precisely in this case, George Maciunas of the Fluxus group used an IBM com
 
 ;; http://osp.kitchen/foundry/sans-guilt/
 ;; https://gitlab.constantvzw.org/osp/foundry.sans-guilt
+;; https://gitlab.constantvzw.org/osp/foundry.sans-guilt/-/blob/master/osp.foundry.sansguilt.zip
+;; 0dajyw7x67kc8b1anrf1w1jm7w8s793jd93gy08rdiclhadp1yyq
 
 (define-public font-osp-sans-guilt
   (package
@@ -122,7 +124,7 @@ More precisely in this case, George Maciunas of the Fluxus group used an IBM com
       (method git-fetch)
       (uri (git-reference
             (url "https://gitlab.constantvzw.org/osp/foundry.sans-guilt")
-            (commit "")))
+            (commit "738f04f611b13a7e1f1833c1b29c17307530de5d")))
       (sha256
        (base32
         "0nn41gnwgnydkarjv212fdspnv29qyhrd6y2pkpwy53ds1l04p8s"))))
