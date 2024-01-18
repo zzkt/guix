@@ -66,10 +66,10 @@
 (define-public font-collection-osp
   (package
    (name "font-collection-osp")
-   (version "0.2")
+   (version "0.3")
    (source #f)
    (build-system trivial-build-system)
-   (arguments '(#:builder (mkdir %output)))
+   (arguments '(#:builder (begin (mkdir %output) #t)))
    (propagated-inputs
     (list
      font-osp-work-avec
