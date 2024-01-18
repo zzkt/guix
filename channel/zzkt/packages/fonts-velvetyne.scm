@@ -37,31 +37,33 @@
 ;; - [ ] Avara
 ;; - [ ] BackOut
 ;; - [ ] Basteleur
-;; - [x] BianZhiDai
 ;; - [ ] CirrusCumulus
 ;; - [ ] Compagnon
-;; - [x] Degheest
 ;; - [ ] Façade
 ;; - [ ] Format 1452
-;; - [x] Fungal
 ;; - [ ] Grotesk
 ;; - [ ] Gulax
 ;; - [ ] Jgs font
 ;; - [ ] Kaeru Kaeru
-;; - [ ] Karrik
-;; - [ ] Le Murmure
 ;; - [ ] Lineal
 ;; - [ ] Lithops
 ;; - [ ] Mess
 ;; - [ ] Mourier
 ;; - [ ] Ouroboros
-;; - [ ] Outward
 ;; - [ ] PicNic
 ;; - [ ] Pilowlava
-;; - [ ] Sligoil
 ;; - [ ] TINY
 ;; - [ ] Typefesse
 ;; - [ ] VG5000
+
+;; - [x] BianZhiDai
+;; - [x] Degheest
+;; - [x] Fungal
+;; - [x] Karrik
+;; - [x] Le Murmure
+;; - [x] Outward
+;; - [x] Resistance
+;; - [x] Sligoil
 
 ;; bianzhidai - https://velvetyne.fr/fonts/bianzhidai/
 
@@ -224,7 +226,7 @@ Karrik by Jean-Baptiste Morizot, Lucas Le Bihan. Distributed by velvetyne.fr")
 ;; https://velvetyne.fr/fonts/le-murmure/
 ;; font-velvetyne-le-murmure
 
-(define-public font-velvetyne-
+(define-public font-velvetyne-murmure
   (package
     (name "font-velvetyne-le-murmure")
     (version "1")
@@ -237,7 +239,7 @@ Karrik by Jean-Baptiste Morizot, Lucas Le Bihan. Distributed by velvetyne.fr")
        (sha256
         (base32 "0l8w6942ndmjm8zjkr2m2y2j6jbkq1iq7sdchma1xr1j1zmjzza0"))))
     (build-system font-build-system)
-    (home-page "https://velvetyne.fr/fonts/")
+    (home-page "https://velvetyne.fr/fonts/le-murmure")
     (synopsis
      "Le Murmure font plays on a skillful mismatch between characters")
     (description
@@ -263,7 +265,7 @@ Le Murmure by Jérémy Landes. Distributed by velvetyne.fr")
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/velvetyne/resistance-generale")
-             (commit "")))
+             (commit "b45a061aa8e7f1fdd783fc3170438bf7238ca656")))
        (sha256
         (base32 "032cl77fx72y0d16rglbanm1mrfv20r7a18l6qwzm59l1k45wd86"))))
     (build-system font-build-system)
