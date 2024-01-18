@@ -21,27 +21,31 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system cmake)
   #:use-module (guix git-download)
-  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module ((guix licenses)
+                #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages perl)
   #:use-module (gnu packages gawk))
 
 (define-public plugdata
   (package
-   (name "plugdata")
-   (version "0.8.2")
-   (source
-    (origin
-     (method url-fetch)
-     (uri "https://github.com/plugdata-team/plugdata/archive/refs/tags/v0.8.2.tar.gz")
-     (sha256 (base32 "18c340hnx1sny87dby8wahijl1ssj1av67ff232gfwymfra6rdxm"))))
-   ;; see https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
-   (inputs
-    (list gawk perl))
-   (build-system cmake-build-system)
-   (arguments
-    `(#:tests? #f))
-   (home-page "https://plugdata.org/")
-   (synopsis "A visual programming environment for audio experimentation, prototyping and education")
-   (description "A visual programming environment for audio experimentation, prototyping and education")
-   (license license:gpl3+)))
+    (name "plugdata")
+    (version "0.8.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/plugdata-team/plugdata/archive/refs/tags/v0.8.2.tar.gz")
+       (sha256
+        (base32 "18c340hnx1sny87dby8wahijl1ssj1av67ff232gfwymfra6rdxm"))))
+    ;; see https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
+    (inputs (list gawk perl))
+    (build-system cmake-build-system)
+    (arguments
+     `(#:tests? #f))
+    (home-page "https://plugdata.org/")
+    (synopsis
+     "A visual programming environment for audio experimentation, prototyping and education")
+    (description
+     "A visual programming environment for audio experimentation, prototyping and education")
+    (license license:gpl3+)))

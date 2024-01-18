@@ -20,7 +20,8 @@
   #:use-module (guix)
   #:use-module (guix build-system python)
   #:use-module (guix git-download)
-  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module ((guix licenses)
+                #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages pciutils)
@@ -33,20 +34,20 @@
     (name "frameworkinfo")
     (version "0.3")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-              (url "https://github.com/zzkt/frameworkinfo")
-              (commit "endless")))
-        (file-name (git-file-name name version))
-        (sha256 (base32
-                 "0j5qnz3zzs17qb9hxjjnwgba4sijm2ar8s1ba551f0v6jsidf29f"))))
-    (propagated-inputs
-     (list sudo dmidecode pciutils lshw))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/zzkt/frameworkinfo")
+             (commit "endless")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0j5qnz3zzs17qb9hxjjnwgba4sijm2ar8s1ba551f0v6jsidf29f"))))
+    (propagated-inputs (list sudo dmidecode pciutils lshw))
     (build-system python-build-system)
     (arguments
      `(#:tests? #f))
     (home-page "https://github.com/zzkt/frameworkinfo")
     (synopsis "Show hardware info for framework laptop.")
-    (description "Show information about hardware, BIOS, CPU and kernel version.")
+    (description
+     "Show information about hardware, BIOS, CPU and kernel version.")
     (license license:gpl3+)))

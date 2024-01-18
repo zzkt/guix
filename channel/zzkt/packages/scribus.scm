@@ -27,7 +27,8 @@
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (guix utils)
-  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module ((guix licenses)
+                #:prefix license:)
   #:use-module (guix build-system cmake)
   #:use-module (gnu packages)
   #:use-module (gnu packages boost)
@@ -49,7 +50,6 @@
   #:use-module (gnu packages tls)
   #:use-module (gnu packages xml))
 
-
 (define-public scribus
   (package
     (name "scribus")
@@ -57,46 +57,42 @@
     (source
      (origin
        (method url-fetch)
-       (uri (string-append "mirror://sourceforge/scribus/scribus/"
-                           version "/scribus-" version ".tar.gz"))
+       (uri (string-append "mirror://sourceforge/scribus/scribus/" version
+                           "/scribus-" version ".tar.gz"))
        (sha256
         (base32 "10ixrvi1rn20r8nni6cllvkszcx77pyca68vrixjsy7nk1brx9nw"))))
     (build-system cmake-build-system)
     (arguments
-     `(#:tests? #f                      ;no test target
-       #:configure-flags
-       '("-DWANT_GRAPHICSMAGICK=1"
-         "-DWANT_CPP17=ON")))
-    (inputs
-     (list boost
-           cairo
-           cups
-           fontconfig
-           freetype
-           graphicsmagick
-           harfbuzz
-           hunspell
-           icu4c
-           lcms
-           libcdr
-           libfreehand
-           libjpeg-turbo
-           libmspub
-           libpagemaker
-           librevenge
-           libtiff
-           libvisio
-           libxml2
-           libzmf
-           openssl
-           podofo
-           poppler
-           python                       ;need Python library
-           qtbase-5
-           qtdeclarative-5
-           zlib))
-    (native-inputs
-     (list pkg-config qttools-5 util-linux))
+     `(#:tests? #f ;no test target
+       #:configure-flags '("-DWANT_GRAPHICSMAGICK=1" "-DWANT_CPP17=ON")))
+    (inputs (list boost
+                  cairo
+                  cups
+                  fontconfig
+                  freetype
+                  graphicsmagick
+                  harfbuzz
+                  hunspell
+                  icu4c
+                  lcms
+                  libcdr
+                  libfreehand
+                  libjpeg-turbo
+                  libmspub
+                  libpagemaker
+                  librevenge
+                  libtiff
+                  libvisio
+                  libxml2
+                  libzmf
+                  openssl
+                  podofo
+                  poppler
+                  python ;need Python library
+                  qtbase-5
+                  qtdeclarative-5
+                  zlib))
+    (native-inputs (list pkg-config qttools-5 util-linux))
     (home-page "https://www.scribus.net")
     (synopsis "Desktop publishing and page layout program")
     (description
