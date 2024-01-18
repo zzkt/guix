@@ -69,7 +69,7 @@
    (version "0.2")
    (source #f)
    (build-system trivial-build-system)
-   (arguments '(#:builder (begin (mkdir %output) #t)))
+   (arguments '(#:builder (mkdir %output)))
    (propagated-inputs
     (list
      font-osp-work-avec
