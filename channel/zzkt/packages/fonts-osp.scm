@@ -277,19 +277,23 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
 
 ;; http://osp.kitchen/foundry/belgica-belgika/
 
-(define-public font-osp-belgica-belgika
+;; http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf
+
+;; 0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r
+
+(define-public font-osp-belgica-belgika-5th
   (package
-   (name "font-osp-belgica-belgika")
+   (name "font-osp-belgica-belgika-5th")
    (version "1")
    (source
     (origin
-     (method git-fetch)
+     (method url-fetch)
      (uri (git-reference
-           (url "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika")
-           (commit "")))
+           (url "http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf")))
+
      (sha256
       (base32
-       "1mrkrrcqf16jz1y1q4avkpp6zhsmwc07aj46ssag5dyn97kcsary"))))
+       "0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r"))))
    (build-system font-build-system)
    (home-page "http://osp.kitchen/foundry/belgica-belgika")
    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
