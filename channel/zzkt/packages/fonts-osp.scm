@@ -83,7 +83,7 @@
                              font-osp-crickx
                              font-osp-belgica-belgika
                              font-osp-alfphabet))
-    (synopsis "A collection of fonts from OSP.")
+    (synopsis "A collection of fonts from OSP")
     (home-page "http://osp.kitchen/foundry/")
     (description
      "A collection of fonts from OSP including; work-avec, sans-guilt, reglo, libertinage, fluxisch-else, din, crickx, belgica-belgika, alfphabet")
@@ -158,7 +158,7 @@ More precisely in this case, George Maciunas of the Fluxus group used an IBM com
         (base32 "0nn41gnwgnydkarjv212fdspnv29qyhrd6y2pkpwy53ds1l04p8s"))))
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/sans-guilt/")
-    (synopsis "Three versions of Gill Sans based on three different sources.")
+    (synopsis "Three versions of Gill Sans based on three different sources")
     (description
      "Sans Guilt MB: Based on a rasterized pdf made with the Monotype Gill Sans delivered with Mac OSX.
 
@@ -184,7 +184,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
         (base32 "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/work-avec/")
-    (synopsis "A schoolbook version of the Work Sans font.")
+    (synopsis "A schoolbook version of the Work Sans font")
     (description "A schoolbook version of the Work Sans font.")
     (license license:silofl1.1)))
 
@@ -205,7 +205,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
         (base32 "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/crickx/")
-    (synopsis "A digital reinterpretation of a set of adhesive letters.")
+    (synopsis "A digital reinterpretation of a set of adhesive letters")
     (description
      "The Publi Fluor shop was situated in the northern part of Brussels, Schaerbeek, and founded by the father of Madame Christelle Crickx who was a trained letter painter. Starting to cut letters with the rounded and skilled cardboard templates drawn by her father, Madame Crickx slowly morphs the shapes by analysing how typographic niceties confuse her non-trained clients and leads to bad letters placement. She progressively removes the optical compensation of rounded tops and bottoms, straightens sides, and attaches accents for less floating parts. Those moves add a very specific orientation to this otherwise quite common bold italic sans serif display typeface.")
     (license license:silofl1.1)))
@@ -227,7 +227,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
         (base32 "08lmli9l0nbcb8mhbrd458zkzm3ni29cljzkihyq438bq5v6lzxh"))))
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/osp-din/")
-    (synopsis "A DIN font based on the original 1932 drawings.")
+    (synopsis "A DIN font based on the original 1932 drawings")
     (description
      "The first cut of OSP-DIN was drawn for the festival Cinema du réel 2009, when we were invited to work on a cartographic version of the programme. We drew the first cut of the open source DIN from grid based drawings similar to the original 1932 drawings of the DIN we saw during our investigative trip to Berlin in February 2008.")
     (license license:silofl1.1)))
@@ -248,7 +248,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
         (base32 "0kk6k038pfmddz53js3r1dlhib5cv9mar27vcd772r1dadagb71j"))))
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/reglo")
-    (synopsis "Reglo is a font so tough that you can seriously mistreat it.")
+    (synopsis "Reglo is a font so tough that you can seriously mistreat it")
     (description
      "Reglo is a font so tough that you can seriously mistreat it. The font was designed by Sebastien Sanfilippo in autumn 2009 and is used for Radio Panik identity.")
     (license license:silofl1.1)))
@@ -270,7 +270,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/alfphabet")
     (synopsis
-     "The Alfphabet family is based on the Belgian road signage lettering.")
+     "The Alfphabet family is based on the Belgian road signage lettering")
     (description
      "The Alfphabet family is based on the Belgian road signage lettering called ‘Alphabet’ in French and ‘Alfabet’ in Dutch.")
     (license license:silofl1.1)))
@@ -292,7 +292,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (build-system font-build-system)
     (home-page "http://osp.kitchen/foundry/belgica-belgika")
     (synopsis
-     "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
+     "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages")
     (description
      "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
     (license license:silofl1.1)))

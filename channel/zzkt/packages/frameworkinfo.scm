@@ -47,7 +47,7 @@
     (arguments
      `(#:tests? #f))
     (home-page "https://github.com/zzkt/frameworkinfo")
-    (synopsis "Show hardware info for framework laptop.")
+    (synopsis "Show hardware info for framework laptop")
     (description
      "Show information about hardware, BIOS, CPU and kernel version.")
     (license license:gpl3+)))

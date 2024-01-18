@@ -36,7 +36,7 @@
          (uri (git-reference
                (url "https://github.com/zzkt/osc")
                (commit commit)))
-         (file-name (git-file-name "cl-osc" version))
+         (file-name (git-file-name "osc" version))
          (sha256
           (base32 "1x4cavspaxcr604g0hwak1ncy4m9cqq03ji4v56g2h1443n7h48a"))))
       (build-system asdf-build-system/sbcl)
