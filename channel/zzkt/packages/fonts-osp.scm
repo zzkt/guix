@@ -78,7 +78,7 @@
      font-osp-fluxisch-else
      font-osp-din
      font-osp-crickx
-     font-osp-belgica-belgika
+     font-osp-belgica-belgika-5th
      font-osp-alfphabet))
    (synopsis "A collection of fonts from OSP.")
    (description "A collection of fonts from OSP including; work-avec, sans-guilt, reglo, libertinage, fluxisch-else, din, crickx, belgica-belgika, alfphabet")
