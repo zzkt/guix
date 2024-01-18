@@ -378,3 +378,42 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
 ;;    (synopsis "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
 ;;    (description "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
 ;;    (license license:silofl1.1)))
+
+
+;; what remains...
+
+;; https://gitlab.constantvzw.org/osp/foundry.ax-28-script
+
+;; https://gitlab.constantvzw.org/osp/foundry.belogodor
+
+;; https://gitlab.constantvzw.org/osp/foundry.certegeska
+
+;; https://gitlab.constantvzw.org/osp/foundry.cimatics
+
+;; https://gitlab.constantvzw.org/osp/foundry.cowboy-henk
+
+;; https://gitlab.constantvzw.org/osp/foundry.erbarre
+
+;; https://gitlab.constantvzw.org/osp/foundry.le-patin-helvete
+
+;; https://gitlab.constantvzw.org/osp/foundry.limousine
+
+;; https://gitlab.constantvzw.org/osp/foundry.logisoso
+
+;; https://gitlab.constantvzw.org/osp/foundry.metadin
+
+;; https://gitlab.constantvzw.org/osp/foundry.mill
+
+;; https://gitlab.constantvzw.org/osp/foundry.notcouriersans
+
+;; https://gitlab.constantvzw.org/osp/foundry.philibert
+
+;; https://gitlab.constantvzw.org/osp/foundry.polsku
+
+;; https://gitlab.constantvzw.org/osp/foundry.sans-guilt-wafer
+
+;; https://gitlab.constantvzw.org/osp/foundry.ume
+
+;; https://gitlab.constantvzw.org/osp/foundry.vj12
+
+;; https://gitlab.constantvzw.org/osp/foundry.w-droge
