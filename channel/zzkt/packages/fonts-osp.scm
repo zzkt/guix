@@ -67,7 +67,7 @@
    (name "font-collection-osp")
    (version "0.1")
    (source #f)
-   (build-system trivial-build-system)
+   (build-system font-build-system)
    (home-page "http://osp.kitchen/foundry/")
    (propagated-inputs
     (list
