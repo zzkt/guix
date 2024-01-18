@@ -69,7 +69,7 @@
    (version "0.2")
    (source #f)
    (build-system trivial-build-system)
-   (home-page "http://osp.kitchen/foundry/")
+   (arguments '(#:builder (begin (mkdir %output) #t)))
    (propagated-inputs
     (list
      font-osp-work-avec
@@ -82,6 +82,7 @@
      font-osp-belgica-belgika
      font-osp-alfphabet))
    (synopsis "A collection of fonts from OSP.")
+   (home-page "http://osp.kitchen/foundry/")
    (description "A collection of fonts from OSP including; work-avec, sans-guilt, reglo, libertinage, fluxisch-else, din, crickx, belgica-belgika, alfphabet")
    (license license:silofl1.1)))
 
