@@ -61,6 +61,23 @@
 ;; - [x] sans-guilt
 ;; - [x] work-avec
 
+;; a metapackage for all packaged fonts
+(define-public font-osp-collection
+  (package
+    (name "font-osp-collection")
+    (home-page "http://osp.kitchen/foundry/")
+    (synopsis "A collection of fonts from OSP")
+    (propagated-inputs
+     (list
+     font-osp-work-avec
+     font-osp-sans-guilt
+     font-osp-reglo
+     font-osp-libertinage
+     font-osp-fluxisch-else
+     font-osp-din
+     font-osp-crickx
+     font-osp-belgica-belgika
+     font-osp-alfphabet))))
 
 ;; http://osp.kitchen/foundry/libertinage/
 ;; https://gitlab.constantvzw.org/osp/foundry.libertinage
