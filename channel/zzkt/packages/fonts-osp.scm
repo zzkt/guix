@@ -26,6 +26,7 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
+  #:use-module (guix build-system trivial)
   #:use-module (guix build-system font))
 
 ;; http://osp.kitchen/foundry
@@ -67,7 +68,7 @@
    (name "font-collection-osp")
    (version "0.1")
    (source #f)
-   (build-system font-build-system)
+   (build-system trivial-build-system)
    (home-page "http://osp.kitchen/foundry/")
    (propagated-inputs
     (list
