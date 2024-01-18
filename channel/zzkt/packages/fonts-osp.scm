@@ -66,7 +66,7 @@
 (define-public font-collection-osp
   (package
    (name "font-collection-osp")
-   (version "0.1")
+   (version "0.2")
    (source #f)
    (build-system trivial-build-system)
    (home-page "http://osp.kitchen/foundry/")
