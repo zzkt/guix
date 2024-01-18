@@ -65,8 +65,10 @@
 (define-public font-osp-collection
   (package
     (name "font-osp-collection")
+    (version "0.1")
+    (source #f)
+    (build-system trivial-build-system)
     (home-page "http://osp.kitchen/foundry/")
-    (synopsis "A collection of fonts from OSP")
     (propagated-inputs
      (list
      font-osp-work-avec
@@ -77,7 +79,12 @@
      font-osp-din
      font-osp-crickx
      font-osp-belgica-belgika
-     font-osp-alfphabet))))
+     font-osp-alfphabet))
+    (synopsis "A collection of fonts from OSP.")
+    (description "A collection of fonts from OSP including; work-avec, sans-guilt, reglo, libertinage, fluxisch-else, din, crickx, belgica-belgika, alfphabet")
+    (license license:silofl1.1)))
+
+;; (version source build-system description license)"
 
 ;; http://osp.kitchen/foundry/libertinage/
 ;; https://gitlab.constantvzw.org/osp/foundry.libertinage
