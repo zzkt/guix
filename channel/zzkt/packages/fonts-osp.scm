@@ -288,9 +288,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
    (source
     (origin
      (method url-fetch)
-     (uri (git-reference
-           (url "http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf")))
-
+     (uri  "http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf")
      (sha256
       (base32
        "0jr01j9nigc3nhghn47lwfq6lpyviyri2x5rdfpn28b8b1ghkz6r"))))
