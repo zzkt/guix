@@ -126,7 +126,7 @@
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.fluxisch-else")
-             (commit "")))
+             (commit "75abcc332cdf9083c6d50adaaf3e53725453d152")))
        (sha256
         (base32 "0nn41gnwgnydkarjv212fdspnv29qyhrd6y2pkpwy53ds1l04p8s"))))
     (build-system font-build-system)
@@ -179,7 +179,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.work-avec")
-             (commit "")))
+             (commit "1feaf402adc8e5b5743c2613cecb22fb1fb86505")))
        (sha256
         (base32 "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
     (build-system font-build-system)
@@ -200,7 +200,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.crickx")
-             (commit "")))
+             (commit "b32fb9627c887be02e36271b70e1e29178611312")))
        (sha256
         (base32 "06ifsydmk90fzlkvzb3ij7lzsvdiamd05s1i33fa1mk6x84a9wpz"))))
     (build-system font-build-system)
@@ -222,7 +222,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.osp-din")
-             (commit "")))
+             (commit "dc97c1ed86860351ae52a5636fa9c9a42ff93a8f")))
        (sha256
         (base32 "08lmli9l0nbcb8mhbrd458zkzm3ni29cljzkihyq438bq5v6lzxh"))))
     (build-system font-build-system)
@@ -243,7 +243,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.reglo")
-             (commit "")))
+             (commit "803694439ca14a3f2806c7347d198ed6201e8c4b")))
        (sha256
         (base32 "0kk6k038pfmddz53js3r1dlhib5cv9mar27vcd772r1dadagb71j"))))
     (build-system font-build-system)
@@ -264,7 +264,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
        (method git-fetch)
        (uri (git-reference
              (url "https://gitlab.constantvzw.org/osp/foundry.alfphabet")
-             (commit "")))
+             (commit "83c57d32b356826723bfe4f1a9db2301b8c5b9a6")))
        (sha256
         (base32 "0xb08k470hca23lvs700316qmjn83gsp5znhmhbjfwk0vvbjq5x9"))))
     (build-system font-build-system)
@@ -286,8 +286,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (source
      (origin
        (method url-fetch)
-       (uri
-        "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika/-/archive/master/foundry.belgica-belgika-master.zip")
+       (uri "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika/-/archive/master/foundry.belgica-belgika-master.zip")
        (sha256
         (base32 "0c5ilf59f70fwyl5rcvqs8q1cicv5v7rhrvsj24vqsfd3ig9x1c1"))))
     (build-system font-build-system)
@@ -297,6 +296,7 @@ Sans Guilt LB: Based on lead type from Royal College of Arts letterpress worksho
     (description
      "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
     (license license:silofl1.1)))
+
 
 ;; http://osp.kitchen/api/osp.foundry.belgica-belgika/ecfd91b1bb7800040d352413f27abb8cd3c92538/blob-data/belgika-5th-webfont.ttf
 
