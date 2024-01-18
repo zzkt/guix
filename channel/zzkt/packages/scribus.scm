@@ -88,7 +88,7 @@
                   openssl
                   podofo
                   poppler
-                  python ;need Python library
+                  python
                   qtbase-5
                   qtdeclarative-5
                   zlib))
