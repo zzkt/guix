@@ -212,7 +212,7 @@ use dovecot for local IMAP
 
 *** iptables
 
-=iptables= configuration to allow ssh on port 22, imaps on 993 and local smb for 192.168.0.0/16
+=iptables= configuration to allow SSH on port 22, IMAPS on 993, mDNS and local smb for 192.168.0.0/16
 
 #+BEGIN_SRC scheme :session
            (service iptables-service-type
@@ -224,6 +224,7 @@ use dovecot for local IMAP
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT
@@ -239,6 +240,7 @@ COMMIT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -p tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT

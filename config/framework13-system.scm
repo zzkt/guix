@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-17 16:18:35+01:00)
+;; tangled from framework13-system.org on 2024-01-19 11:54:14+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -128,6 +128,7 @@
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT
@@ -143,6 +144,7 @@ COMMIT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -p tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT
