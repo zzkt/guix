@@ -19,7 +19,7 @@
 (define-module (zzkt packages gephi)
   #:use-module (guix)
   #:use-module (guix build-system ant)
-  #:use-module (guix build-system trivial)
+  #:use-module (guix build-system copy)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
@@ -60,10 +60,16 @@
        (uri "https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz")
        (sha256
         (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
-    (build-system trivial-build-system)
+    (build-system copy-build-system)
     (arguments
-     '(#:builder (begin
-                   (mkdir %output) #t)))
+     '(#:install-plan
+       (list ("bin" "bin")
+             ("etc" "etc")
+             ("extra" "extra")
+             ("flathub" "flathub")
+             ("gephi" "gephi")
+             ("jre-x64" "jre-x64")
+             ("platform" "platform"))))
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform. Latest binary release")
     (description
