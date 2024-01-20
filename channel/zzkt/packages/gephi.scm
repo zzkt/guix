@@ -18,7 +18,7 @@
 
 (define-module (zzkt packages gephi)
   #:use-module (guix)
-  #:use-module (guix build-system ant)
+  #:use-module (guix build-system maven)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
@@ -38,8 +38,8 @@
       (sha256 (base32 "01ywl2p5yi6ccam8778yjayrjjvmbh2h3yw4qd263siyih0zs9hj"))))
     (inputs
      (list gawk))
-    (build-system ant-build-system)
-    (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
+    (build-system maven-build-system)
+    ;; (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform")
     (description
