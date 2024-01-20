@@ -62,14 +62,14 @@
         (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
     (build-system copy-build-system)
     (arguments
-     (list (#:install-plan
-       '(("bin" "bin")
-         ("etc" "etc")
-         ("extra" "extra")
-         ("flathub" "flathub")
-         ("gephi" "gephi")
-         ("jre-x64" "jre-x64")
-         ("platform" "platform")))))
+     (list #:install-plan
+       #~'(("bin" "bin")
+           ("etc" "etc")
+           ("extra" "extra")
+           ("flathub" "flathub")
+           ("gephi" "gephi")
+           ("jre-x64" "jre-x64")
+           ("platform" "platform"))))
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform. Latest binary release")
     (description
