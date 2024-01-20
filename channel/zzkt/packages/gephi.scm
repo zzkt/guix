@@ -52,7 +52,7 @@
 
 (define-public gephi-binary
   (package
-    (name "gephi")
+    (name "gephi-binary")
     (version "0.10.1")
     (source
      (origin
