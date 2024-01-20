@@ -18,13 +18,14 @@
 
 (define-module (zzkt packages gephi)
   #:use-module (guix)
-  #:use-module (guix build-system maven)
+  #:use-module (guix build-system ant)
+  #:use-module (guix build-system trivial)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages gawk))
 
-(define-public gephi
+(define-public gephi-ant-nest
   (package
     (name "gephi")
     (version "0.10.2")
@@ -38,10 +39,33 @@
       (sha256 (base32 "01ywl2p5yi6ccam8778yjayrjjvmbh2h3yw4qd263siyih0zs9hj"))))
     (inputs
      (list gawk))
-    (build-system maven-build-system)
+    (build-system ant-build-system)
     ;; (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
     (home-page "https://gephi.org/")
-    (synopsis "The Open Graph Viz Platform")
+    (synopsis "The Open Graph Viz Platform. Built from source")
+    (description
+     "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
+    (license license:gpl3+)))
+
+
+;; https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz
+
+(define-public gephi-binary
+  (package
+    (name "gephi")
+    (version "0.10.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri "https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz")
+       (sha256
+        (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
+    (build-system trivial-build-system)
+    (arguments
+     '(#:builder (begin
+                   (mkdir %output) #t)))
+    (home-page "https://gephi.org/")
+    (synopsis "The Open Graph Viz Platform. Latest binary release")
     (description
      "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
     (license license:gpl3+)))
