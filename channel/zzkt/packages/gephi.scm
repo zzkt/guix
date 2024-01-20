@@ -28,12 +28,15 @@ define-module (zzkt packages gephi)
 (define-public gephi
   (package
     (name "gephi")
-    (version "0.10.1")
+    (version "0.10.2")
     (source
-      (origin
-        (method url-fetch)
-        (uri "https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz")
-        (sha256 (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
+     (origin
+      (method git-fetch)
+      (uri (git-reference
+            (url "https://github.com/gephi/gephi/")
+            (commit "0.10.2")))
+      (file-name (git-file-name name version))
+      (sha256 (base32 "01ywl2p5yi6ccam8778yjayrjjvmbh2h3yw4qd263siyih0zs9hj"))))
     (inputs
      (list gawk))
     (build-system ant-build-system)
