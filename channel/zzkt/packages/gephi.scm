@@ -50,6 +50,8 @@
 
 ;; https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz
 
+;; gephi --jdkhome ~/.guix-profile
+
 (define-public gephi-binary
   (package
     (name "gephi-binary")
@@ -60,6 +62,8 @@
        (uri "https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz")
        (sha256
         (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
+    (inputs
+     (list openjdk))
     (build-system copy-build-system)
     (arguments
      (list #:install-plan
