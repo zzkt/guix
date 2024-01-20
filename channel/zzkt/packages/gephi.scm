@@ -23,7 +23,7 @@
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
-  #:use-module (gnu packages gawk))
+  #:use-module (gnu packages java))
 
 (define-public gephi-ant-nest
   (package
@@ -37,8 +37,6 @@
             (commit "0.10.2")))
       (file-name (git-file-name name version))
       (sha256 (base32 "01ywl2p5yi6ccam8778yjayrjjvmbh2h3yw4qd263siyih0zs9hj"))))
-    (inputs
-     (list gawk))
     (build-system ant-build-system)
     ;; (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
     (home-page "https://gephi.org/")
@@ -62,7 +60,7 @@
        (uri "https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz")
        (sha256
         (base32 "0y7kzwh5ascmqs7whlf5jajj46zy2zyb57944sggy1rz7i6czhpn"))))
-    (inputs
+    (propagated-inputs
      (list openjdk))
     (build-system copy-build-system)
     (arguments
