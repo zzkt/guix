@@ -40,7 +40,7 @@
     (build-system ant-build-system)
     ;; (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
     (home-page "https://gephi.org/")
-    (synopsis "The Open Graph Viz Platform. Built from source")
+    (synopsis "The Open Graph Viz Platform")
     (description
      "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
     (license license:gpl3+)))
@@ -48,7 +48,8 @@
 
 ;; https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz
 
-;; gephi --jdkhome ~/.guix-profile
+;; gephi needs the jdkhome path set to $GUIX_PROFILE order to work (can this be set as default?)
+;; e.g gephi --jdkhome $GUIX_PROFILE
 
 (define-public gephi-binary
   (package
@@ -73,7 +74,7 @@
            ("jre-x64" "jre-x64")
            ("platform" "platform"))))
     (home-page "https://gephi.org/")
-    (synopsis "The Open Graph Viz Platform. Latest binary release")
+    (synopsis "The Open Graph Viz Platform (binary release)")
     (description
      "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
     (license license:gpl3+)))
