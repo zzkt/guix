@@ -42,7 +42,6 @@
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform")
     (description
-    (description
      "Gephi is the leading visualization and exploration software for all kinds of graphs and networks. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning.")
     (license license:gpl3+)))
 
