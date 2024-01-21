@@ -1,5 +1,27 @@
 
+* A system configuration
+
+A semi-literate [[file:config/framework13-system.org][system config]] specifically for Guix on the Framework 13 Laptop (AMD Ryzen 7040 Series)
+
 * A (non)guix channel
+
+** packages
+design & publishing
+- fonts & type collections from [[http://osp.kitchen/][OSP]] and [[https://velvetyne.fr/][velvetyne]] in particular with selections from [[https://usemodify.com/][usemodify]] (curated by Raphaël Bastide.)
+- [[https://www.scribus.net/][sribus]] (release version 1.6.0 and =scribus-next= development branch)
+- [[https://soupault.app/][soupault]] static site generator and robotic webmaster (version 4.6.0 and dependencies not currently in guix)
+
+various and sundry
+- [[https://gephi.org][gephi]] (release version 0.10.1 installed as binary. not currently building from source)
+- [[https://tidalcycles.org/][tidal]] (release version 1.9.4 and dependencies not currently in guix)
+- plugdata (incomplete)
+- sbcl-osc (testing [[https://github.com/zzkt/osc][cl-osc]])
+
+** services
+- [[https://grafana.com][grafana]] open observability platform (via OCI with devolutions)
+
+** setup
+add to =~/.config/guix/channels.scm= (or wherever local channel declarations are kept)
 
 #+BEGIN_SRC scheme
   (channel
@@ -8,7 +30,11 @@
    (branch "endless")
    (introduction
     (make-channel-introduction
-     "8f8414a8213d340d3dbc54e5166941fd5dc68727"
+     "fc0ada85de1980e1fc9ee50672d827c0c17c3e7d"
      (openpgp-fingerprint
       "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))
 #+END_SRC
+
+* Channel surfing
+
+further guix channels, package and symbols with https://toys.whereis.みんな/

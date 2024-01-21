@@ -42,11 +42,10 @@
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform")
     (description
-     "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
+    (description
+     "Gephi is the leading visualization and exploration software for all kinds of graphs and networks. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning.")
     (license license:gpl3+)))
 
-
-;; https://github.com/gephi/gephi/releases/download/v0.10.1/gephi-0.10.1-linux-x64.tar.gz
 
 ;; gephi needs the jdkhome path set to $GUIX_PROFILE order to work (can this be set as default?)
 ;; e.g gephi --jdkhome $GUIX_PROFILE
@@ -76,5 +75,5 @@
     (home-page "https://gephi.org/")
     (synopsis "The Open Graph Viz Platform (binary release)")
     (description
-     "Gephi is a tool for data analysts and scientists keen to explore and understand graphs. Like Photoshop™ but for graph data, the user interacts with the representation, manipulate the structures, shapes and colors to reveal hidden patterns. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning. This is a software for Exploratory Data Analysis, a paradigm appeared in the Visual Analytics field of research.")
+     "Gephi is the leading visualization and exploration software for all kinds of graphs and networks. The goal is to help data analysts to make hypothesis, intuitively discover patterns, isolate structure singularities or faults during data sourcing. It is a complementary tool to traditional statistics, as visual thinking with interactive interfaces is now recognized to facilitate reasoning.")
     (license license:gpl3+)))

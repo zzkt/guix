@@ -1,3 +1,4 @@
+;;; GNU Guix --- Functional package management for GNU
 ;;; Copyright © 2023 nik gaffney <nik@fo.am>
 ;;;
 ;;; This file is not (yet) part of GNU Guix.
@@ -17,6 +18,9 @@
 
 ;; as seen near  gnu/packages/fonts.scm
 
+;; and/or
+;;   https://gitlab.com/velvetyne/velvetyne-libre-friends/-/blob/main/README.md
+
 (define-module (zzkt packages fonts)
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
@@ -27,24 +31,25 @@
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
-  #:use-module (guix build-system gnu)
-  #:use-module (guix build-system meson)
   #:use-module (guix build-system trivial)
-  #:use-module (gnu packages c)
-  #:use-module (gnu packages base)
-  #:use-module (gnu packages bash)
-  #:use-module (gnu packages compression)
+  ;; #:use-module (guix build-system gnu)
+  ;; #:use-module (guix build-system meson)
+  ;; #:use-module (gnu packages c)
+  ;; #:use-module (gnu packages base)
+  ;; #:use-module (gnu packages bash)
+  ;; #:use-module (gnu packages compression)
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages gd)
-  #:use-module (gnu packages gettext)
-  #:use-module (gnu packages glib)
-  #:use-module (gnu packages gtk)
-  #:use-module (gnu packages perl)
-  #:use-module (gnu packages pkg-config)
-  #:use-module (gnu packages python)
-  #:use-module (gnu packages python-xyz)
-  #:use-module (gnu packages sdl)
-  #:use-module (gnu packages xorg))
+  ;; #:use-module (gnu packages gettext)
+  ;; #:use-module (gnu packages glib)
+  ;; #:use-module (gnu packages gtk)
+  ;; #:use-module (gnu packages perl)
+  ;; #:use-module (gnu packages pkg-config)
+  ;; #:use-module (gnu packages python)
+  ;; #:use-module (gnu packages python-xyz)
+  ;; #:use-module (gnu packages sdl)
+  ;; #:use-module (gnu packages xorg)
+  )
 
 ;; various foundries
 
@@ -62,7 +67,6 @@
 
 ;; https://github.com/ryanoasis/nerd-fonts
 
-;; https://github.com/githubnext/monaspace
 
 (define-public font-monaspace
   (package
@@ -77,7 +81,7 @@
         (base32 "0lg5qwml3fv58xk92sgamxg3rni7am2m6xzzj8pcq758idiphs8d"))))
     (build-system font-build-system)
     (home-page "https://monaspace.githubnext.com")
-    (synopsis "An innovative superfamily of fonts for code.")
+    (synopsis "An innovative superfamily of fonts for code")
     (description
      "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve. It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another, allowing you to mix and match them for a more expressive typographical palette.")
     (license license:silofl1.1)))
@@ -85,25 +89,3 @@
 ;; https://github.com/uswds/public-sans
 
 ;; https://github.com/arrowtype/recursive
-
-;; testing and/or example
-
-;; (define-public font-artifika
-;;   (package
-;;    (name "font-artifika")
-;;    (version "1.102")
-;;    (source (origin
-;;             (method git-fetch)
-;;             (uri (git-reference
-;;                   (url "https://github.com/cyrealtype/Artifika")
-;;                   (commit (string-append "v" version))))
-;;             (file-name (git-file-name name version))
-;;             (sha256
-;;              (base32
-;;               "0nwjm44nys1qz3wyg0mm15gdjpz641xpmsz00n6m8065xrw86q7i"))))
-;;    (build-system font-build-system)
-;;    (home-page "https://github.com/cyrealtype/Artifika")
-;;    (synopsis "Upright italic font")
-;;    (description "Artifika is an upright italic font for fashionable display
-;; titling.")
-;;    (license license:silofl1.1)))
