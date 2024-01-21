@@ -68,7 +68,7 @@ Some kernel corruption may be required to enable WIFI. Since the non-free kernel
 
 #+begin_src scheme
 (define-public linux-fw13
-  (corrupt-linux linux-libre-6.6
+  (corrupt-linux linux-libre-6.7
                  #:name "linux-fw13"
                  #:configs '("CONFIG_MT7921E=m")))
                  #+end_src

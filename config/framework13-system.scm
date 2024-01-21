@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-19 11:54:14+01:00)
+;; tangled from framework13-system.org on 2024-01-21 12:27:34+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -31,7 +31,7 @@
                      tls)
 
 (define-public linux-fw13
-  (corrupt-linux linux-libre-6.6
+  (corrupt-linux linux-libre-6.7
                  #:name "linux-fw13"
                  #:configs '("CONFIG_MT7921E=m")))
 
