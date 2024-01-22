@@ -119,7 +119,7 @@ Kernel & driver details
 
 wireguard module
 #+BEGIN_SRC scheme :session
-(kernel-loadable-modules (list wireguard-linux-compat))
+;; (kernel-loadable-modules (list wireguard-linux-compat))
 #+END_SRC
 
 ** users & groups

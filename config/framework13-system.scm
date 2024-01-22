@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 15:52:02+01:00)
+;; tangled from framework13-system.org on 2024-01-22 16:38:38+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -54,7 +54,7 @@
  ;;                 amd-microcode
  ;;                 realtek-firmware))
 
-(kernel-loadable-modules (list wireguard-linux-compat))
+;; (kernel-loadable-modules (list wireguard-linux-compat))
 
  (users (cons* (user-account
                 (name "zzk")
