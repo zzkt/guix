@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 16:38:38+01:00)
+;; tangled from framework13-system.org on 2024-01-22 22:15:56+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -53,8 +53,6 @@
  ;; (firmware (list amdgpu-firmware
  ;;                 amd-microcode
  ;;                 realtek-firmware))
-
-;; (kernel-loadable-modules (list wireguard-linux-compat))
 
  (users (cons* (user-account
                 (name "zzk")
@@ -158,6 +156,17 @@ COMMIT
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))))
+
+           (service wireguard-service-type
+                    (wireguard-configuration
+                     (addresses '("10.0.0.23/24"))
+                     (peers
+                      (list
+                       (wireguard-peer
+                        (name "lmn")
+                        (endpoint "10.0.0.1:51820")
+                        (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
+                        (allowed-ips '("10.0.0.0/24"))))))))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
