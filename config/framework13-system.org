@@ -117,11 +117,6 @@ Kernel & driver details
  ;;                 realtek-firmware))
 #+end_src
 
-wireguard module
-#+BEGIN_SRC scheme :session
-;; (kernel-loadable-modules (list wireguard-linux-compat))
-#+END_SRC
-
 ** users & groups
 
 #+begin_src scheme
@@ -261,7 +256,20 @@ COMMIT
 
 *** wireguard
 
-details can be found in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
+details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
+
+#+BEGIN_SRC scheme :session
+           (service wireguard-service-type
+                    (wireguard-configuration
+                     (addresses '("10.0.0.23/24"))
+                     (peers
+                      (list
+                       (wireguard-peer
+                        (name "lmn")
+                        (endpoint "10.0.0.1:51820")
+                        (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
+                        (allowed-ips '("10.0.0.0/24"))))))))
+#+END_SRC
 
 *** display manager
 #+begin_src scheme
