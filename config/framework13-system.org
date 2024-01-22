@@ -42,8 +42,7 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
 
 ** service modules
 #+begin_src scheme
-(use-service-modules linux
-                     cups
+(use-service-modules cups
                      desktop
                      networking
                      ssh
@@ -263,10 +262,6 @@ COMMIT
 *** wireguard
 
 details can be found in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
-#+begin_src scheme
-          (service kernel-module-loader-service-type
-                                       '("wireguard"))
-#+end_src
 
 *** display manager
 #+begin_src scheme

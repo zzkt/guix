@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 15:35:28+01:00)
+;; tangled from framework13-system.org on 2024-01-22 15:52:02+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -15,8 +15,7 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules linux
-                     cups
+(use-service-modules cups
                      desktop
                      networking
                      ssh
@@ -159,9 +158,6 @@ COMMIT
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))))
-
-          (service kernel-module-loader-service-type
-                                       '("wireguard"))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
