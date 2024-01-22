@@ -37,7 +37,51 @@
 
 ;; https://usemodify.com/fonts/sono/
 
+(define-public font-sono
+  (package
+    (name "font-sono")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/sursly/sono")
+             (commit "7dc859025b464e8530d90116782b5407b7b6376d")))
+       (sha256
+        (base32 "07arajpymrpnayxidzbqx83ffp0fj5l25jddnjbi2r4hzjs4hfhk"))))
+    (build-system font-build-system)
+    (home-page "http://osp.kitchen/foundry/libertinage/")
+    (synopsis
+     "A soft monospace (or proportional!) variable font")
+    (description
+     "A soft monospace (or proportional!) variable font by Tyler Finck.
+
+Sono was initially only monospace. Sono was released in 2020 and was named for its most obvious characterstics: soft, monospaced. It has a low cap height which I enjoy when typing with THE CAPS LOCK KEY TURNED ON. Sono has been constantly updated and in 2022 received an additional axis called mono which has corresponding proportional styles. Those styles are prefixed with the name “Sans” for the sake of brevity. The name Sono doesn’t make as much sense now, but changing it would upset a precarious balance in the universe. Ok maybe not that severe. But it’d be weird. This is also the final free font I intend to make in the foreseeable future.
+
+Sono comes in static styles for desktop and web as well as a single variable font and has received several updates since its release in August of 2018. It is available on Github and on Google Fonts.")
+    (license license:silofl1.1)))
+
 ;; https://usemodify.com/fonts/violet-sans/
+
+(define-public font-violet-sans
+  (package
+    (name "font-violet-sans")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/violetoffice/violet_sans/")
+             (commit "e332826cf8445d60bf17bd21c07eafb052cf9070")))
+       (sha256
+        (base32 "1fwsr5b03qrfh5axmdwj7452z1x9w48xa13swyp3khbl1z0pij8f"))))
+    (build-system font-build-system)
+    (home-page "https://usemodify.com/fonts/violet-sans/")
+    (synopsis
+     "Violet Sans finds harmony in disparate forms"
+    (description
+     "Violet Sans finds harmony in disparate forms, at once sharp and aggressive it can retreat to being gentle and smooth, allowing for different expressions within a single weight and style. Initially designed as an all caps display face with generous counterforms and extended crossbars, this same personality has been extrapolated into the wider character set. As a nod to the long tradition of geometric sans serif typefaces, in particular Eurostile, Violet Sans has been developed for modern applications with a bit of experimentation and haphazard gestures built right in. For daily use, enjoy.")
+    (license license:silofl1.1)))
 
 ;; https://usemodify.com/fonts/orbit/
 
@@ -90,47 +134,44 @@
 
 
 
-
-
-;; url fetch
-
-;; (define-public font-osp-belgica-belgika
-;;   (package
-;;     (name "font-osp-belgica-belgika")
-;;     (version "1")
-;;     (source
-;;      (origin
-;;        (method url-fetch)
-;;        (uri "https://gitlab.constantvzw.org/osp/foundry.belgica-belgika/-/archive/master/foundry.belgica-belgika-master.zip")
-;;        (sha256
-;;         (base32 "0c5ilf59f70fwyl5rcvqs8q1cicv5v7rhrvsj24vqsfd3ig9x1c1"))))
-;;     (build-system font-build-system)
-;;     (home-page "http://osp.kitchen/foundry/belgica-belgika")
-;;     (synopsis
-;;      "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages")
-;;     (description
-;;      "Stroke fonts with no contrast and capital letters only based on diverse pseudo-generic elements for multi-usages.")
-;;     (license license:silofl1.1)))
-
-
 ;; git fetch
 
-;; (define-public font-osp-libertinage
+;; (define-public font-
 ;;   (package
-;;     (name "font-osp-libertinage")
+;;     (name "font-")
 ;;     (version "1")
 ;;     (source
 ;;      (origin
 ;;        (method git-fetch)
 ;;        (uri (git-reference
-;;              (url "https://gitlab.constantvzw.org/osp/foundry.libertinage")
+;;              (url "")
 ;;              (commit "")))
 ;;        (sha256
-;;         (base32 "10bv9kksmbsi1zf0gylywgxch6sp8c2pkyn1y6c3vs1ivhfjn9m5"))))
+;;         (base32 ""))))
 ;;     (build-system font-build-system)
-;;     (home-page "http://osp.kitchen/foundry/libertinage/")
+;;     (home-page "")
 ;;     (synopsis
-;;      "A font made by copying and pasting parts of Linux Libertine glyphs.")
+;;      ""
 ;;     (description
-;;      "The Libertinage font-set we developed for the FLOSS+Art book. It was built by copying and pasting parts of Linux Libertine glyphs or simply by all-turning glyphs. There are 27 variations, one for each letter of the Latin alphabet and the ‘Full’ version, containing all modifications.")
+;;      "")
+;;     (license license:silofl1.1)))
+
+;; url fetch
+
+;; (define-public font-
+;;   (package
+;;     (name "font-")
+;;     (version "1")
+;;     (source
+;;      (origin
+;;        (method url-fetch)
+;;        (uri "")
+;;        (sha256
+;;         (base32 ""))))
+;;     (build-system font-build-system)
+;;     (home-page "")
+;;     (synopsis
+;;      "")
+;;     (description
+;;      "")
 ;;     (license license:silofl1.1)))
