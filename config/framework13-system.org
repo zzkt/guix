@@ -42,7 +42,8 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
 
 ** service modules
 #+begin_src scheme
-(use-service-modules cups
+(use-service-modules linux
+                     cups
                      desktop
                      networking
                      ssh

@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 15:34:29+01:00)
+;; tangled from framework13-system.org on 2024-01-22 15:35:28+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -15,7 +15,8 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules cups
+(use-service-modules linux
+                     cups
                      desktop
                      networking
                      ssh
