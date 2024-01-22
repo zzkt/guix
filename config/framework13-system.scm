@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 15:28:35+01:00)
+;; tangled from framework13-system.org on 2024-01-22 15:34:29+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -159,9 +159,8 @@ COMMIT
 COMMIT
 "))))
 
-          (simple-service 'wireguard-module
-                                  kernel-module-loader-service-type
-                                  '("wireguard"))
+          (service kernel-module-loader-service-type
+                                       '("wireguard"))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
