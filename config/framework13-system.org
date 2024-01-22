@@ -59,7 +59,8 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
                      certs
                      package-management
                      ssh
-                     tls)
+                     tls
+                     vpn)
 #+end_src
 
 * kernel corruption
@@ -115,6 +116,11 @@ Kernel & driver details
  ;;                 amd-microcode
  ;;                 realtek-firmware))
 #+end_src
+
+wireguard module
+#+BEGIN_SRC scheme :session
+(kernel-loadable-modules (list wireguard-linux-compat))
+#+END_SRC
 
 ** users & groups
 
@@ -178,6 +184,8 @@ Packages installed system-wide.  Users can also install packages under their own
                  ;; gnome extras
                  "gnome-tweaks"
                  "gvfs"
+                 ;; vpn
+                 "wireguard-tools"
                  ))
           %base-packages))
 #+end_src
@@ -250,6 +258,16 @@ COMMIT
 COMMIT
 "))))
 #+END_SRC
+
+*** wireguard
+
+details can be found in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
+#+begin_src scheme
+          (simple-service 'wireguard-module
+                                  kernel-module-loader-service-type
+                                  '("wireguard"))
+#+end_src
+
 
 *** display manager
 #+begin_src scheme

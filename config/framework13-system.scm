@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-21 12:27:34+01:00)
+;; tangled from framework13-system.org on 2024-01-22 15:28:35+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -28,7 +28,8 @@
                      certs
                      package-management
                      ssh
-                     tls)
+                     tls
+                     vpn)
 
 (define-public linux-fw13
   (corrupt-linux linux-libre-6.7
@@ -52,6 +53,8 @@
  ;; (firmware (list amdgpu-firmware
  ;;                 amd-microcode
  ;;                 realtek-firmware))
+
+(kernel-loadable-modules (list wireguard-linux-compat))
 
  (users (cons* (user-account
                 (name "zzk")
@@ -101,6 +104,8 @@
                  ;; gnome extras
                  "gnome-tweaks"
                  "gvfs"
+                 ;; vpn
+                 "wireguard-tools"
                  ))
           %base-packages))
 
@@ -153,6 +158,10 @@ COMMIT
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))))
+
+          (simple-service 'wireguard-module
+                                  kernel-module-loader-service-type
+                                  '("wireguard"))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
