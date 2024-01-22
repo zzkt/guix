@@ -35,6 +35,28 @@
 
 ;; fomts via https://usemodify.com/
 
+
+;; a metapackage for all packaged fonts
+(define-public font-collection-usemodify
+  (package
+    (name "font-collection-usemodify")
+    (version "0.1")
+    (source
+     #f)
+    (build-system trivial-build-system)
+    (arguments
+     '(#:builder (begin
+                   (mkdir %output) #t)))
+    (propagated-inputs (list font-sono
+                             ;; font-
+                             font-violet-sans))
+    (synopsis "Beautiful, classy, punk, professional, incomplete, weird typefaces")
+    (home-page "https://usemodify.com/")
+    (description
+     "Use & Modify is a personal selection of beautiful, classy, punk, professional, incomplete, weird typefaces. Open source licences make them free to use and modify. This selection is the result of deep search and crushes. This selection is yours.")
+    (license license:silofl1.1)))
+
+
 ;; https://usemodify.com/fonts/sono/
 
 (define-public font-sono
@@ -78,7 +100,7 @@ Sono comes in static styles for desktop and web as well as a single variable fon
     (build-system font-build-system)
     (home-page "https://usemodify.com/fonts/violet-sans/")
     (synopsis
-     "Violet Sans finds harmony in disparate forms"
+     "Violet Sans finds harmony in disparate forms")
     (description
      "Violet Sans finds harmony in disparate forms, at once sharp and aggressive it can retreat to being gentle and smooth, allowing for different expressions within a single weight and style. Initially designed as an all caps display face with generous counterforms and extended crossbars, this same personality has been extrapolated into the wider character set. As a nod to the long tradition of geometric sans serif typefaces, in particular Eurostile, Violet Sans has been developed for modern applications with a bit of experimentation and haphazard gestures built right in. For daily use, enjoy.")
     (license license:silofl1.1)))
