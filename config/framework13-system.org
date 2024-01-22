@@ -263,11 +263,9 @@ COMMIT
 
 details can be found in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
 #+begin_src scheme
-          (simple-service 'wireguard-module
-                                  kernel-module-loader-service-type
-                                  '("wireguard"))
+          (service kernel-module-loader-service-type
+                                       '("wireguard"))
 #+end_src
-
 
 *** display manager
 #+begin_src scheme
