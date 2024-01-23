@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-22 22:15:56+01:00)
+;; tangled from framework13-system.org on 2024-01-23 17:18:20+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -22,7 +22,8 @@
                      xorg
                      samba
                      sound
-                     mail)
+                     mail
+                     vpn)
 
 (use-package-modules admin
                      certs
@@ -157,16 +158,24 @@ COMMIT
 COMMIT
 "))))
 
-           (service wireguard-service-type
-                    (wireguard-configuration
-                     (addresses '("10.0.0.23/24"))
+              (service wireguard-service-type
+                   (wireguard-configuration
+                     (addresses '("10.0.0.23" "fd24:609a:6c18::23")
+                     (port 51820)))
                      (peers
                       (list
                        (wireguard-peer
                         (name "lmn")
-                        (endpoint "10.0.0.1:51820")
+                        (endpoint "example.org:51820")
                         (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
-                        (allowed-ips '("10.0.0.0/24"))))))))
+                        (allowed-ips '("10.0.0.1/32"))
+                        (keep-alive 25))
+                       (wireguard-peer
+                        (name "beryllium")
+                        (endpoint "example.org:51820")
+                        (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
+                        (allowed-ips '("10.0.0.13/32"))
+                        (keep-alive 25)))))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration

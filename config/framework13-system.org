@@ -49,7 +49,8 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
                      xorg
                      samba
                      sound
-                     mail)
+                     mail
+                     vpn)
 #+end_src
 
 ** package modules
@@ -259,16 +260,24 @@ COMMIT
 details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of  the cookbook
 
 #+BEGIN_SRC scheme :session
-           (service wireguard-service-type
-                    (wireguard-configuration
-                     (addresses '("10.0.0.23/24"))
+              (service wireguard-service-type
+                   (wireguard-configuration
+                     (addresses '("10.0.0.23" "fd24:609a:6c18::23")
+                     (port 51820)))
                      (peers
                       (list
                        (wireguard-peer
                         (name "lmn")
-                        (endpoint "10.0.0.1:51820")
+                        (endpoint "example.org:51820")
                         (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
-                        (allowed-ips '("10.0.0.0/24"))))))))
+                        (allowed-ips '("10.0.0.1/32"))
+                        (keep-alive 25))
+                       (wireguard-peer
+                        (name "beryllium")
+                        (endpoint "example.org:51820")
+                        (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
+                        (allowed-ips '("10.0.0.13/32"))
+                        (keep-alive 25)))))
 #+END_SRC
 
 *** display manager
