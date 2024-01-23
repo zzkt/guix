@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-23 17:18:20+01:00)
+;; tangled from framework13-system.org on 2024-01-23 17:38:17+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -149,6 +149,8 @@ COMMIT
 -A INPUT -p tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp --dport 993 -j ACCEPT
 -A INPUT -p udp -m udp --dport 5353 -j ACCEPT
+-A INPUT -p udp -m udp --dport 51820 -j ACCEPT
+-A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
 -A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT
@@ -158,24 +160,24 @@ COMMIT
 COMMIT
 "))))
 
-              (service wireguard-service-type
+               (service wireguard-service-type
                    (wireguard-configuration
-                     (addresses '("10.0.0.23" "fd24:609a:6c18::23")
-                     (port 51820)))
+                     (addresses '("10.0.0.23" "fd24:609a:6c18::23"))
+                     (port 51820)
                      (peers
                       (list
                        (wireguard-peer
                         (name "lmn")
                         (endpoint "example.org:51820")
                         (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
-                        (allowed-ips '("10.0.0.1/32"))
+                        (allowed-ips '("10.0.0.1/32" "fd24:609a:6c18::1"))
                         (keep-alive 25))
                        (wireguard-peer
                         (name "beryllium")
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
-                        (allowed-ips '("10.0.0.13/32"))
-                        (keep-alive 25)))))
+                        (allowed-ips '("10.0.0.13/32" "fd24:609a:6c18::13"))
+                        (keep-alive 25))))))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
