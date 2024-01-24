@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-24 18:56:02+01:00)
+;; tangled from framework13-system.org on 2024-01-24 22:29:53+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -188,7 +188,7 @@ COMMIT
 
                (service wireguard-service-type
                    (wireguard-configuration
-                     (addresses '("10.0.0.23" "fd24:609a:6c18::23"))
+                     (addresses '("10.0.0.23/24" "fd24:609a:6c18::23/64"))
                      (private-key "/etc/wireguard/private.key")
                      (port 51820)
                      (peers
@@ -197,13 +197,13 @@ COMMIT
                         (name "lmn")
                         (endpoint "example.org:51820")
                         (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
-                        (allowed-ips '("10.0.0.1/32" "fd24:609a:6c18::1"))
+                        (allowed-ips '("10.0.0.1/24" "fd24:609a:6c18::1/64"))
                         (keep-alive 25))
                        (wireguard-peer
                         (name "beryllium")
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
-                        (allowed-ips '("10.0.0.13/32" "fd24:609a:6c18::13"))
+                        (allowed-ips '("10.0.0.13/24" "fd24:609a:6c18::13/64"))
                         (keep-alive 25))))))
 
            ;; (service sddm-service-type
