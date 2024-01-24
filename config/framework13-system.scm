@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-24 15:51:00+01:00)
+;; tangled from framework13-system.org on 2024-01-24 16:44:03+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -125,7 +125,14 @@
 
            (service iptables-service-type
                     (iptables-configuration
-                     (ipv4-rules (plain-file "iptables.rules" "*filter
+                     (ipv4-rules (plain-file "iptables.rules"
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+*filter
 :INPUT ACCEPT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
@@ -142,13 +149,19 @@
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
--A POSTROUTING -o wlp1s0 -j MASQUERADE
 
 -A INPUT -j REJECT --reject-with icmp-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))
-                     (ipv6-rules (plain-file "ip6tables.rules" "*filter
+                     (ipv6-rules (plain-file "ip6tables.rules"
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+*filter
 :INPUT ACCEPT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
@@ -165,7 +178,6 @@ COMMIT
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
--A POSTROUTING -o wlp1s0 -j MASQUERADE
 
 -A INPUT -j REJECT --reject-with icmp6-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP

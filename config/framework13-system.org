@@ -221,7 +221,14 @@ use dovecot for local IMAP
 #+BEGIN_SRC scheme :session
            (service iptables-service-type
                     (iptables-configuration
-                     (ipv4-rules (plain-file "iptables.rules" "*filter
+                     (ipv4-rules (plain-file "iptables.rules"
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+,*filter
 :INPUT ACCEPT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
@@ -238,11 +245,11 @@ SMB
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 445 -j ACCEPT
 #+end_src
 wireguard
+
 #+BEGIN_SRC scheme
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
--A POSTROUTING -o wlp1s0 -j MASQUERADE
    #+end_src
 
 #+BEGIN_SRC scheme
@@ -250,7 +257,14 @@ wireguard
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))
-                     (ipv6-rules (plain-file "ip6tables.rules" "*filter
+                     (ipv6-rules (plain-file "ip6tables.rules"
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+*filter
 :INPUT ACCEPT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
@@ -272,7 +286,6 @@ wireguard
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
--A POSTROUTING -o wlp1s0 -j MASQUERADE
       #+end_src
 
 #+BEGIN_SRC scheme
