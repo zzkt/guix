@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-24 15:26:24+01:00)
+;; tangled from framework13-system.org on 2024-01-24 15:51:00+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -141,6 +141,8 @@
 
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -i wg0 -j ACCEPT
+-A POSTROUTING -o wlp1s0 -j MASQUERADE
 
 -A INPUT -j REJECT --reject-with icmp-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP
@@ -162,6 +164,8 @@ COMMIT
 
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -i wg0 -j ACCEPT
+-A POSTROUTING -o wlp1s0 -j MASQUERADE
 
 -A INPUT -j REJECT --reject-with icmp6-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP
