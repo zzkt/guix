@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-24 22:29:53+01:00)
+;; tangled from framework13-system.org on 2024-01-26 10:45:43+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -172,10 +172,10 @@ COMMIT
 -A INPUT -p tcp --dport 993 -j ACCEPT
 -A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 
--A INPUT -p udp -m udp -s fd24:609a:6c18::/64 --dport 137 -j ACCEPT
--A INPUT -p udp -m udp -s fd24:609a:6c18::/64 --dport 138 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp -s fd24:609a:6c18::/64 --dport 139 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp -s fd24:609a:6c18::/64 --dport 445 -j ACCEPT
+-A INPUT -p udp -m udp -s fded:c2f7:43ef::/64 --dport 137 -j ACCEPT
+-A INPUT -p udp -m udp -s fded:c2f7:43ef::/64 --dport 138 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s fded:c2f7:43ef::/64 --dport 139 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s fded:c2f7:43ef::/64 --dport 445 -j ACCEPT
 
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -188,7 +188,7 @@ COMMIT
 
                (service wireguard-service-type
                    (wireguard-configuration
-                     (addresses '("10.0.0.23/24" "fd24:609a:6c18::23/64"))
+                     (addresses '("10.0.0.23/32" "fded:dada::23/128"))
                      (private-key "/etc/wireguard/private.key")
                      (port 51820)
                      (peers
@@ -197,13 +197,13 @@ COMMIT
                         (name "lmn")
                         (endpoint "example.org:51820")
                         (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
-                        (allowed-ips '("10.0.0.1/24" "fd24:609a:6c18::1/64"))
+                        (allowed-ips '("10.0.0.1/24" "fded:dada::1/64"))
                         (keep-alive 25))
                        (wireguard-peer
                         (name "beryllium")
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
-                        (allowed-ips '("10.0.0.13/24" "fd24:609a:6c18::13/64"))
+                        (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
                         (keep-alive 25))))))
 
            ;; (service sddm-service-type
