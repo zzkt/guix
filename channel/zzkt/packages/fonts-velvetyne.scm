@@ -69,6 +69,37 @@
 ;; - [x] Resistance
 ;; - [x] Sligoil
 
+;; a metapackage for all packaged fonts
+(define-public font-collection-velvetyne
+  (package
+    (name "font-collection-velvetyne")
+    (version "0.1")
+    (source
+     #f)
+    (build-system trivial-build-system)
+    (arguments
+     '(#:builder (begin
+                   (mkdir %output) #t)))
+    (propagated-inputs (list
+                        font-velvetyne-amdal
+                        font-velvetyne-bianzhidai
+                        font-velvetyne-degheest
+                        font-velvetyne-fungal
+                        font-velvetyne-gulax
+                        font-velvetyne-karrik
+                        font-velvetyne-lineal
+                        font-velvetyne-lithops
+                        font-velvetyne-murmure
+                        font-velvetyne-outward
+                        font-velvetyne-resistance
+                        font-velvetyne-sligoil
+                        ))
+    (synopsis "A collection of fonts from Velvetyne")
+    (home-page "https://velvetyne.fr/")
+    (description
+     "A collection of fonts from Velvetyne including; amdal, bianzhidai, degheest")
+    (license license:silofl1.1)))
+
 ;; bianzhidai - https://velvetyne.fr/fonts/bianzhidai/
 
 (define-public font-velvetyne-bianzhidai
@@ -362,9 +393,9 @@ Lineal by Frank Adebiaye, with the contribution of Anton Moglia, Ariel Martín P
     (description
 "Amdal is a Tifinagh typeface designed by Walid Bouchouchi - Akakir Studio. Tifinagh is the alphabet used to write Tamazight, a language common to several North African countries and an official language in Algeria and Morocco. This alphabet finds its origin in antiquity, it has long fallen into disrepair, and reintroduced thanks to the committed work of linguists and historians of the region.
 
-Amdal is a titling font, born out of a lettering project for Korean fashion brand Merely Made, which was developing a collection inspired by the Sahara (North African desert) with the keyphrase "a better world". From there began the development of a font with a limited glyphset intended to write a particular sentence. Then the rest of the glyphs followed until the glyphsets for Basic-IRCAM, Extended, Neo-Tifinagh and Touareg were completed.
+Amdal is a titling font, born out of a lettering project for Korean fashion brand Merely Made, which was developing a collection inspired by the Sahara (North African desert) with the keyphrase  “a better world”. From there began the development of a font with a limited glyphset intended to write a particular sentence. Then the rest of the glyphs followed until the glyphsets for Basic-IRCAM, Extended, Neo-Tifinagh and Touareg were completed.
 
-'Amdal' means 'World' in Tamazight (Berber language).
+ “Amdal” means  “World” in Tamazight (Berber language).
 
 Amdal by Walid Bouchouchi. Distributed by velvetyne.fr")
     (license license:silofl1.1)))
