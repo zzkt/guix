@@ -27,7 +27,9 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
-  #:use-module (guix build-system font))
+  #:use-module (guix build-system font)
+  #:use-module (guix build-system trivial))
+
 
 ;; https://velvetyne.fr/
 ;;  credit line is included at the end of the package description.
