@@ -299,20 +299,18 @@ Le Murmure by Jérémy Landes. Distributed by velvetyne.fr")
     (version "1")
     (source
      (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/velvetyne/resistance-generale")
-             (commit "b45a061aa8e7f1fdd783fc3170438bf7238ca656")))
+       (method url-fetch)
+       (uri "https://github.com/velvetyne/resistance-generale/archive/master.zip")
        (sha256
-        (base32 "032cl77fx72y0d16rglbanm1mrfv20r7a18l6qwzm59l1k45wd86"))))
+        (base32 "0zyd63zhxg2b59ahmxkw9aabqxyn9bjvnbarp053k1jna9rl9csg"))))
     (build-system font-build-system)
     (home-page "https://velvetyne.fr/fonts/resistance")
     (synopsis
-     "resistance generale")
+     "Résistance generale")
     (description
 "Font created using Glyphr Studio by the students of ENSAD Paris at La Générale, with the help of the F/LOS foundry Velvetyne.
 
-Creators : Pauline Cormault, Esther Michaud, Claire Mucchieli, Merlin Andreae, Raphaël Maman, Pedro Gomes-Cardoso, Juliette Nier, Gabrielle Meistretty, Damien Bauza.
+Creators: Pauline Cormault, Esther Michaud, Claire Mucchieli, Merlin Andreae, Raphaël Maman, Pedro Gomes-Cardoso, Juliette Nier, Gabrielle Meistretty, Damien Bauza.
 
 Résistance by A collective. Distributed by velvetyne.fr")
     (license license:silofl1.1)))
