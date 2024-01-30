@@ -55,15 +55,14 @@
   (package
     (name "font-collection-bye-bye-binary")
     (version "0.1")
-    (source
-     #f)
+    (source #f)
     (build-system trivial-build-system)
     (arguments
      '(#:builder (begin
                    (mkdir %output) #t)))
     (propagated-inputs (list font-baskervvol
                              font-dindong
-                             ;; font-homoneta
+                             font-homoneta
                              ;; font-adelphe
                              ;; font-ls-vg5000
                              ;; font-picnic
@@ -144,7 +143,6 @@
     (description
      "")
     (license license:silofl1.1)))
-
 
 
 ;; LS-VG5000 - Justin Bihan - V1.0 — 2022

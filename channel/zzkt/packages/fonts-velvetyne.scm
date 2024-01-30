@@ -32,7 +32,7 @@
 ;; https://velvetyne.fr/
 ;;  credit line is included at the end of the package description.
 
-;; - [ ] Amdal
+
 ;; - [ ] Anthony
 ;; - [ ] Avara
 ;; - [ ] BackOut
@@ -40,14 +40,9 @@
 ;; - [ ] CirrusCumulus
 ;; - [ ] Compagnon
 ;; - [ ] Façade
-;; - [ ] Format 1452
 ;; - [ ] Grotesk
-;; - [ ] Gulax
 ;; - [ ] Jgs font
 ;; - [ ] Kaeru Kaeru
-;; - [ ] Lineal
-;; - [ ] Lithops
-;; - [ ] Mess
 ;; - [ ] Mourier
 ;; - [ ] Ouroboros
 ;; - [ ] PicNic
@@ -55,6 +50,15 @@
 ;; - [ ] TINY
 ;; - [ ] Typefesse
 ;; - [ ] VG5000
+
+;; - [ ] Mess
+;; - [ ] Format 1452
+;; - [ ] Trickster
+
+;; - [x] Lithops
+;; - [x] Lineal
+;; - [x] Amdal
+;; - [x] Gulax
 
 ;; - [x] BianZhiDai
 ;; - [x] Degheest
@@ -282,52 +286,113 @@ Résistance by A collective. Distributed by velvetyne.fr")
 
 
 ;; https://velvetyne.fr/fonts/gulax/
-;; font-velvetyne-gulax
 
-;; (define-public font-velvetyne-
-;;   (package
-;;     (name "font-velvetyne-")
-;;     (version "1")
-;;     (source
-;;      (origin
-;;        (method git-fetch)
-;;        (uri (git-reference
-;;              (url "https://gitlab.com/velvetyne/")
-;;              (commit "")))
-;;        (sha256
-;;         (base32 ""))))
-;;     (build-system font-build-system)
-;;     (home-page "https://velvetyne.fr/fonts/")
-;;     (synopsis
-;;      "")
-;;     (description
-;; "")
-;;     (license license:silofl1.1)))
+(define-public font-velvetyne-gulax
+  (package
+    (name "font-velvetyne-gulax")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.com/velvetyne/gulax")
+             (commit "25ad92e48c142ad0f50c70f4fbaed3a44d93e37a")))
+       (sha256
+        (base32 "1z4xgck5nqpdc35qc6wrgjgsymwah7yc7mpmi1mzav2p8pf9p75q"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/gulax")
+    (synopsis
+     "Another 'experimental' monolinear sans")
+    (description
+"Again another 'experimental' monolinear sans. Enjoy or not.
+
+Gulax by Morgan Gilbert, with the contribution of Anton Moglia. Distributed by velvetyne.fr")
+    (license license:silofl1.1)))
 
 
 ;; https://velvetyne.fr/fonts/lineal/
-;; font-velvetyne-lineal
 
-;; (define-public font-velvetyne-
-;;   (package
-;;     (name "font-velvetyne-")
-;;     (version "1")
-;;     (source
-;;      (origin
-;;        (method git-fetch)
-;;        (uri (git-reference
-;;              (url "https://gitlab.com/velvetyne/")
-;;              (commit "")))
-;;        (sha256
-;;         (base32 ""))))
-;;     (build-system font-build-system)
-;;     (home-page "https://velvetyne.fr/fonts/")
-;;     (synopsis
-;;      "")
-;;     (description
-;; "")
-;;     (license license:silofl1.1)))
+(define-public font-velvetyne-lineal
+  (package
+    (name "font-velvetyne-lineal")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.com/velvetyne/lineal")
+             (commit "8dfea6601fdb5022ec38fc6d83de3cc44cb1bffa")))
+       (sha256
+        (base32 "0g3q823i80ibnqlvp817nz1z3w0vbk5gzqqy6b6h2j8qbh09y2kp"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/")
+    (synopsis
+     "Sort of Futura built with modules, without any optical corrections")
+    (description
+"Lineal is a Libre Family initiated by Frank Adebiaye and updated by the Velvetyne Team.
 
+According to Frank, Lineal was originally inspired by the song called 2870 by Gérard Manset. It ended-up looking like a sort of Futura built with modules, without any optical corrections. Its first version was drawn in 2010 with FontForge 2.0. and published on Velvetyne on February 2011.
+
+Since 2019, Anton Moglia worked on enhancing the character set, to fit his own needs (with Glyphs App). It was largely developed by Anton Moglia, who reviewed all the capitals, added lowercase letters and other symbols and gave it a more stable structure. He extended the family by adding weights, from Thin to Heavy and cleaned up the entire character set of superfluous curve points.
+
+During 2023, Ariel Martín Pérez helped Anton Moglia publish this substantial update of Lineal, developing the character set for other languages and helping build the repository for publication. Ariel Martín Pérez expanded language support and improved spacing and kerning.
+
+Lineal by Frank Adebiaye, with the contribution of Anton Moglia, Ariel Martín Pérez. Distributed by velvetyne.fr")
+    (license license:silofl1.1)))
+
+
+;; https://velvetyne.fr/fonts/amdal/
+
+(define-public font-velvetyne-amdal
+  (package
+    (name "font-velvetyne-amdal")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.com/velvetyne/amdal")
+             (commit "4896d186680c62d002702f4c17ac741038b3d905")))
+       (sha256
+        (base32 "02v6gqz1gl0q63vb5ipr389mql1cav94qcwwqrcjjv899pzx7nnp"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/amdal")
+    (synopsis
+     "Amdal is a Tifinagh titling font")
+    (description
+"Amdal is a Tifinagh typeface designed by Walid Bouchouchi - Akakir Studio. Tifinagh is the alphabet used to write Tamazight, a language common to several North African countries and an official language in Algeria and Morocco. This alphabet finds its origin in antiquity, it has long fallen into disrepair, and reintroduced thanks to the committed work of linguists and historians of the region.
+
+Amdal is a titling font, born out of a lettering project for Korean fashion brand Merely Made, which was developing a collection inspired by the Sahara (North African desert) with the keyphrase "a better world". From there began the development of a font with a limited glyphset intended to write a particular sentence. Then the rest of the glyphs followed until the glyphsets for Basic-IRCAM, Extended, Neo-Tifinagh and Touareg were completed.
+
+'Amdal' means 'World' in Tamazight (Berber language).
+
+Amdal by Walid Bouchouchi. Distributed by velvetyne.fr")
+    (license license:silofl1.1)))
+
+
+;; https://velvetyne.fr/fonts/lithops/
+
+(define-public font-velvetyne-lithops
+  (package
+    (name "font-velvetyne-lithops")
+    (version "1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.com/daytonamess/lithops")
+             (commit "b9f42e0fb75746fa72a23cc96d86891c42d4eaba")))
+       (sha256
+        (base32 "0isjklwhpdlkff9h7xpczkrx7bc5qkb0f15g7gc9msfc7nm3d3c2"))))
+    (build-system font-build-system)
+    (home-page "https://velvetyne.fr/fonts/lithops")
+    (synopsis
+     "Lithops is a very display, very unique, very complex semi modular font")
+    (description
+"Lithops is a very display, very unique, very complex semi modular font. Uppercase only, it was originally hand drawn in Procreate, and then processed in Glyphs 3. Its name stems from succulent plants to which it bears a resemblance, and was (loosely) inspired by Art Nouveau, Alzheimer brains and Matisse cutouts. Lithops started in February 2021 as a spontaneous creative outlet and glyph drawing exercise. Though it may not be easy to use and is difficult to categorise, Lithops serves as an exploration of the future of type design, begging the question: how complex can a font be, all while staying cohesive, legible and aesthetically pleasing, and most importantly, fun?
+
+Lithops by Anne-Dauphine Borione. Distributed by velvetyne.fr")
+    (license license:silofl1.1)))
 
 ;; skel
 

@@ -53,14 +53,71 @@
 (define-public scribus
   (package
     (name "scribus")
-    (version "1.6.0")
+    (version "1.6.1")
     (source
      (origin
        (method url-fetch)
        (uri (string-append "mirror://sourceforge/scribus/scribus/" version
                            "/scribus-" version ".tar.gz"))
        (sha256
-        (base32 "10ixrvi1rn20r8nni6cllvkszcx77pyca68vrixjsy7nk1brx9nw"))))
+        (base32 "1kqqffx5xz35mwd422s4i110794zzx9sc2bn2mg77rz02hrxdhxg"))))
+    (build-system cmake-build-system)
+    (arguments
+     `(#:tests? #f ;no test target
+       #:configure-flags '("-DWANT_GRAPHICSMAGICK=1" "-DWANT_CPP17=ON")))
+    (inputs (list boost
+                  cairo
+                  cups
+                  fontconfig
+                  freetype
+                  graphicsmagick
+                  harfbuzz
+                  hunspell
+                  icu4c
+                  lcms
+                  libcdr
+                  libfreehand
+                  libjpeg-turbo
+                  libmspub
+                  libpagemaker
+                  librevenge
+                  libtiff
+                  libvisio
+                  libxml2
+                  libzmf
+                  openssl
+                  podofo
+                  poppler
+                  python
+                  qtbase-5
+                  qtdeclarative-5
+                  zlib))
+    (native-inputs (list pkg-config qttools-5 util-linux))
+    (home-page "https://www.scribus.net")
+    (synopsis "Desktop publishing and page layout program")
+    (description
+     "Scribus is a @dfn{desktop publishing} (DTP) application and can
+be used for many tasks; from brochure design to newspapers, magazines,
+newsletters and posters to technical documentation.  Scribus supports
+professional DTP features, such as CMYK color and a color management
+system to soft proof images for high quality color printing, flexible
+PDF creation options, Encapsulated PostScript import/export and
+creation of four color separations, import of EPS/PS and SVG as native
+vector graphics, Unicode text including right to left scripts such as
+Arabic and Hebrew via FreeType.")
+    (license license:gpl2+)))
+
+(define-public scribus-next
+  (package
+    (name "scribus-next")
+    (version "1.6.1") ;; and/or 1.7.0.svn?
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append "mirror://sourceforge/scribus/scribus/" version
+                           "/scribus-" version ".tar.gz"))
+       (sha256
+        (base32 "1kqqffx5xz35mwd422s4i110794zzx9sc2bn2mg77rz02hrxdhxg"))))
     (build-system cmake-build-system)
     (arguments
      `(#:tests? #f ;no test target

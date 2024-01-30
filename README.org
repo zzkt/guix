@@ -4,11 +4,10 @@
 A semi-literate [[file:config/framework13-system.org][system config]] specifically for Guix on the Framework 13 Laptop (AMD Ryzen 7040 Series)
 
 * A (non)guix channel
-
 ** packages
 design & publishing
 - fonts & type collections from [[http://osp.kitchen/][OSP]] and [[https://velvetyne.fr/][velvetyne]] in particular with selections from [[https://usemodify.com/][usemodify]] (curated by Raphaël Bastide.)
-- [[https://www.scribus.net/][sribus]] (release version 1.6.0 and =scribus-next= development branch)
+- [[https://www.scribus.net/][scribus]] (release version 1.6.1 and =scribus-next= development branch)
 - [[https://soupault.app/][soupault]] static site generator and robotic webmaster (version 4.6.0 and dependencies not currently in guix)
 
 various and sundry
