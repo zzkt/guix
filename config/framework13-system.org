@@ -66,7 +66,7 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
 
 * kernel corruption
 
-Some kernel corruption may be required to enable WIFI. Since the non-free kernel from nonguix doesn’t include the driver for RZ616/MT7922 adapter by default it needs to be added explicitly. Defined here and used in the =operating-system= declaration below. (see also commit [[https://gitlab.com/nonguix/nonguix/-/commit/3857d86267284000dc48660a5dfd56cb2a8cf004][3857d862]] for the addition of =nonguix-extra-linux-options=)
+Some kernel corruption may be required to enable WIFI. Since the non-free kernel from nonguix prior to 6.7.2 doesn’t include the driver for RZ616/MT7922 adapter by default it needs to be added explicitly. Defined here and used in the =operating-system= declaration below. (see also commit [[https://gitlab.com/nonguix/nonguix/-/commit/3857d86267284000dc48660a5dfd56cb2a8cf004][3857d862]] for the addition of =nonguix-extra-linux-options=)
 
 #+begin_src scheme
 (define-public linux-fw13
@@ -105,8 +105,10 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
+  Testing =linux-6.7= from nonguix which now includes =CONFIG_MT7921E= by default
 #+begin_src scheme
- (kernel linux-fw13)
+ ;; (kernel linux-fw13)
+ (kernel linux-6.7)
  (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
  #+end_src
 

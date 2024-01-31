@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-26 10:45:43+01:00)
+;; tangled from framework13-system.org on 2024-01-31 09:21:35+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -47,7 +47,8 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-fw13)
+ ;; (kernel linux-fw13)
+ (kernel linux-6.7)
  (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
 
  (firmware (list linux-firmware))
