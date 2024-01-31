@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-31 11:13:11+01:00)
+;; tangled from framework13-system.org on 2024-01-31 11:19:45+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -206,8 +206,7 @@ COMMIT
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
-                        (keep-alive 25)))))
-                   (%auto-start? #t))
+                        (keep-alive 25))))))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration

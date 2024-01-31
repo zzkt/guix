@@ -325,8 +325,7 @@ details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
-                        (keep-alive 25)))))
-                   (%auto-start? #t))
+                        (keep-alive 25))))))
 #+END_SRC
 
 *** display manager
