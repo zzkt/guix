@@ -98,7 +98,7 @@ Layout is qwerty, CAPS_LOCK is CTRL, Ctrl-Fn-Meta-super to left of SPACE. The =k
 ** kernel
 A custom kernel is configured above, kernel arguments are declared here.
 
-The =hid_sensor_hub= module needs to be disabled for screen dimming and keyboard backlight to work as expecrted. Some other kernel arguments possibly required for (in)compatability with other features include "amdgpu.sg_display=0", "acpi_osi=linux" "acpi_backlight=vendor"
+The =hid_sensor_hub= module needs to be disabled for screen dimming and keyboard backlight to work as expecrted. Some other kernel arguments possibly required for (in)compatability with other features include ="amdgpu.sg_display=0"=, ="acpi_osi=linux" "acpi_backlight=vendor"=
 
 Kernel & driver details
 - https://gitlab.com/nonguix/nonguix
@@ -172,7 +172,6 @@ Packages installed system-wide.  Users can also install packages under their own
                  "emacs-exwm"
                  "openssh-sans-x"
                  "nss-certs"
-                 "htop"
                  ;; xfce
                  "xfce4-power-manager"
                  "xfce4-screensaver"
@@ -224,6 +223,9 @@ use dovecot for local IMAP
            (service iptables-service-type
                     (iptables-configuration
                      (ipv4-rules (plain-file "iptables.rules"
+#+end_src
+**** ipv4 rules
+#+BEGIN_SRC scheme
 "*nat
 :PREROUTING ACCEPT
 :INPUT ACCEPT
@@ -231,7 +233,7 @@ use dovecot for local IMAP
 :POSTROUTING ACCEPT
 -A POSTROUTING -o en0 -j MASQUERADE
 COMMIT
-*filter
+,*filter
 :INPUT ACCEPT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
@@ -248,7 +250,6 @@ SMB
 -A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 445 -j ACCEPT
 #+end_src
 wireguard
-
 #+BEGIN_SRC scheme
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -260,6 +261,9 @@ wireguard
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))
+        #+end_src
+**** ipv6 rules
+#+BEGIN_SRC scheme
                      (ipv6-rules (plain-file "ip6tables.rules"
 "*nat
 :PREROUTING ACCEPT
@@ -321,7 +325,8 @@ details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
-                        (keep-alive 25))))))
+                        (keep-alive 25)))))
+                   (%auto-start? #t))
 #+END_SRC
 
 *** display manager

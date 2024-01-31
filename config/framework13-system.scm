@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-31 09:21:35+01:00)
+;; tangled from framework13-system.org on 2024-01-31 11:13:11+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -94,7 +94,6 @@
                  "emacs-exwm"
                  "openssh-sans-x"
                  "nss-certs"
-                 "htop"
                  ;; xfce
                  "xfce4-power-manager"
                  "xfce4-screensaver"
@@ -127,6 +126,7 @@
            (service iptables-service-type
                     (iptables-configuration
                      (ipv4-rules (plain-file "iptables.rules"
+
 "*nat
 :PREROUTING ACCEPT
 :INPUT ACCEPT
@@ -156,6 +156,7 @@ COMMIT
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
 "))
+
                      (ipv6-rules (plain-file "ip6tables.rules"
 "*nat
 :PREROUTING ACCEPT
@@ -205,7 +206,8 @@ COMMIT
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
-                        (keep-alive 25))))))
+                        (keep-alive 25)))))
+                   (%auto-start? #t))
 
            ;; (service sddm-service-type
            ;; 	    (sddm-configuration
