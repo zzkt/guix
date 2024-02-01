@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-01-31 11:19:45+01:00)
+;; tangled from framework13-system.org on 2024-02-01 09:06:53+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -42,6 +42,8 @@
  (locale "en_GB.utf8")
  (timezone "Europe/Amsterdam")
 
+ (hosts-file (local-file "hosts.conf"))
+
  (keyboard-layout (keyboard-layout
                    "us" "altgr-intl"
                    #:options '("ctrl:nocaps"
@@ -49,7 +51,7 @@
 
  ;; (kernel linux-fw13)
  (kernel linux-6.7)
- (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
+ ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
 
  (firmware (list linux-firmware))
  ;; (firmware (list amdgpu-firmware

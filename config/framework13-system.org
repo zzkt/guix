@@ -85,6 +85,10 @@ The =operating-system= declaration
  (timezone "Europe/Amsterdam")
                                #+end_src
 
+#+BEGIN_SRC scheme :session
+ (hosts-file (local-file "hosts.conf"))
+#+END_SRC
+
 ** keyboard layout
 Layout is qwerty, CAPS_LOCK is CTRL, Ctrl-Fn-Meta-super to left of SPACE. The =keyboard-layout= declared here can be used for boot, console and Xorg
 
@@ -109,7 +113,7 @@ Kernel & driver details
 #+begin_src scheme
  ;; (kernel linux-fw13)
  (kernel linux-6.7)
- (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
+ ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
  #+end_src
 
 …and required firmware (should be possible to reduce to specifics)
