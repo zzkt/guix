@@ -85,6 +85,8 @@ The =operating-system= declaration
  (timezone "Europe/Amsterdam")
                                #+end_src
 
+hosts file for local & LAN name resolving and persistent =/etc/hosts=  (Note: convert to =hosts-service-type=)
+
 #+BEGIN_SRC scheme :session
  (hosts-file (local-file "hosts.conf"))
 #+END_SRC
@@ -109,11 +111,11 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-  Testing =linux-6.7= from nonguix which now includes =CONFIG_MT7921E= by default
+Using =linux-6.7= from nonguix which includes =CONFIG_MT7921E= by default as of 6.7.2
 #+begin_src scheme
  ;; (kernel linux-fw13)
  (kernel linux-6.7)
- ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
+ ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
  #+end_src
 
 …and required firmware (should be possible to reduce to specifics)

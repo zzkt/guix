@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-01 09:06:53+01:00)
+;; tangled from framework13-system.org on 2024-02-01 12:22:20+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -51,7 +51,7 @@
 
  ;; (kernel linux-fw13)
  (kernel linux-6.7)
- ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub"))
+ ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
 
  (firmware (list linux-firmware))
  ;; (firmware (list amdgpu-firmware
