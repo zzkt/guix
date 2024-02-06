@@ -57,7 +57,7 @@
     (source
      (origin
        (method url-fetch)
-       (uri "https://sourceforge.net/projects/scribus/files/scribus/1.6.1/scribus-1.6.1.tar.gz/download")
+       (uri "https://sourceforge.net/projects/scribus/files/scribus/1.6.1/scribus-1.6.1.tar.gz")
        (sha256
         (base32 "1kqqffx5xz35mwd422s4i110794zzx9sc2bn2mg77rz02hrxdhxg"))))
     (build-system cmake-build-system)
