@@ -26,11 +26,18 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
 (use-modules (gnu)
              (gnu home)
              (gnu packages)
+             (gnu services)
              (gnu packages gnupg)
+             (gnu packages shells)
+             (guix channels)
              (guix gexp)
+             (gnu home services)
+             (gnu home services guix)
              (gnu home services shells)
+             (gnu home services dotfiles)
+             (gnu home services desktop)
+             (gnu home services sound)
              (gnu home services gnupg))
-
 #+END_SRC
 
 getmail? → (use-service-modules mail)
@@ -117,7 +124,7 @@ additional channels → nonguix & zzkt
 environment / variables
 
 #+BEGIN_SRC scheme
-    (simple-service 'some-useful-env-vars-service
+    (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
                      `(("NOTMUCH_PROFILE" . "$HOME/.config/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
@@ -128,36 +135,36 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
      =$fpath= contains =/run/current-system/profile/share/zsh/site-functions=
 
 #+BEGIN_SRC scheme
-    (service home-zsh-service-type
-                  (home-zsh-configuration
-                   ;; configs in $XDG_CONFIG_HOME/zsh
-                   (xdg-flavor? #t)
-                   (environment-variables
-                    '(("HISTFILE" . "$HOME/.config/zsh/.history")
-                      ("HISTSIZE" . "800000")
-                      ("SAVEHIST" . "800000")))
-                   (zshenv
-                    (list (local-file ".zshenv" "zshenv")))
-                   (zshrc
-                    (list (local-file ".zshrc" "zshrc")))))
+   (service home-zsh-service-type
+            (home-zsh-configuration
+             ;; configs in $XDG_CONFIG_HOME/zsh
+             (xdg-flavor? #t)
+             (environment-variables
+              '(("HISTFILE" . "$HOME/.config/zsh/.history")
+                ("HISTSIZE" . "800000")
+                ("SAVEHIST" . "800000")))
+             (zshenv
+              (list (local-file ".zshenv" "zshenv")))
+             (zshrc
+              (list (local-file ".zshrc" "zshrc")))))
    #+END_SRC
 
 gnupg
 
 #+BEGIN_SRC scheme
-         (service home-gpg-agent-service-type
-                  (home-gpg-agent-configuration
-                   (pinentry-program
-                    (file-append pinentry-emacs "/bin/pinentry-emacs"))
-                   (ssh-support? #t)))
+   (service home-gpg-agent-service-type
+            (home-gpg-agent-configuration
+             (pinentry-program
+              (file-append pinentry-emacs "/bin/pinentry-emacs"))
+             (ssh-support? #t)))
    #+END_SRC
 
 dotfiles (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
 
 #+BEGIN_SRC scheme
-         (service home-dotfiles-service-type
-                  (home-dotfiles-configuration
-                   (directories (list "dotfiles"))))
+   (service home-dotfiles-service-type
+            (home-dotfiles-configuration
+             (directories (list "dotfiles"))))
 #+END_SRC
 
 ssh & sundry (see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
@@ -166,20 +173,20 @@ ssh & sundry (see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-S
 
 #+END_SRC
 
-sound via pipewire  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
+sound via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
 
 #+BEGIN_SRC scheme
-        (service home-pipewire-service-type
-                 (home-pipewire-configuration
-                 (pipewire "pipewire")
-                 (wireplumber "wireplumber")
-                 (enable-pulseaudio? #t)))
+   (service home-dbus-service-type)
+
+   (service home-pipewire-service-type
+            (home-pipewire-configuration
+             (enable-pulseaudio? #t)))
 #+END_SRC
 
-fonts
+fonts ( see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html)
 
 #+BEGIN_SRC scheme
-         ;; see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html
+
    #+END_SRC
 
 FIN
