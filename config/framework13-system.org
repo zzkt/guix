@@ -34,7 +34,7 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
              (gnu packages emacs-xyz))
 #+end_src
 
-Include non-free linux kernel, modules and firmware from the  [[https://gitlab.com/nonguix/nonguix/][nonguix channel]]
+Include non-free linux kernel, modules and firmware from the  [[https://gitlab.com/nonguix/nonguix/][nonguix channel]] (aka “the guix channel that shall not be named”)
 #+begin_src scheme
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
@@ -140,7 +140,7 @@ Using =linux-6.7= from nonguix which includes =CONFIG_MT7921E= by default as of 
                                         "audio"
                                         "video"
                                         "www-data"
-                                         "realtime"
+                                        "realtime"
                                         "lp")))
                (user-account
                 (name "www-data")
