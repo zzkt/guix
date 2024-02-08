@@ -24,25 +24,23 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
 
 #+BEGIN_SRC scheme
 (use-modules (gnu)
-             (gnu home)
-             (gnu packages)
              (gnu services)
+             (gnu packages)
              (gnu packages gnupg)
              (gnu packages shells)
-             (guix channels)
-             (guix gexp)
+             (gnu home)
              (gnu home services)
              (gnu home services guix)
              (gnu home services shells)
              (gnu home services dotfiles)
              (gnu home services desktop)
              (gnu home services sound)
-             (gnu home services gnupg))
+             (gnu home services gnupg)
+             (guix channels)
+             (guix gexp))
 #+END_SRC
 
-getmail? → (use-service-modules mail)
-
-Packages that will show up in your Home profile under =~/.guix-home/profile=
+Packages that will show up in the  home profile under =~/.guix-home/profile=
 
 #+BEGIN_SRC scheme
 (home-environment
@@ -84,14 +82,14 @@ Packages that will show up in your Home profile under =~/.guix-home/profile=
              )))
 #+END_SRC
 
-The list of Home services.  To search for available services, run 'guix home search KEYWORD' in a terminal.
+The list of home services.  To search for available services run =guix home search KEYWORD= in a terminal.
 
 #+BEGIN_SRC scheme
  (services
    (list
    #+END_SRC
 
-additional channels → nonguix & zzkt
+Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named”) & zzkt (local particulars)
 
 #+BEGIN_SRC scheme
     (simple-service 'variant-packages-service
@@ -101,8 +99,6 @@ additional channels → nonguix & zzkt
                       (name 'nonguix)
                       (url "https://gitlab.com/nonguix/nonguix")
                       (branch "master")
-                      (commit
-                       "fe2fcf125cfc5f7284b24cfac50f37feaf74f7b5")
                       (introduction
                        (make-channel-introduction
                         "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
@@ -121,12 +117,14 @@ additional channels → nonguix & zzkt
                          "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))))
 #+END_SRC
 
+#+RESULTS:
+
 environment / variables
 
 #+BEGIN_SRC scheme
     (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
-                     `(("NOTMUCH_PROFILE" . "$HOME/.config/notmuch/notmuch.conf")
+                     `(("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
 #+END_SRC
@@ -140,7 +138,7 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
              ;; configs in $XDG_CONFIG_HOME/zsh
              (xdg-flavor? #t)
              (environment-variables
-              '(("HISTFILE" . "$HOME/.config/zsh/.history")
+              '(("HISTFILE" . "$XDG_CONFIG_HOME/zsh/.history")
                 ("HISTSIZE" . "800000")
                 ("SAVEHIST" . "800000")))
              (zshenv
@@ -170,7 +168,7 @@ dotfiles (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Se
 ssh & sundry (see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
 
 #+BEGIN_SRC scheme
-
+  ;; ssh config in 'dotfiles'
 #+END_SRC
 
 sound via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])

@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-07 18:15:15+01:00)
+;; tangled from framework13-system.org on 2024-02-08 11:11:49+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -69,7 +69,7 @@
                                         "audio"
                                         "video"
                                         "www-data"
-                                         "realtime"
+                                        "realtime"
                                         "lp")))
                (user-account
                 (name "www-data")
@@ -98,7 +98,6 @@
                  "nss-certs"
                  ;; xfce
                  "xfce4-power-manager"
-                 "xfce4-screensaver"
                  "xfce4-settings"
                  "xfce4-session"
                  "xfce4-panel"

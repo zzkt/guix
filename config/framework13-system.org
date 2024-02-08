@@ -34,7 +34,7 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
              (gnu packages emacs-xyz))
 #+end_src
 
-Include non-free linux kernel, modules and firmware from the  [[https://gitlab.com/nonguix/nonguix/][nonguix channel]] (aka “the guix channel that shall not be named”)
+Include non-free linux kernel, modules and firmware from the  [[https://gitlab.com/nonguix/nonguix/][nonguix channel]]  (aka “The GUIX Channel That Shall Not Be Named”)
 #+begin_src scheme
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
@@ -85,7 +85,7 @@ The =operating-system= declaration
  (timezone "Europe/Amsterdam")
                                #+end_src
 
-hosts file for local & LAN name resolving and persistent =/etc/hosts=  (Note: convert to =hosts-service-type=)
+hosts file for local & LAN name resolving and persistent =/etc/hosts=  (maybe convert to =hosts-service-type=)
 
 #+BEGIN_SRC scheme :session
  (hosts-file (local-file "hosts.conf"))
@@ -168,7 +168,7 @@ Using =linux-6.7= from nonguix which includes =CONFIG_MT7921E= by default as of 
 #+end_src
 
 ** system-wide packages
-Packages installed system-wide.  Users can also install packages under their own account: use 'guix search KEYWORD' to search  for packages and 'guix install PACKAGE' to install a package.
+Packages installed system-wide.  Users can also install packages under their own account: use =guix search KEYWORD= to search  for packages and =guix install PACKAGE= to install a package.
 
 #+begin_src scheme
  (packages
@@ -180,7 +180,6 @@ Packages installed system-wide.  Users can also install packages under their own
                  "nss-certs"
                  ;; xfce
                  "xfce4-power-manager"
-                 "xfce4-screensaver"
                  "xfce4-settings"
                  "xfce4-session"
                  "xfce4-panel"
