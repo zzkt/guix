@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-08 11:11:49+01:00)
+;; tangled from framework13-system.org on 2024-02-08 14:07:04+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -32,9 +32,9 @@
                      tls
                      vpn)
 
-(define-public linux-fw13
+(define-public linux-FWL13
   (corrupt-linux linux-libre-6.7
-                 #:name "linux-fw13"
+                 #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
 
 (operating-system
@@ -49,8 +49,9 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- ;; (kernel linux-fw13)
- (kernel linux-6.7)
+ (kernel linux-6.7) ;; previously (kernel linux-FWL13)
+
+ (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
 
  (firmware (list linux-firmware))
