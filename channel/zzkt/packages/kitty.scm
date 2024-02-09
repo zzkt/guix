@@ -135,7 +135,7 @@
        (file-name (git-file-name name version))
        (sha256
         (base32 "0gqxn2g1ws3whn6gfb6246pad9g0a656f51f0cjrgzk8xagz1rbp"))
-       (patches (search-patches "kitty-fix-wayland-protocols.patch"))
+       ;; (patches (search-patches "kitty-fix-wayland-protocols.patch"))
        (modules '((guix build utils)))
        (snippet
         '(begin
