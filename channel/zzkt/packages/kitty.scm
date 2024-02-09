@@ -172,6 +172,7 @@
            python-pygments
            python-wrapper
            wayland
+           openssl
            zlib))
     (arguments
      (list
