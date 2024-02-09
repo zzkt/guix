@@ -191,7 +191,8 @@
          (add-before 'build 'fix-gocache-directory
                      (lambda _
                        (setenv "HOME" "/tmp")
-                       (setenv "GOCACHE" "/tmp/.gocache")))
+                       (setenv "GOCACHE" "/tmp/.gocache")
+                       (setenv "GOPROXY" "direct")))
 
           (delete 'configure)   ;no configure script
           (replace 'build
