@@ -190,6 +190,7 @@
 
          (add-before 'build 'fix-gocache-directory
                      (lambda _
+                       (setenv "HOME" "/tmp")
                        (setenv "GOCACHE" "/tmp/.gocache")))
 
           (delete 'configure)   ;no configure script
