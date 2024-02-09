@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-08 14:07:04+01:00)
+;; tangled from framework13-system.org on 2024-02-09 14:00:47+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -232,6 +232,7 @@ COMMIT
                                             Option \"AccelProfile\" \"adaptive\"
                                         EndSection"))))))
 
+           (service plasma-desktop-service-type)
            (service gnome-desktop-service-type)
            (service xfce-desktop-service-type)
 
@@ -286,7 +287,7 @@ writable = yes
 
  (swap-devices (list (swap-space
                       (target (uuid
-                               "2ce27ab3-07f7-4c24-90bd-9fbe14c0850d")))))
+                               "e7cc2ca5-169a-4511-865f-d2d7ed72c05c")))))
 
  (file-systems (cons* (file-system
                        (mount-point "/boot/efi")

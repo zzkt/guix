@@ -366,8 +366,9 @@ Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
 #+end_src
 
 *** desktop environments
-Provide gnome and xfce as desktop environments. exwm is enabled automatically via module.
+Provide Gnome, KDE (plasma) and xfce as desktop environments. exwm is enabled automatically via module.
 #+begin_src scheme
+           (service plasma-desktop-service-type)
            (service gnome-desktop-service-type)
            (service xfce-desktop-service-type)
 #+end_src
@@ -461,7 +462,7 @@ initrd with AMD microcode blobs
 #+begin_src scheme
  (swap-devices (list (swap-space
                       (target (uuid
-                               "2ce27ab3-07f7-4c24-90bd-9fbe14c0850d")))))
+                               "e7cc2ca5-169a-4511-865f-d2d7ed72c05c")))))
 #+end_src
 
 ** file systems & mount points

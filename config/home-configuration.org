@@ -20,7 +20,7 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
 <<timestamp()>>
 #+end_src
 
-* modules
+** use-modules
 
 #+BEGIN_SRC scheme
 (use-modules (gnu)
@@ -40,12 +40,18 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
              (guix gexp))
 #+END_SRC
 
+* home environment
+** packages
+
 Packages that will show up in the  home profile under =~/.guix-home/profile=
 
 #+BEGIN_SRC scheme
 (home-environment
  (packages (specifications->packages
             (list
+                         #+END_SRC
+*** generally useful
+             #+BEGIN_SRC scheme
              "nordic-theme"
              "firefox"
              "emacs-guix"
@@ -59,28 +65,44 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              "crda"
              "htop"
              "password-store"
-             ;; terminal
-             "alacritty"
-             ;; mail
-             "getmail6"
-             "notmuch"
-             ;; graphical
-             "scribus"
-             "inkscape"
-             ;; sound
-             "supercollider"
-             "tidal"
-             "ardour"
-             "audacity"
+             #+END_SRC
+*** KDE packages
+             #+BEGIN_SRC scheme
+             "kmail"
+             "krunner"
+             "akonadi"
+             #+END_SRC
+*** terminal
+kitty config is in  =dotfiles/kitty/kitty.conf=
+             #+BEGIN_SRC scheme
+             "kitty"
+             #+END_SRC
+*** Mail
+             #+BEGIN_SRC scheme
+             "getmail6" "notmuch"
+             #+END_SRC
+*** graphics
+             #+BEGIN_SRC scheme
+             "scribus" "inkscape" "gimp"
+             "imagemagick"
+             #+END_SRC
+*** music, sound & noise
+             #+BEGIN_SRC scheme
+             "supercollider" "tidal"
+             "ardour" "audacity"
              "qpwgraph"
-             ;; hardware
+             #+END_SRC
+*** Hardware
+             #+BEGIN_SRC scheme
              "lm-sensors"
              "dmidecode"
              "lshw"
              "hwinfo"
              "acpi"
-             )))
+             ))) ;; end packages
 #+END_SRC
+
+** services
 
 The list of home services.  To search for available services run =guix home search KEYWORD= in a terminal.
 
@@ -88,6 +110,7 @@ The list of home services.  To search for available services run =guix home sear
  (services
    (list
    #+END_SRC
+*** channels
 
 Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named”) & zzkt (local particulars)
 
@@ -117,9 +140,7 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
                          "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))))
 #+END_SRC
 
-#+RESULTS:
-
-environment / variables
+*** environment / variables
 
 #+BEGIN_SRC scheme
     (simple-service 'variant-env-vars-service
@@ -129,6 +150,7 @@ environment / variables
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
 #+END_SRC
 
+*** zsh shell
 zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/2020-06/msg00005.html][help-guix]])
      =$fpath= contains =/run/current-system/profile/share/zsh/site-functions=
 
@@ -147,7 +169,7 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
               (list (local-file ".zshrc" "zshrc")))))
    #+END_SRC
 
-gnupg
+*** gnupg
 
 #+BEGIN_SRC scheme
    (service home-gpg-agent-service-type
@@ -157,7 +179,8 @@ gnupg
              (ssh-support? #t)))
    #+END_SRC
 
-dotfiles (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
+*** dotfiles
+ (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
 
 #+BEGIN_SRC scheme
    (service home-dotfiles-service-type
@@ -165,13 +188,15 @@ dotfiles (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Se
              (directories (list "dotfiles"))))
 #+END_SRC
 
-ssh & sundry (see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
+*** ssh & sundry
+(see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
 
 #+BEGIN_SRC scheme
   ;; ssh config in 'dotfiles'
 #+END_SRC
 
-sound via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
+*** sound
+ via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
 
 #+BEGIN_SRC scheme
    (service home-dbus-service-type)
@@ -181,14 +206,15 @@ sound via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/
              (enable-pulseaudio? #t)))
 #+END_SRC
 
-fonts ( see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html)
+*** fonts
+ ( see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html)
 
 #+BEGIN_SRC scheme
-
+  )) ;; end services
    #+END_SRC
 
-FIN
+* FIN
 
 #+BEGIN_SRC scheme
-  ))) ;; end home-environment
+  ) ;; end home-environment
 #+END_SRC

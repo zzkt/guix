@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-02-08 14:07:19+01:00)
+;; tangled from home-configuration.org on 2024-02-09 14:00:59+01:00)
 
 (use-modules (gnu)
              (gnu services)
@@ -21,6 +21,7 @@
 (home-environment
  (packages (specifications->packages
             (list
+
              "nordic-theme"
              "firefox"
              "emacs-guix"
@@ -34,27 +35,28 @@
              "crda"
              "htop"
              "password-store"
-             ;; terminal
-             "alacritty"
-             ;; mail
-             "getmail6"
-             "notmuch"
-             ;; graphical
-             "scribus"
-             "inkscape"
-             ;; sound
-             "supercollider"
-             "tidal"
-             "ardour"
-             "audacity"
+
+             "kmail"
+             "krunner"
+             "akonadi"
+
+             "kitty"
+
+             "getmail6" "notmuch"
+
+             "scribus" "inkscape" "gimp"
+             "imagemagick"
+
+             "supercollider" "tidal"
+             "ardour" "audacity"
              "qpwgraph"
-             ;; hardware
+
              "lm-sensors"
              "dmidecode"
              "lshw"
              "hwinfo"
              "acpi"
-             )))
+             ))) ;; end packages
 
  (services
    (list
@@ -120,6 +122,6 @@
             (home-pipewire-configuration
              (enable-pulseaudio? #t)))
 
+  )) ;; end services
 
-
-  ))) ;; end home-environment
+  ) ;; end home-environment
