@@ -155,8 +155,8 @@
     (modify-phases %standard-phases
                    (add-before 'check 'fix-home-directory
                                (lambda _
-                                 (setenv "HOME" "/tmp")
-                                  (setenv "GOCACHE" "/tmp/.gocache"))))
+                                 (setenv "HOME" "/tmp"))))
+                                 ;; (setenv "GOCACHE" "/tmp/.gocache")
 
     (native-inputs
      (list dbus
