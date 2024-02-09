@@ -121,9 +121,9 @@
 
 ;; via gnu/packages/terminals.scm
 
-(define-public kitty
+(define-public kitty-next
   (package
-    (name "kitty")
+    (name "kitty-next")
     (version "0.32.1")
     (home-page "https://sw.kovidgoyal.net/kitty/")
     (source
