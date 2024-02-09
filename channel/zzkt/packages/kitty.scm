@@ -151,13 +151,6 @@
               "SPHINXBUILD = sphinx-build\n"))
            #t))))
     (build-system gnu-build-system)
-    ;; required for go build/linking phase
-    (modify-phases %standard-phases
-                   (add-before 'check 'fix-home-directory
-                               (lambda _
-                                 (setenv "HOME" "/tmp"))))
-                                 ;; (setenv "GOCACHE" "/tmp/.gocache")
-
     (native-inputs
      (list dbus
            mesa
@@ -187,7 +180,15 @@
     (arguments
      (list
       #:phases
-      #~(modify-phases %standard-phases
+      #~(modify-phases
+         %standard-phases
+         ;; required for go build/linking phase
+         ;; (setenv "GOCACHE" "/tmp/.gocache")
+
+         (add-before 'check 'fix-home-directory
+                     (lambda _
+                       (setenv "HOME" "/tmp")))
+
           (delete 'configure)   ;no configure script
           (replace 'build
             (lambda* (#:key inputs #:allow-other-keys)
