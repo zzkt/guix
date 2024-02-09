@@ -151,12 +151,13 @@
               "SPHINXBUILD = sphinx-build\n"))
            #t))))
     (build-system gnu-build-system)
-    (native-search-paths
-     (list (search-path-specification
-            ;; required for go build/linking phase
-            (variable "GOCACHE")
-            (files '("/tmp/.gocache"))
-            (file-type 'directory))))
+    ;; required for go build/linking phase
+    (modify-phases %standard-phases
+                   (add-before 'check 'fix-home-directory
+                               (lambda _
+                                 (setenv "HOME" "/tmp")
+                                  (setenv "GOCACHE" "/tmp/.gocache"))))
+
     (native-inputs
      (list dbus
            mesa
