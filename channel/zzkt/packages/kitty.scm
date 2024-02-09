@@ -162,7 +162,8 @@
            ncurses ;; for tic command
            pkg-config
            python-sphinx
-           wayland-protocols))
+           wayland-protocols
+           go))
     (inputs
      (list fontconfig
            freetype
