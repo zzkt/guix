@@ -163,7 +163,7 @@
            pkg-config
            python-sphinx
            wayland-protocols
-           go-1.20))
+           go-1.21))
     (inputs
      (list fontconfig
            freetype
