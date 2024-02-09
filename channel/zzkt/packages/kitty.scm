@@ -184,10 +184,13 @@
          %standard-phases
          ;; required for go build/linking phase
          ;; (setenv "GOCACHE" "/tmp/.gocache")
-
          (add-before 'check 'fix-home-directory
                      (lambda _
                        (setenv "HOME" "/tmp")))
+
+         (add-before 'build 'fix-gocache-directory
+                     (lambda _
+                       (setenv "GOCACHE" "/tmp/.gocache")))
 
           (delete 'configure)   ;no configure script
           (replace 'build
