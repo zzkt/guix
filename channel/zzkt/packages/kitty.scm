@@ -81,6 +81,7 @@
   #:use-module (gnu packages crypto)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages dlang)
+  #:use-module (gnu packages digest)
   #:use-module (gnu packages docbook)
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages freedesktop)
@@ -173,6 +174,7 @@
            python-wrapper
            wayland
            openssl
+           xxhash
            zlib))
     (arguments
      (list
