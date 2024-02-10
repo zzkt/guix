@@ -16,6 +16,7 @@
              (nongnu system linux-initrd))
 
 (use-service-modules cups
+                     sddm
                      desktop
                      networking
                      ssh

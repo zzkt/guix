@@ -43,6 +43,7 @@ Include non-free linux kernel, modules and firmware from the  [[https://gitlab.c
 ** service modules
 #+begin_src scheme
 (use-service-modules cups
+                     sddm
                      desktop
                      networking
                      ssh
