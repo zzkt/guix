@@ -75,7 +75,8 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
 *** terminal
 kitty config is in  =dotfiles/kitty/kitty.conf=
              #+BEGIN_SRC scheme
-             "kitty"
+             "kitty-next"
+             ;; "kitty"
              #+END_SRC
 *** Mail
              #+BEGIN_SRC scheme

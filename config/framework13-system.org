@@ -118,7 +118,7 @@ Using =linux-6.7= from nonguix which includes =CONFIG_MT7921E= by default as of 
 
 testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055][Adaptive Backlight Management (ABM)]]
 #+BEGIN_SRC scheme
- (kernel-arguments '("amdgpu.abmlevel=3"))
+ ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
 #+END_SRC
 
@@ -339,16 +339,20 @@ details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en
 
 *** display manager
 #+begin_src scheme
-           ;; (service sddm-service-type
-           ;; 	    (sddm-configuration
-           ;; 	     (display-server "wayland")
-           ;; 	     (remember-last-user? #t)))
+           ;; (service gdm-service-type
+           ;;          (gdm-configuration
+           ;;           (auto-suspend? #f)
+           ;;           (xorg-configuration
+           ;;            (xorg-configuration
+           ;;             (keyboard-layout keyboard-layout)
 
-           (service gdm-service-type
-                    (gdm-configuration
-                     (auto-suspend? #f)
+           (service sddm-service-type
+                   (sddm-configuration
+                    (display-server "x11")
+                    (remember-last-user? #t)
+                    (theme "maya")
+                    (xorg-configuration
                      (xorg-configuration
-                      (xorg-configuration
                        (keyboard-layout keyboard-layout)
 #+end_src
 
@@ -369,7 +373,7 @@ Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
 Provide Gnome, KDE (plasma) and xfce as desktop environments. exwm is enabled automatically via module.
 #+begin_src scheme
            (service plasma-desktop-service-type)
-           (service gnome-desktop-service-type)
+           ;; (service gnome-desktop-service-type)
            (service xfce-desktop-service-type)
 #+end_src
 

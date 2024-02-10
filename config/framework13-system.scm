@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-09 14:00:47+01:00)
+;; tangled from framework13-system.org on 2024-02-10 16:57:56+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -51,13 +51,7 @@
 
  (kernel linux-6.7) ;; previously (kernel linux-FWL13)
 
- (kernel-arguments '("amdgpu.abmlevel=3"))
- ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
-
  (firmware (list linux-firmware))
- ;; (firmware (list amdgpu-firmware
- ;;                 amd-microcode
- ;;                 realtek-firmware))
 
  (users (cons* (user-account
                 (name "zzk")
@@ -210,16 +204,13 @@ COMMIT
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
                         (keep-alive 25))))))
 
-           ;; (service sddm-service-type
-           ;; 	    (sddm-configuration
-           ;; 	     (display-server "wayland")
-           ;; 	     (remember-last-user? #t)))
-
-           (service gdm-service-type
-                    (gdm-configuration
-                     (auto-suspend? #f)
+           (service sddm-service-type
+                   (sddm-configuration
+                    (display-server "x11")
+                    (remember-last-user? #t)
+                    (theme "maya")
+                    (xorg-configuration
                      (xorg-configuration
-                      (xorg-configuration
                        (keyboard-layout keyboard-layout)
 
                        (extra-config '("Section \"InputClass\"
@@ -233,7 +224,6 @@ COMMIT
                                         EndSection"))))))
 
            (service plasma-desktop-service-type)
-           (service gnome-desktop-service-type)
            (service xfce-desktop-service-type)
 
            (service samba-service-type
