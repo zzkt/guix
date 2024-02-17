@@ -31,6 +31,7 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
              (gnu packages shells)
              (gnu packages linux)
              (gnu packages xdisorg)
+             (gnu packages display-managers)
              (gnu packages emacs-xyz))
 #+end_src
 
@@ -112,7 +113,7 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-Using =linux-6.7= from nonguix which includes =CONFIG_MT7921E= by default as of 6.7.2
+Using =linux-6.7= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
  (kernel linux-6.7) ;; previously (kernel linux-FWL13)
  #+end_src
@@ -191,6 +192,8 @@ Packages installed system-wide.  Users can also install packages under their own
                  ;; gnome extras
                  "gnome-tweaks"
                  "gvfs"
+                 ; sddm
+                 "chili-sddm-theme"
                  ;; vpn
                  "wireguard-tools"
                  ))
@@ -351,7 +354,7 @@ details can be found (and mostly ignored) in  [[https://guix.gnu.org/cookbook/en
                    (sddm-configuration
                     (display-server "x11")
                     (remember-last-user? #t)
-                    (theme "maya")
+                    (theme "chili")
                     (xorg-configuration
                      (xorg-configuration
                        (keyboard-layout keyboard-layout)

@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-02-10 16:57:56+01:00)
+;; tangled from framework13-system.org on 2024-02-17 23:10:06+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -10,6 +10,7 @@
              (gnu packages shells)
              (gnu packages linux)
              (gnu packages xdisorg)
+             (gnu packages display-managers)
              (gnu packages emacs-xyz))
 
 (use-modules (nongnu packages linux)
@@ -52,7 +53,13 @@
 
  (kernel linux-6.7) ;; previously (kernel linux-FWL13)
 
+ ;; (kernel-arguments '("amdgpu.abmlevel=3"))
+ ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
+
  (firmware (list linux-firmware))
+ ;; (firmware (list amdgpu-firmware
+ ;;                 amd-microcode
+ ;;                 realtek-firmware))
 
  (users (cons* (user-account
                 (name "zzk")
@@ -100,6 +107,8 @@
                  ;; gnome extras
                  "gnome-tweaks"
                  "gvfs"
+                 ; sddm
+                 "chili-sddm-theme"
                  ;; vpn
                  "wireguard-tools"
                  ))
@@ -205,11 +214,18 @@ COMMIT
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
                         (keep-alive 25))))))
 
+           ;; (service gdm-service-type
+           ;;          (gdm-configuration
+           ;;           (auto-suspend? #f)
+           ;;           (xorg-configuration
+           ;;            (xorg-configuration
+           ;;             (keyboard-layout keyboard-layout)
+
            (service sddm-service-type
                    (sddm-configuration
                     (display-server "x11")
                     (remember-last-user? #t)
-                    (theme "maya")
+                    (theme "chili")
                     (xorg-configuration
                      (xorg-configuration
                        (keyboard-layout keyboard-layout)
@@ -225,6 +241,7 @@ COMMIT
                                         EndSection"))))))
 
            (service plasma-desktop-service-type)
+           ;; (service gnome-desktop-service-type)
            (service xfce-desktop-service-type)
 
            (service samba-service-type
