@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-02-09 14:00:59+01:00)
+;; tangled from home-configuration.org on 2024-02-23 13:06:42+01:00)
 
 (use-modules (gnu)
              (gnu services)
@@ -21,7 +21,6 @@
 (home-environment
  (packages (specifications->packages
             (list
-
              "nordic-theme"
              "firefox"
              "emacs-guix"
@@ -31,7 +30,7 @@
              "nyxt"
              "python"
              "git"
-             "gnupg"
+             "gnupg" "pinentry-emacs" "pinentry-qt"
              "crda"
              "htop"
              "password-store"
@@ -89,6 +88,7 @@
                      home-environment-variables-service-type
                      `(("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
+                       ("GPG_TTY" . "tty")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
 
    (service home-zsh-service-type
@@ -107,14 +107,12 @@
    (service home-gpg-agent-service-type
             (home-gpg-agent-configuration
              (pinentry-program
-              (file-append pinentry-emacs "/bin/pinentry-emacs"))
+              (file-append pinentry-qt "/bin/pinentry-qt"))
              (ssh-support? #t)))
 
    (service home-dotfiles-service-type
             (home-dotfiles-configuration
              (directories (list "dotfiles"))))
-
-  ;; ssh config in 'dotfiles'
 
    (service home-dbus-service-type)
 

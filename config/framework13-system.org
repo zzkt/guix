@@ -122,6 +122,7 @@ testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055
 #+BEGIN_SRC scheme
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
+ (kernel-arguments '("splash" "quiet"))
 #+END_SRC
 
 …and required firmware (should be possible to reduce to specifics)
