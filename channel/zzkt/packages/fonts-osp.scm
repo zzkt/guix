@@ -31,38 +31,7 @@
   #:use-module (guix build-system font))
 
 ;; http://osp.kitchen/foundry
-
-;; - [ ] ax-28-script
-;; - [ ] belogodor
-;; - [ ] certegeska
-;; - [ ] cimatics
-;; - [ ] cowboy-henk
-;; - [ ] dlf
-;; - [ ] erbarre
-;; - [ ] le-patin-helvete
-;; - [ ] limousine
-;; - [ ] logisoso
-;; - [ ] metadin
-;; - [ ] polsku
-;; - [ ] sans-guilt-wafer
-;; - [ ] skeleton
-;; - [ ] ume
-;; - [ ] vj12
-;; - [ ] w-droge
-
-;; - [x] alfphabet
-;; - [x] belgica-belgika
-;; - [x] crickx
-;; - [x] fluxisch-else
-;; - [x] libertinage
-;; - [x] mill
-;; - [x] notcouriersans
-;; - [x] osp-din
-;; - [x] philibert
-;; - [x] reglo
-;; - [x] sans-guilt
-;; - [x] work-avec
-
+;; as of 2024-03-04 13:43:43
 
 ;; a metapackage for all packaged fonts
 (define-public font-collection-osp
@@ -75,16 +44,18 @@
     (arguments
      '(#:builder (begin
                    (mkdir %output) #t)))
-    (propagated-inputs (list font-osp-work-avec
-                             font-osp-sans-guilt
-                             font-osp-reglo
-                             font-osp-libertinage
-                             font-osp-fluxisch-else
-                             font-osp-din
-                             font-osp-crickx
+    (propagated-inputs (list font-osp-alfphabet
                              font-osp-belgica-belgika
-                             font-osp-alfphabet
+                             font-osp-crickx
+                             font-osp-din
+                             font-osp-fluxisch-else
+                             font-osp-libertinage
+                             font-osp-mill
+                             font-osp-notcouriersans
                              font-osp-philibert
+                             font-osp-reglo
+                             font-osp-sans-guilt
+                             font-osp-work-avec
                              ))
     (synopsis "A collection of fonts from OSP")
     (home-page "http://osp.kitchen/foundry/")
