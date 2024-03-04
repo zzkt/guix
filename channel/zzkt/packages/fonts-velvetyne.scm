@@ -543,7 +543,7 @@ Compagnon by Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano, Sébas
    (synopsis
     "")
    (description
-    "Façade is a typeface created from the architectural grid of the ÉSAD Orléans facade. This grid is used as a basis for the first sketches, then as a spirit for all the typefaces. The "sud" (south) version is faithful to the architecture while the other weights are emancipated from it.
+    "Façade is a typeface created from the architectural grid of the ÉSAD Orléans facade. This grid is used as a basis for the first sketches, then as a spirit for all the typefaces. The 'sud' (south) version is faithful to the architecture while the other weights are emancipated from it.
 
 Façade by Éléonore Fines. Distributed by velvetyne.fr.")
    (license license:silofl1.1)))
@@ -566,7 +566,7 @@ Façade by Éléonore Fines. Distributed by velvetyne.fr.")
    (synopsis
     "Grotesk is a heavily geometric sans serif typeface with an unusually large spacing")
    (description
-    "Grotesk is one of Velvetyne's first published typefaces. Designed by Frank Adebiaye in 2010 and released on Velvetyne in 2012, Grotesk is a heavily geometric sans serif typeface with an unusually large spacing. The original version of Grotesk is known because it was used on the official website of the city of Paris for many years. Even if the city's visual identity has changed since then, the broken "S" of Grotesk can still be seen in some of the technical vehicles of the city.
+    "Grotesk is one of Velvetyne's first published typefaces. Designed by Frank Adebiaye in 2010 and released on Velvetyne in 2012, Grotesk is a heavily geometric sans serif typeface with an unusually large spacing. The original version of Grotesk is known because it was used on the official website of the city of Paris for many years. Even if the city's visual identity has changed since then, the broken 'S' of Grotesk can still be seen in some of the technical vehicles of the city.
 
 In 2023, a new version of Grotesk developed by Ariel Martín Pérez was released. This new version introduces new weights that are multiplexed, which means that you can change the weight of the font without changing the width of the paragraphs. This new version also presents some subtle optical corrections. Last but not least, it considerably expands the glyphset of the font with a brand new lowercase set as well as language support for Russian, Ukrainian, Tifinagh and many Latin-based languages.
 
@@ -595,7 +595,7 @@ Grotesk by Frank Adebiaye, with the contribution of Ariel Martín Pérez. Distri
    (description
     "Jgs Font is a font family made as a tribute to Joan G. Stark (a.k.a. jgs, Spunk), pioneer of ASCII art.
 
-This font has been specifically designed to draw ASCII art. Its bitmap look and its shapes accentuate the ambiguity between text and drawing. The "graphic" properties of the characters have been exaggerated depending on the way ASCII artists use them.
+This font has been specifically designed to draw ASCII art. Its bitmap look and its shapes accentuate the ambiguity between text and drawing. The 'graphic' properties of the characters have been exaggerated depending on the way ASCII artists use them.
 
 The glyphs that make up Jgs Font can be combined from one character to the next in line or from one line to another. It allows, by association of characters, to produce continuous lines, curves, frames, patterns, levels of gray.
 
@@ -876,26 +876,3 @@ According to Wikipedia, in mythology, and in the study of folklore and religion,
 
 Trickster by Jean-Baptiste Morizot. Distributed by velvetyne.fr.")
    (license license:silofl1.1)))
-
-
-;; skel
-
-;; (define-public font-velvetyne-
-;;   (package
-;;     (name "font-velvetyne-")
-;;     (version "1")
-;;     (source
-;;      (origin
-;;        (method git-fetch)
-;;        (uri (git-reference
-;;              (url "https://gitlab.com/velvetyne/")
-;;              (commit "")))
-;;        (sha256
-;;         (base32 ""))))
-;;     (build-system font-build-system)
-;;     (home-page "https://velvetyne.fr/fonts/")
-;;     (synopsis
-;;      "")
-;;     (description
-;; "")
-;;     (license license:silofl1.1)))
