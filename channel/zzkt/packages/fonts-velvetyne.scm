@@ -76,7 +76,7 @@
                        font-velvetyne-tiny
                        font-velvetyne-trickster
                        font-velvetyne-typefesse
-                       font-velvetyne-vg5000
+                       ;; font-velvetyne-vg5000
                        ))
    (synopsis "A collection of fonts from Velvetyne")
    (home-page "https://velvetyne.fr/")
