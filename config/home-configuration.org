@@ -56,14 +56,15 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              "firefox"
              "emacs-guix"
              "emacs-next"
+             "libreoffice"
              "rsync"
-             "neofetch"
-             "nyxt"
+             ;; "nyxt"
              "python"
              "git"
              "gnupg"
              "crda"
              "htop"
+             "tree"
              "password-store"
              #+END_SRC
 *** KDE packages
@@ -75,24 +76,34 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
 *** terminal
 kitty config is in  =dotfiles/kitty/kitty.conf=
              #+BEGIN_SRC scheme
-             "kitty-next"
-             ;; "kitty"
+             ;; "kitty-next"
+             "kitty"
              #+END_SRC
 *** Mail
              #+BEGIN_SRC scheme
-             "getmail6" "notmuch"
+             "getmail6"
+             "notmuch"
              #+END_SRC
 *** graphics
              #+BEGIN_SRC scheme
-             "scribus" "inkscape" "gimp"
+             "scribus"
+             "inkscape"
+             "gimp"
              "imagemagick"
              #+END_SRC
 *** music, sound & noise
              #+BEGIN_SRC scheme
-             "supercollider" "tidal"
-             "ardour" "audacity"
+             "supercollider"
+             "tidal"
+             "ardour"
+             "audacity"
              "qpwgraph"
              #+END_SRC
+*** network & interconnect
+#+BEGIN_SRC scheme
+             "nextcloud-client"
+#+END_SRC
+
 *** Hardware
              #+BEGIN_SRC scheme
              "lm-sensors"
@@ -146,7 +157,8 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
 #+BEGIN_SRC scheme
     (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
-                     `(("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
+                     `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
+                       ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
                        ("GPG_TTY" . "tty")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))

@@ -47,7 +47,7 @@
    (propagated-inputs (list
                        font-velvetyne-amdal
                        font-velvetyne-anthony
-                       font-velvetyne-avara
+                       ;; font-velvetyne-avara
                        font-velvetyne-backout
                        font-velvetyne-basteleur
                        font-velvetyne-bianzhidai

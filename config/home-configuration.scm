@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-02-23 13:06:42+01:00)
+;; tangled from home-configuration.org on 2024-03-04 22:50:55+01:00)
 
 (use-modules (gnu)
              (gnu services)
@@ -21,34 +21,44 @@
 (home-environment
  (packages (specifications->packages
             (list
+
              "nordic-theme"
              "firefox"
              "emacs-guix"
              "emacs-next"
+             "libreoffice"
              "rsync"
-             "neofetch"
-             "nyxt"
+             ;; "nyxt"
              "python"
              "git"
-             "gnupg" "pinentry-emacs" "pinentry-qt"
+             "gnupg"
              "crda"
              "htop"
+             "tree"
              "password-store"
 
              "kmail"
              "krunner"
              "akonadi"
 
+             ;; "kitty-next"
              "kitty"
 
-             "getmail6" "notmuch"
+             "getmail6"
+             "notmuch"
 
-             "scribus" "inkscape" "gimp"
+             "scribus"
+             "inkscape"
+             "gimp"
              "imagemagick"
 
-             "supercollider" "tidal"
-             "ardour" "audacity"
+             "supercollider"
+             "tidal"
+             "ardour"
+             "audacity"
              "qpwgraph"
+
+             "nextcloud-client"
 
              "lm-sensors"
              "dmidecode"
@@ -86,7 +96,8 @@
 
     (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
-                     `(("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
+                     `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
+                       ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
                        ("GPG_TTY" . "tty")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
@@ -113,6 +124,8 @@
    (service home-dotfiles-service-type
             (home-dotfiles-configuration
              (directories (list "dotfiles"))))
+
+  ;; ssh config in 'dotfiles'
 
    (service home-dbus-service-type)
 
