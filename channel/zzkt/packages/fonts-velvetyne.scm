@@ -17,7 +17,7 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (zzkt packages fonts-velvetyne)
-  #:use-module (ice-9 regex)
+  ;; #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
                 #:prefix license:)
