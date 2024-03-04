@@ -18,7 +18,7 @@
 
 (define-module (zzkt packages fonts-velvetyne)
   ;; #:use-module (ice-9 regex)
-  #:use-module (gnu packages base) ;; locales
+  #:use-module (gnu packages base) ;; locales?
   #:use-module (guix utils)
   #:use-module ((guix licenses)
                 #:prefix license:)
@@ -47,7 +47,7 @@
    (propagated-inputs (list
                        font-velvetyne-amdal
                        font-velvetyne-anthony
-                       ;; font-velvetyne-avara
+                       font-velvetyne-avara
                        font-velvetyne-backout
                        font-velvetyne-basteleur
                        font-velvetyne-bianzhidai
@@ -418,10 +418,12 @@ Anthony by Sun Young Oh. Distributed by velvetyne.fr.")
            (commit "cb655944d819ff3636e35bc58407e2b30b36e6fe")))
      (sha256
       (base32 "0prh207as83md0hqych3hvzlvwck2k5hcy6mw531bjgacmlv731r"))))
+   (inputs
+     (list glibc-utf8-locales))
    (build-system font-build-system)
    (home-page "https://velvetyne.fr/fonts/avara/")
    (synopsis
-    "Libre transitional serif curveless font based on a square grid")
+    "Transitional serif curveless font based on a square grid")
    (description
     "Avara is a libre transitional serif curveless type family. The placement of its nodes is exclusively based on a rough square grid. The original reason of this design choice was to facilitate collaboration on the font, and it now results in the radical and highly constrained shapes of this type family. It was started and first released in November 2011 by Raphaël Bastide; it has been updated since then and finally published here. It might be updated again in the future, tho. Maybe by you.
 
