@@ -541,7 +541,7 @@ Compagnon by Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano, Sébas
    (build-system font-build-system)
    (home-page "https://velvetyne.fr/fonts/facade/")
    (synopsis
-    "")
+    "A typeface created from the architectural grid of the ÉSAD Orléans facade")
    (description
     "Façade is a typeface created from the architectural grid of the ÉSAD Orléans facade. This grid is used as a basis for the first sketches, then as a spirit for all the typefaces. The 'sud' (south) version is faithful to the architecture while the other weights are emancipated from it.
 
@@ -617,10 +617,10 @@ Jgs font by Adel Faure. Distributed by velvetyne.fr.")
     (origin
      (method git-fetch)
      (uri (git-reference
-           (url "https://gitlab.com/velvetyne/kaeru-kaeru")
-           (commit "")))
+           (url "https://gitlab.com/velvetyne/kaerukaeru")
+           (commit "dae804908ffb9249af2c4ee0b65a4a9084620de5")))
      (sha256
-      (base32 ""))))
+      (base32 "0f5myczwv35ly5g3xxdw98aak9gxdy0x1fa95bvl87l6cig4qc9p"))))
    (build-system font-build-system)
    (home-page "https://velvetyne.fr/fonts/kaeru-kaeru/")
    (synopsis
@@ -649,7 +649,7 @@ Kaeru Kaeru by Isabel Motz. Distributed by velvetyne.fr.")
    (build-system font-build-system)
    (home-page "https://velvetyne.fr/fonts/mourier/")
    (synopsis
-    "")
+    "Mourier is a geometric typeface based on a 7x7 square and unclosed lines")
    (description
     "Mourier is a geometric alphabet designed by Eric Mourier in 1971 following a strict set of rules. The font is based on a square of 7 x 7 units and made of unclosed lines. The first and only use of the lead-cast font was on the booklet 'The Myth about Bird B', a leporello design by Mourier and written by Knud Holten (a poet).
 
