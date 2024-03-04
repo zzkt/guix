@@ -528,7 +528,7 @@ Compagnon by Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano, Sébas
 
 (define-public font-velvetyne-facade
   (package
-   (name "font-velvetyne-")
+   (name "font-velvetyne-facade")
    (version "1")
    (source
     (origin
