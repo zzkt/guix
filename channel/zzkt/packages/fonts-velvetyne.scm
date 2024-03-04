@@ -22,6 +22,7 @@
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (guix packages)
+  #:use-module (guix packages base)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -50,7 +51,7 @@
                        font-velvetyne-backout
                        font-velvetyne-basteleur
                        font-velvetyne-bianzhidai
-                       ;; font-velvetyne-cirruscumulus
+                       font-velvetyne-cirruscumulus
                        font-velvetyne-compagnon
                        font-velvetyne-degheest
                        font-velvetyne-facade
