@@ -18,11 +18,11 @@
 
 (define-module (zzkt packages fonts-velvetyne)
   ;; #:use-module (ice-9 regex)
+  #:use-module (gnu packages base) ;; locales
   #:use-module (guix utils)
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (guix packages)
-  #:use-module (guix packages base)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
