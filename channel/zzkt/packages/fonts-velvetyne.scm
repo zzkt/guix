@@ -419,7 +419,7 @@ Anthony by Sun Young Oh. Distributed by velvetyne.fr.")
      (sha256
       (base32 "0prh207as83md0hqych3hvzlvwck2k5hcy6mw531bjgacmlv731r"))))
    (inputs
-     (list glibc-utf8-locales))
+     (list glibc-locales))
    (build-system font-build-system)
    (home-page "https://velvetyne.fr/fonts/avara/")
    (synopsis
