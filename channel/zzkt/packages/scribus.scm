@@ -21,7 +21,8 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-;; via https://issues.guix.gnu.org/68203
+;; Scribus 1.6.1 is availale in mainline Guix as of
+;;  https://git.savannah.gnu.org/cgit/guix.git/commit/?id=3da49b1472919a62df1fe399638f23a246aa325d
 
 (define-module (zzkt packages scribus)
   #:use-module (guix packages)
@@ -50,71 +51,14 @@
   #:use-module (gnu packages tls)
   #:use-module (gnu packages xml))
 
-(define-public scribus
+(define-public scribus-next
   (package
-    (name "scribus")
+    (name "scribus-next")
     (version "1.6.1")
     (source
      (origin
        (method url-fetch)
        (uri "https://sourceforge.net/projects/scribus/files/scribus/1.6.1/scribus-1.6.1.tar.gz")
-       (sha256
-        (base32 "1kqqffx5xz35mwd422s4i110794zzx9sc2bn2mg77rz02hrxdhxg"))))
-    (build-system cmake-build-system)
-    (arguments
-     `(#:tests? #f ;no test target
-       #:configure-flags '("-DWANT_GRAPHICSMAGICK=1" "-DWANT_CPP17=ON")))
-    (inputs (list boost
-                  cairo
-                  cups
-                  fontconfig
-                  freetype
-                  graphicsmagick
-                  harfbuzz
-                  hunspell
-                  icu4c
-                  lcms
-                  libcdr
-                  libfreehand
-                  libjpeg-turbo
-                  libmspub
-                  libpagemaker
-                  librevenge
-                  libtiff
-                  libvisio
-                  libxml2
-                  libzmf
-                  openssl
-                  podofo
-                  poppler
-                  python
-                  qtbase-5
-                  qtdeclarative-5
-                  zlib))
-    (native-inputs (list pkg-config qttools-5 util-linux))
-    (home-page "https://www.scribus.net")
-    (synopsis "Desktop publishing and page layout program")
-    (description
-     "Scribus is a @dfn{desktop publishing} (DTP) application and can
-be used for many tasks; from brochure design to newspapers, magazines,
-newsletters and posters to technical documentation.  Scribus supports
-professional DTP features, such as CMYK color and a color management
-system to soft proof images for high quality color printing, flexible
-PDF creation options, Encapsulated PostScript import/export and
-creation of four color separations, import of EPS/PS and SVG as native
-vector graphics, Unicode text including right to left scripts such as
-Arabic and Hebrew via FreeType.")
-    (license license:gpl2+)))
-
-(define-public scribus-next
-  (package
-    (name "scribus-next")
-    (version "1.6.1") ;; and/or 1.7.0.svn?
-    (source
-     (origin
-       (method url-fetch)
-       (uri (string-append "mirror://sourceforge/scribus/scribus/" version
-                           "/scribus-" version ".tar.gz"))
        (sha256
         (base32 "1kqqffx5xz35mwd422s4i110794zzx9sc2bn2mg77rz02hrxdhxg"))))
     (build-system cmake-build-system)
