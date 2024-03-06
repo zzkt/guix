@@ -37,7 +37,7 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages glib)
-  #:use-module (nonguix build-system binary)
+  ;; #:use-module (nonguix build-system binary) ;; requires guix/guile path config?
   #:use-module (ice-9 regex))
 
 (define-public zotero
@@ -53,7 +53,7 @@
         (base32 "0h1bizcqlk22h7nvhnyp3ppymv2hrk7133hgmp15hl3bvfzz7nh6"))))
     (build-system binary-build-system)
     (arguments
-     `(#:patchelf-plan `(("zotero-bin" ("gcc:lib"))
+     `(#:patchelf-plan `(("zotero-bin" ("gcc:lib" "glibc"))
                          ("libmozgtk.so" ("gtk+"))
                          ("libxul.so" ("libx11" "dbus-glib" "libxt"
                                        "libgthread")))
