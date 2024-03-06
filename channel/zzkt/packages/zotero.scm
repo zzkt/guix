@@ -24,16 +24,20 @@
 ;; - https://github.com/guix-science/guix-science/issues/24
 ;; - https://github.com/guix-science/guix-science/pull/27
 
+;; or via flatpack? https://flathub.org/apps/org.zotero.Zotero
+
+
 (define-module (zzkt packages zotero)
   #:use-module (guix packages)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages base)
   #:use-module (guix download)
-  #:use-module (nonguix build-system binary)
+  #:use-module (gnu packages)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages glib)
+  #:use-module (nonguix build-system binary)
   #:use-module (ice-9 regex))
 
 (define-public zotero
