@@ -29,9 +29,9 @@
 
 (define-module (zzkt packages zotero)
   #:use-module (guix packages)
+  #:use-module (gnu packages)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix download)
-  #:use-module (gnu packages)
   #:use-module (gnu packages base)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gtk)
