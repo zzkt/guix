@@ -27,18 +27,40 @@
 ;; or via flatpack? https://flathub.org/apps/org.zotero.Zotero
 
 
-;; (define-module (zzkt packages zotero)
-;;   #:use-module (guix packages)
-;;   #:use-module (gnu packages)
-;;   #:use-module ((guix licenses) #:prefix license:)
-;;   #:use-module (guix download)
-;;   #:use-module (gnu packages base)
-;;   #:use-module (gnu packages gcc)
-;;   #:use-module (gnu packages gtk)
-;;   #:use-module (gnu packages xorg)
-;;   #:use-module (gnu packages glib)
-;;   #:use-module (nonguix build-system binary) ;; requires guix/guile path config?
-;;   #:use-module (ice-9 regex))
+(define-module (zzkt packages zotero)
+  #:use-module (guix packages)
+  #:use-module (gnu packages)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (guix download)
+  #:use-module (gnu packages base)
+  #:use-module (gnu packages gcc)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages xorg)
+  #:use-module (gnu packages glib)
+  ;; #:use-module (nonguix build-system binary) ;; requires guix/guile path config?
+  #:use-module (ice-9 regex))
+
+;; null package for now...
+
+(define-public zotero
+  (package
+    (name "zotero")
+    (version "0.0.0")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append "mirror://gnu/hello/hello-" version
+                                  ".tar.gz"))
+              (sha256
+               (base32
+                "0ssi1wpaf7plaswqqjwigppsg5fyh99vdlb9kzl7c9lng89ndq1i"))))
+    (build-system gnu-build-system)
+    (synopsis "Hello, GNU world: An example GNU package")
+    (description
+     "GNU Hello prints the message \"Hello, world!\" and then exits.  It
+serves as an example of standard GNU coding practices.  As such, it supports
+command-line arguments, multiple languages, and so on.")
+    (home-page "https://www.gnu.org/software/hello/")
+    (license gpl3+)))
 
 ;; (define-public zotero
 ;;   (package
