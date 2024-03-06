@@ -61,7 +61,7 @@
 serves as an example of standard GNU coding practices.  As such, it supports
 command-line arguments, multiple languages, and so on.")
     (home-page "https://www.gnu.org/software/hello/")
-    (license gpl3+)))
+    (license license:gpl3+)))
 
 ;; (define-public zotero
 ;;   (package
