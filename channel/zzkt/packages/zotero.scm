@@ -37,6 +37,7 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages glib)
+  #:use-module (guix build-system gnu)
   ;; #:use-module (nonguix build-system binary) ;; requires guix/guile path config?
   #:use-module (ice-9 regex))
 
