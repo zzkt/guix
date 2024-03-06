@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-03-04 22:50:55+01:00)
+;; tangled from home-configuration.org on 2024-03-06 08:32:30+01:00)
 
 (use-modules (gnu)
              (gnu services)
@@ -30,7 +30,7 @@
              "rsync"
              ;; "nyxt"
              "python"
-             "git"
+             "git" "git:send-email"
              "gnupg"
              "crda"
              "htop"

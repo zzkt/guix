@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-03-04 22:53:30+01:00)
+;; tangled from framework13-system.org on 2024-03-06 08:32:36+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -276,6 +276,12 @@ writable = yes
                            (delete gdm-service-type))))
 
  (name-service-switch %mdns-host-lookup-nss)
+
+;;  (service screen-locker-service-type
+;;   (screen-locker-configuration
+;;     (name "xscreensaver")
+;;     (program (file-append xscreensaver "/bin/xscreensaver")) (using-pam? #t)
+;;     (using-setuid? #f)))
 
  (setuid-programs
   (cons*

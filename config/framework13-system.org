@@ -438,6 +438,12 @@ Enable resolution of '.local' host names with mDNS.
 *** screen locker
 screen locker requires suid
 #+begin_src scheme
+;;  (service screen-locker-service-type
+;;   (screen-locker-configuration
+;;     (name "xscreensaver")
+;;     (program (file-append xscreensaver "/bin/xscreensaver")) (using-pam? #t)
+;;     (using-setuid? #f)))
+
  (setuid-programs
   (cons*
    (setuid-program

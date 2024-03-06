@@ -60,7 +60,7 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              "rsync"
              ;; "nyxt"
              "python"
-             "git"
+             "git" "git:send-email"
              "gnupg"
              "crda"
              "htop"
@@ -103,7 +103,6 @@ kitty config is in  =dotfiles/kitty/kitty.conf=
 #+BEGIN_SRC scheme
              "nextcloud-client"
 #+END_SRC
-
 *** Hardware
              #+BEGIN_SRC scheme
              "lm-sensors"
