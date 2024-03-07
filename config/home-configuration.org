@@ -59,8 +59,6 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              "libreoffice"
              "rsync"
              ;; "nyxt"
-             "python"
-             "git" "git:send-email"
              "gnupg"
              "crda"
              "htop"
@@ -98,11 +96,32 @@ kitty config is in  =dotfiles/kitty/kitty.conf=
              "ardour"
              "audacity"
              "qpwgraph"
+             "patchage"
              #+END_SRC
+*** programming, dev & ops
+#+BEGIN_SRC scheme :session
+             "guile"
+             "sbcl"
+             "racket"
+             "python"
+             "gcc-toolchain"
+             "git" "git:send-email"
+#+END_SRC
+
 *** network & interconnect
 #+BEGIN_SRC scheme
              "nextcloud-client"
 #+END_SRC
+*** fonts & typography
+
+#+BEGIN_SRC scheme :session
+             "font-monaspace"
+             "font-recursive"
+             "font-fira-sans"
+             "font-fira-mono"
+             "font-victor-mono"
+#+END_SRC
+
 *** Hardware
              #+BEGIN_SRC scheme
              "lm-sensors"
@@ -159,7 +178,7 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
                      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
                        ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
-                       ("GPG_TTY" . "tty")
+                       ("GPG_TTY" . "$TTY")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
 #+END_SRC
 

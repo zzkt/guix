@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-03-06 08:32:36+01:00)
+;; tangled from framework13-system.org on 2024-03-07 15:39:01+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -213,14 +213,12 @@ COMMIT
                         (endpoint "example.org:51820")
                         (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
                         (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
+                        (keep-alive 25))
+                       (wireguard-peer
+                        (name "vrt")
+                        (public-key "4xA6sNrHyAebXZ2i8szdN0WMhH61CE786H+pGQwuLlA=")
+                        (allowed-ips '("10.0.0.22/32" "fded:dada::22/128"))
                         (keep-alive 25))))))
-
-           ;; (service gdm-service-type
-           ;;          (gdm-configuration
-           ;;           (auto-suspend? #f)
-           ;;           (xorg-configuration
-           ;;            (xorg-configuration
-           ;;             (keyboard-layout keyboard-layout)
 
            (service sddm-service-type
                    (sddm-configuration
@@ -241,9 +239,10 @@ COMMIT
                                             Option \"AccelProfile\" \"adaptive\"
                                         EndSection"))))))
 
-           (service plasma-desktop-service-type)
+           ;; (service plasma-desktop-service-type)
            ;; (service gnome-desktop-service-type)
-           (service xfce-desktop-service-type)
+           ;; (service xfce-desktop-service-type)
+           (service lxqt-desktop-service-type)
 
            (service samba-service-type
                     (samba-configuration

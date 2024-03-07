@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-03-06 08:32:30+01:00)
+;; tangled from home-configuration.org on 2024-03-07 15:41:27+01:00)
 
 (use-modules (gnu)
              (gnu services)
@@ -29,8 +29,6 @@
              "libreoffice"
              "rsync"
              ;; "nyxt"
-             "python"
-             "git" "git:send-email"
              "gnupg"
              "crda"
              "htop"
@@ -57,8 +55,22 @@
              "ardour"
              "audacity"
              "qpwgraph"
+             "patchage"
+
+             "guile"
+             "sbcl"
+             "racket"
+             "python"
+             "gcc-toolchain"
+             "git" "git:send-email"
 
              "nextcloud-client"
+
+             "font-monaspace"
+             "font-recursive"
+             "font-fira-sans"
+             "font-fira-mono"
+             "font-victor-mono"
 
              "lm-sensors"
              "dmidecode"
@@ -99,7 +111,7 @@
                      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
                        ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
-                       ("GPG_TTY" . "tty")
+                       ("GPG_TTY" . "$TTY")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
 
    (service home-zsh-service-type
