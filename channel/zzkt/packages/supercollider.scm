@@ -35,6 +35,7 @@
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (guix packages)
+  #:use-module (guix packages audio) ;; mainline supercollider package
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
