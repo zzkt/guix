@@ -38,9 +38,13 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
+  #:use-module (gnu packages audio) ;; mainline supercollider package
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages pulseaudio)
+  #:use-module (gnu packages ruby)
+  #:use-module (gnu packages python-build)
   #:use-module (guix build-system cmake)
-  #:use-module (guix build-system trivial)
-  #:use-module (gnu packages audio)) ;; mainline supercollider package
+  #:use-module (guix build-system trivial))
 
 
 ;; via https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/audio.scm
