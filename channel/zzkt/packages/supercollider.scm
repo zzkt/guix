@@ -35,12 +35,12 @@
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (guix packages)
-  #:use-module (guix packages audio) ;; mainline supercollider package
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix build-system cmake)
-  #:use-module (guix build-system trivial))
+  #:use-module (guix build-system trivial)
+  #:use-module (gnu packages audio)) ;; mainline supercollider package
 
 
 ;; via https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/audio.scm
