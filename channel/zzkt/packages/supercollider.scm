@@ -38,11 +38,20 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
+  #:use-module (gnu packages algebra) ;; fftw
+  #:use-module (gnu packages xorg) ;; libxt
   #:use-module (gnu packages audio) ;; mainline supercollider package
-  #:use-module (gnu packages pkg-config)
-  #:use-module (gnu packages pulseaudio)
+  #:use-module (gnu packages readline)
+  #:use-module (gnu packages linux) ;; alsa-lib, eudev
+  #:use-module (gnu packages avahi)
+  #:use-module (gnu packages icu4c)
+  #:use-module (gnu packages boost)
+  #:use-module (gnu packages serialization) ;; yaml-cpp
+  #:use-module (gnu packages python)
   #:use-module (gnu packages ruby)
-  #:use-module (gnu packages python-build)
+  #:use-module (gnu packages qt)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages pulseaudio) ;; libsndfile
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial))
 
