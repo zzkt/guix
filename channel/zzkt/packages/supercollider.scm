@@ -42,62 +42,11 @@
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial))
 
-;; modified sc3 package without Qt interface
+;; modified sc3 packages which split into cli & gui versions
 
 (define-public supercollider-cli
   (package
-   (inherit supercollider)
    (name "supercollider-cli")
-   (synopsis "Synthesis engine and programming language (CLI version without Qt GUI)")
-   (inputs (modify-inputs
-            (package-inputs supercollider)
-            (delete "qtbase-5"
-                    "qtdeclarative-5"
-                    "qtsvg-5"
-                    "qtwebchannel-5"
-                    "qtwebsockets-5")))
-   ;; use slightly modified build options
-   (arguments
-    (list
-     #:configure-flags
-     #~(list "-DSYSTEM_BOOST=ON"
-             "-DSYSTEM_YAMLCPP=ON"
-             "-DFORTIFY=ON"
-             "-DLIBSCSYNTH=ON"
-             "-DSC_EL=OFF"
-             "-DSC_QT=OFF"  ;; CLI only. buiild without Qt and IDE
-             "-DCMAKE_BUILD_TYPE=Release")
-     #:phases
-     #~(modify-phases %standard-phases
-                      ;; HOME must be defined otherwise supercollider throws a "ERROR:
-                      ;; Primitive '_FileMkDir' failed." error when generating the doc.
-                      ;; The graphical tests also hang without it.
-                      (add-after 'unpack 'set-home-directory
-                                 (lambda _
-                                   (setenv "HOME" (getcwd))))
-                      (add-after 'unpack 'patch-scclass-dir
-                                 (lambda _
-                                   (let* ((scclass-dir
-                                           (string-append #$output
-                                                          "/share/SuperCollider/SCClassLibrary")))
-                                     (substitute* "lang/LangSource/SC_LanguageConfig.cpp"
-                                                  (((string-append
-                                                     "SC_Filesystem::instance\\(\\)\\.getDirectory"
-                                                     "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
-                                                   (string-append "Path(\"" scclass-dir "\")"))))))
-                      (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
-                                 (lambda _
-                                   (display (getcwd)) (newline)
-                                   (substitute* "include/plugin_interface/SC_SndBuf.h"
-                                                (("SNDFILE_tag")
-                                                 "sf_private_tag")))))))))
-
-
-;; via https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/audio.scm
-
-(define-public supercollider-next
-  (package
-   (name "supercollider-next")
    (version "3.13.0")
    (source
     (origin
@@ -133,9 +82,77 @@ AbletonLinkConfig\\.cmake\\)")
                         "find_package(AbletonLink NAMES AbletonLink ableton-link \
 link REQUIRED)"))))))
    (build-system cmake-build-system)
+   (outputs '("out"))
+   (arguments
+    (list
+     #:configure-flags
+     #~(list "-DSYSTEM_BOOST=ON"
+             "-DSYSTEM_YAMLCPP=ON"
+             "-DFORTIFY=ON"
+             "-DLIBSCSYNTH=ON"
+             "-DSC_EL=OFF"
+             "-DSC_QT=OFF"  ;; CLI only. buiild without Qt and IDE
+             "-DCMAKE_BUILD_TYPE=Release")
+     #:phases
+     #~(modify-phases %standard-phases
+                      ;; HOME must be defined otherwise supercollider throws a "ERROR:
+                      ;; Primitive '_FileMkDir' failed." error when generating the doc.
+                      ;; The graphical tests also hang without it.
+                      (add-after 'unpack 'set-home-directory
+                                 (lambda _
+                                   (setenv "HOME" (getcwd))))
+                      (add-after 'unpack 'patch-scclass-dir
+                                 (lambda _
+                                   (let* ((scclass-dir
+                                           (string-append #$output
+                                                          "/share/SuperCollider/SCClassLibrary")))
+                                     (substitute* "lang/LangSource/SC_LanguageConfig.cpp"
+                                                  (((string-append
+                                                     "SC_Filesystem::instance\\(\\)\\.getDirectory"
+                                                     "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
+                                                   (string-append "Path(\"" scclass-dir "\")"))))))
+                      (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
+                                 (lambda _
+                                   (display (getcwd)) (newline)
+                                   (substitute* "include/plugin_interface/SC_SndBuf.h"
+                                                (("SNDFILE_tag")
+                                                 "sf_private_tag")))))))
+   (native-inputs
+    (list ableton-link pkg-config))
+   (inputs (list jack-1
+                 libsndfile
+                 fftw
+                 libxt
+                 readline
+                 alsa-lib
+                 eudev
+                 avahi
+                 icu4c
+                 boost
+                 boost-sync
+                 yaml-cpp
+                 python-wrapper
+                 ruby))
+   (home-page "https://github.com/supercollider/supercollider")
+   (synopsis "Synthesis engine and programming language (CLI version without Qt GUI)")
+   (description "SuperCollider is a synthesis engine (@code{scsynth} or
+@code{supernova}) and programming language (@code{sclang}).  It can be used
+for experimenting with sound synthesis and algorithmic composition.
+
+SuperCollider requires jackd to be installed in your user profile and your
+user must be allowed to access the realtime features of the kernel.  Search
+for \"realtime\" in the index of the Guix manual to learn how to achieve this
+using Guix System.")
+   (license license:gpl2+)))
+
+
+(define-public supercollider-gui
+  (package
+   (inherit supercollider-cli)
+   (name "supercollider-gui")
    (outputs
-    '("out"                            ;core language
-      "ide"))                          ;qt ide
+    '("out"
+      "ide"))
    (arguments
     (list
      #:configure-flags
@@ -145,7 +162,7 @@ link REQUIRED)"))))))
              "-DCMAKE_BUILD_TYPE=Release"
              "-DFORTIFY=ON"
              "-DLIBSCSYNTH=ON"
-             "-DSC_EL=OFF")      ;scel is packaged individually as emacs-scel
+             "-DSC_EL=OFF")
      #:phases
      #~(modify-phases %standard-phases
                       ;; HOME must be defined otherwise supercollider throws a "ERROR:
@@ -183,35 +200,13 @@ link REQUIRED)"))))))
                                       (delete-file scide)))))))
    (native-inputs
     (list ableton-link pkg-config qttools-5 xorg-server-for-tests))
-   (inputs (list jack-1
-                 libsndfile
-                 fftw
-                 libxt
-                 readline              ;readline support for sclang's CLI
-                 alsa-lib              ;for sclang's MIDI interface
-                 eudev                 ;for user interactions with devices
-                 avahi                 ;zeroconf service discovery support
-                 icu4c
-                 boost
-                 boost-sync
-                 yaml-cpp
-                 python-wrapper        ;there were warnings in the build process
-                 ruby                  ;there were warnings in the build process
-                 qtbase-5
-                 qtdeclarative-5
-                 qtsvg-5
-                 qtwebchannel-5
-                 qtwebsockets-5))
-   (propagated-inputs                  ;to get native-search-path
+   (inputs (modify-inputs
+            (package-inputs supercollider-cli)
+            (append "qtbase-5"
+                    "qtdeclarative-5"
+                    "qtsvg-5"
+                    "qtwebchannel-5"
+                    "qtwebsockets-5")))
+   (propagated-inputs
     (list qtwebengine-5))
-   (home-page "https://github.com/supercollider/supercollider")
-   (synopsis "Synthesis engine and programming language")
-   (description "SuperCollider is a synthesis engine (@code{scsynth} or
-@code{supernova}) and programming language (@code{sclang}).  It can be used
-for experimenting with sound synthesis and algorithmic composition.
-
-SuperCollider requires jackd to be installed in your user profile and your
-user must be allowed to access the realtime features of the kernel.  Search
-for \"realtime\" in the index of the Guix manual to learn how to achieve this
-using Guix System.")
-   (license license:gpl2+)))
+   (synopsis "Synthesis engine and programming language (including IDE)")))
