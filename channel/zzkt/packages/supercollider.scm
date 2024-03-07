@@ -169,8 +169,8 @@ using Guix System.")
 
 (define-public supercollider-cli
   (package
-   (name "supercollider-cli")
    (inherit supercollider)
+   (name "supercollider-cli")
 
    ;; remove qt inputs
    (inputs (modify-inputs
@@ -222,7 +222,7 @@ using Guix System.")
 
 (define-public supercollider-cli-2
   (package
-   (name "supercollider-cli")
+   (name "supercollider-cli-2")
    (version "3.13.0")
    (source
     (origin
