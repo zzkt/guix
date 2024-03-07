@@ -16,19 +16,6 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-
-;; add option for cli only version -> -D SC_QT=OFF
-
-;; maybe as variant?
-;;  https://guix.gnu.org/manual/en/html_node/Defining-Package-Variants.html
-
-;; or multiple outputs ->
-;;  https://guix.gnu.org/manual/en/html_node/Packages-with-Multiple-Outputs.html
-
-;; non GUI version of standard build can be modified via env
-;; % export QT_QPA_PLATFORM=offscreen
-;; % sclang
-
 (define-module (zzkt packages supercollider)
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
@@ -54,6 +41,56 @@
   #:use-module (gnu packages pulseaudio) ;; libsndfile
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial))
+
+;; modified sc3 package without Qt interface
+
+(define-public supercollider-cli
+  (package
+   (inherit supercollider)
+   (name "supercollider-cli")
+   (synopsis "Synthesis engine and programming language (CLI version without Qt GUI)")
+   (inputs (modify-inputs
+            (package-inputs supercollider)
+            (delete "qtbase-5"
+                    "qtdeclarative-5"
+                    "qtsvg-5"
+                    "qtwebchannel-5"
+                    "qtwebsockets-5")))
+   ;; use slightly modified build options
+   (arguments
+    (list
+     #:configure-flags
+     #~(list "-DSYSTEM_BOOST=ON"
+             "-DSYSTEM_YAMLCPP=ON"
+             "-DFORTIFY=ON"
+             "-DLIBSCSYNTH=ON"
+             "-DSC_EL=OFF"
+             "-DSC_QT=OFF"  ;; CLI only. buiild without Qt and IDE
+             "-DCMAKE_BUILD_TYPE=Release")
+     #:phases
+     #~(modify-phases %standard-phases
+                      ;; HOME must be defined otherwise supercollider throws a "ERROR:
+                      ;; Primitive '_FileMkDir' failed." error when generating the doc.
+                      ;; The graphical tests also hang without it.
+                      (add-after 'unpack 'set-home-directory
+                                 (lambda _
+                                   (setenv "HOME" (getcwd))))
+                      (add-after 'unpack 'patch-scclass-dir
+                                 (lambda _
+                                   (let* ((scclass-dir
+                                           (string-append #$output
+                                                          "/share/SuperCollider/SCClassLibrary")))
+                                     (substitute* "lang/LangSource/SC_LanguageConfig.cpp"
+                                                  (((string-append
+                                                     "SC_Filesystem::instance\\(\\)\\.getDirectory"
+                                                     "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
+                                                   (string-append "Path(\"" scclass-dir "\")"))))))
+                      (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
+                                 (lambda _
+                                   (display (getcwd)) (newline)
+                                   (substitute* "include/plugin_interface/SC_SndBuf.h"
+                                                (("SNDFILE_tag")
+                                                 "sf_private_tag")))))))))
 
 
 ;; via https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/audio.scm
@@ -169,163 +206,6 @@ link REQUIRED)"))))))
     (list qtwebengine-5))
    (home-page "https://github.com/supercollider/supercollider")
    (synopsis "Synthesis engine and programming language")
-   (description "SuperCollider is a synthesis engine (@code{scsynth} or
-@code{supernova}) and programming language (@code{sclang}).  It can be used
-for experimenting with sound synthesis and algorithmic composition.
-
-SuperCollider requires jackd to be installed in your user profile and your
-user must be allowed to access the realtime features of the kernel.  Search
-for \"realtime\" in the index of the Guix manual to learn how to achieve this
-using Guix System.")
-   (license license:gpl2+)))
-
-;; variants
-
-(define-public supercollider-cli
-  (package
-   (inherit supercollider)
-   (name "supercollider-cli")
-
-   ;; remove qt inputs
-   (inputs (modify-inputs
-            (package-inputs supercollider)
-            (delete "qtbase-5"
-                    "qtdeclarative-5"
-                    "qtsvg-5"
-                    "qtwebchannel-5"
-                    "qtwebsockets-5")))
-   ;; use slightly modified build options
-   (arguments
-    (list
-     #:configure-flags
-     #~(list "-DSYSTEM_BOOST=ON"
-             "-DSYSTEM_YAMLCPP=ON"
-             ;; CLI only. buiild without Qt and IDE
-             "-DSC_QT=OFF"
-             "-DCMAKE_BUILD_TYPE=Release"
-             "-DFORTIFY=ON"
-             "-DLIBSCSYNTH=ON"
-             "-DSC_EL=OFF")
-     #:phases
-     #~(modify-phases %standard-phases
-                      ;; HOME must be defined otherwise supercollider throws a "ERROR:
-                      ;; Primitive '_FileMkDir' failed." error when generating the doc.
-                      ;; The graphical tests also hang without it.
-                      (add-after 'unpack 'set-home-directory
-                                 (lambda _
-                                   (setenv "HOME" (getcwd))))
-                      (add-after 'unpack 'patch-scclass-dir
-                                 (lambda _
-                                   (let* ((scclass-dir
-                                           (string-append #$output
-                                                          "/share/SuperCollider/SCClassLibrary")))
-                                     (substitute* "lang/LangSource/SC_LanguageConfig.cpp"
-                                                  (((string-append
-                                                     "SC_Filesystem::instance\\(\\)\\.getDirectory"
-                                                     "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
-                                                   (string-append "Path(\"" scclass-dir "\")"))))))
-                      (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
-                                 (lambda _
-                                   (display (getcwd)) (newline)
-                                   (substitute* "include/plugin_interface/SC_SndBuf.h"
-                                                (("SNDFILE_tag")
-                                                 "sf_private_tag")))))))
-   (synopsis "Synthesis engine and programming language. CLI version without Qt GUI")))
-
-;; non-inherted variant
-
-(define-public supercollider-cli-2
-  (package
-   (name "supercollider-cli-2")
-   (version "3.13.0")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/supercollider/supercollider")
-           (commit (string-append "Version-" version))
-           (recursive? #t)))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32
-       "1dkpnaly4m2j41ypy7xj5m2yhbl4ykw3vbnam345z4dk6qhyj9b1"))
-     (modules '((guix build utils)
-                (ice-9 ftw)))
-     (snippet
-      ;; The build system doesn't allow us to unbundle the following
-      ;; libraries.  hidapi is also heavily patched and upstream not
-      ;; actively maintained.
-      #~(let ((keep-dirs '("nova-simd" "nova-tt" "hidapi"
-                           "TLSF-2.4.6" "oscpack_1_1_0" "." "..")))
-          (with-directory-excursion "./external_libraries"
-                                    (for-each
-                                     delete-file-recursively
-                                     (scandir "."
-                                              (lambda (x)
-                                                (and (eq? (stat:type (stat x)) 'directory)
-                                                     (not (member (basename x) keep-dirs)))))))
-          ;; To find the Guix provided ableton-link library.
-          (substitute* "lang/CMakeLists.txt"
-                       (("include\\(\\.\\./external_libraries/link/\
-AbletonLinkConfig\\.cmake\\)")
-                        "find_package(AbletonLink NAMES AbletonLink ableton-link \
-link REQUIRED)"))))))
-   (build-system cmake-build-system)
-   (outputs
-    '("out"))
-   (arguments
-    (list
-     #:configure-flags
-     #~(list "-DSYSTEM_BOOST=ON"
-             "-DSYSTEM_YAMLCPP=ON"
-             ;; CLI only. buiild without Qt and IDE
-             "-DSC_QT=OFF"
-             "-DCMAKE_BUILD_TYPE=Release"
-             "-DFORTIFY=ON"
-             "-DLIBSCSYNTH=ON"
-             "-DSC_EL=OFF")
-     #:phases
-     #~(modify-phases %standard-phases
-                      ;; HOME must be defined otherwise supercollider throws a "ERROR:
-                      ;; Primitive '_FileMkDir' failed." error when generating the doc.
-                      ;; The graphical tests also hang without it.
-                      (add-after 'unpack 'set-home-directory
-                                 (lambda _
-                                   (setenv "HOME" (getcwd))))
-                      (add-after 'unpack 'patch-scclass-dir
-                                 (lambda _
-                                   (let* ((scclass-dir
-                                           (string-append #$output
-                                                          "/share/SuperCollider/SCClassLibrary")))
-                                     (substitute* "lang/LangSource/SC_LanguageConfig.cpp"
-                                                  (((string-append
-                                                     "SC_Filesystem::instance\\(\\)\\.getDirectory"
-                                                     "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
-                                                   (string-append "Path(\"" scclass-dir "\")"))))))
-                      (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
-                                 (lambda _
-                                   (display (getcwd)) (newline)
-                                   (substitute* "include/plugin_interface/SC_SndBuf.h"
-                                                (("SNDFILE_tag")
-                                                 "sf_private_tag")))))))
-   (native-inputs
-    (list ableton-link pkg-config))
-   (inputs (list jack-1
-                 libsndfile
-                 fftw
-                 libxt
-                 readline              ;readline support for sclang's CLI
-                 alsa-lib              ;for sclang's MIDI interface
-                 eudev                 ;for user interactions with devices
-                 avahi                 ;zeroconf service discovery support
-                 icu4c
-                 boost
-                 boost-sync
-                 yaml-cpp
-                 python-wrapper        ;there were warnings in the build process
-                 ruby))                  ;there were warnings in the build process
-   (home-page "https://github.com/supercollider/supercollider")
-   (synopsis "Synthesis engine and programming language. CLI version without Qt GUI")
    (description "SuperCollider is a synthesis engine (@code{scsynth} or
 @code{supernova}) and programming language (@code{sclang}).  It can be used
 for experimenting with sound synthesis and algorithmic composition.
