@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-03-07 15:39:01+01:00)
+;; tangled from framework13-system.org on 2024-03-07 16:38:09+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -264,6 +264,11 @@ valid users = %S
 browsable = no
 writable = yes
 "))))
+
+           (service pam-limits-service-type
+                    (list
+                     (pam-limits-entry "@realtime" 'both 'rtprio 99)
+                     (pam-limits-entry "@realtime" 'both 'memlock 'unlimited)))
 
            (service bluetooth-service-type)
 

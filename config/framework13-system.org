@@ -405,6 +405,15 @@ writable = yes
 "))))
 #+end_src
 
+*** realtime
+real-time scheduling for the  =realtime= group (sound, supercollider, etc)
+#+BEGIN_SRC scheme
+           (service pam-limits-service-type
+                    (list
+                     (pam-limits-entry "@realtime" 'both 'rtprio 99)
+                     (pam-limits-entry "@realtime" 'both 'memlock 'unlimited)))
+#+END_SRC
+
 *** bluetooth
 #+begin_src scheme
            (service bluetooth-service-type)
