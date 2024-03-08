@@ -16,10 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-;; as seen near  gnu/packages/fonts.scm
-
-;; and/or
-;;   https://gitlab.com/velvetyne/velvetyne-libre-friends/-/blob/main/README.md
+;; as seen near gnu/packages/fonts.scm
 
 (define-module (zzkt packages fonts)
   #:use-module (ice-9 regex)
@@ -31,42 +28,11 @@
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
-  #:use-module (guix build-system trivial)
-  ;; #:use-module (guix build-system gnu)
-  ;; #:use-module (guix build-system meson)
-  ;; #:use-module (gnu packages c)
-  ;; #:use-module (gnu packages base)
-  ;; #:use-module (gnu packages bash)
-  ;; #:use-module (gnu packages compression)
-  #:use-module (gnu packages fontutils)
-  #:use-module (gnu packages gd)
-  ;; #:use-module (gnu packages gettext)
-  ;; #:use-module (gnu packages glib)
-  ;; #:use-module (gnu packages gtk)
-  ;; #:use-module (gnu packages perl)
-  ;; #:use-module (gnu packages pkg-config)
-  ;; #:use-module (gnu packages python)
-  ;; #:use-module (gnu packages python-xyz)
-  ;; #:use-module (gnu packages sdl)
-  ;; #:use-module (gnu packages xorg)
-  )
+  #:use-module (guix build-system trivial))
 
-;; various foundries
-
-;; velvetyne -> see fonts-velvetyne.scm
-;; OSP -> see fonts-OSP.scm
-
-;; not your type
-;;  https://notyourtype.nl/typefaces/
-
-;; other / misc
+;; various fonts & foundries
 
 ;; https://github.com/dharmatype/Bebas-Neue
-
-;; https://github.com/undercasetype/Fraunces
-
-;; https://github.com/ryanoasis/nerd-fonts
-
 
 (define-public font-monaspace
   (package
@@ -86,6 +52,24 @@
      "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve. It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another, allowing you to mix and match them for a more expressive typographical palette.")
     (license license:silofl1.1)))
 
-;; https://github.com/uswds/public-sans
 
-;; https://github.com/arrowtype/recursive
+(define-public font-paragon
+  (package
+    (name "font-paragon")
+    (version "1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri "https://fonderiz.fr/site/assets/files/1021/paragon.zip")
+       (sha256
+        (base32 "0dkdxi6nwqp76y7dp5jynxazbn4r9hb0zx5j7i8hh9xgwjqqdb98"))))
+    (build-system font-build-system)
+    (home-page "https://fonderiz.fr/paragon/")
+    (synopsis "Revival of Paragon, one of the typefaces in Griffith's 'Legibility Group'")
+    (description
+     "Paragon is a serif font family, a revival of the typeface designed in 1935 by Chauncey H. Griffith for Linotype. A set of characters intended to be printed in small size on newspapers and to remain legible despite poor quality printing. The Paragon was intended to be lighter in order to compensate for the over-inking of the newspapers during printing.
+
+The a.c.r version was designed taking as its origins the work of Phil Baines on his 'You Can Read Me' type. It seeks to establish a border where the character resists machine reading (OCR) while being readable by humans on short texts.
+
+Designed by Cédric Rossignol Brunet")
+    (license license:silofl1.1)))

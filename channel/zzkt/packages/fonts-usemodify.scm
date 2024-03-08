@@ -16,13 +16,10 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-;; as seen near gnu/packages/fonts.scm
-
 ;; https://usemodify.com/
 ;;   see also -> https://typespecimens.xyz/
 
 (define-module (zzkt packages fonts-usemodify)
-  #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
                 #:prefix license:)

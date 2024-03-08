@@ -22,6 +22,8 @@
 ;; - supercollider
 ;; - https://github.com/musikinformatik/SuperDirt
 
+;; see also -> https://git.sr.ht/~akagi/rrr/tree/master/item/rrr/packages/haskell-xyz.scm#L116
+
 (define-module (zzkt packages tidal)
   #:use-module (guix)
   #:use-module (guix build-system gnu)
