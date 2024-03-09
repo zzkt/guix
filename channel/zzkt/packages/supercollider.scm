@@ -42,7 +42,6 @@
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial))
 
-;; modified sc3 packages which split into cli & gui versions
 
 (define-public supercollider-cli
   (package
@@ -210,3 +209,8 @@ using Guix System.")
    (propagated-inputs
     (list qtwebengine-5))
    (synopsis "Synthesis engine and programming language (including IDE)")))
+
+
+;; Supercollider GUI version by default
+(define-public supercollider
+  supercollider-gui)
