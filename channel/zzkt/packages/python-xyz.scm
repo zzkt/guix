@@ -20,8 +20,6 @@
 ;; via guix import pypi -r pyzotero
 
 (define-module (zzkt packages python-xyz)
-  #:use-module ((guix licenses)
-                #:prefix license:)
   #:use-module (gnu packages python-web) ;; python-requests
   #:use-module (gnu packages python-xyz) ;; python-bibtexparser
   #:use-module (gnu packages web)        ;; python-feedparser, python-httpretty
@@ -32,6 +30,8 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
+  #:use-module ((guix licenses)
+                #:prefix license:)
   #:use-module (guix build-system python)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system trivial))
@@ -57,4 +57,4 @@
     (home-page "https://github.com/urschrei/pyzotero")
     (synopsis "Python wrapper for the Zotero API")
     (description "Python wrapper for the Zotero API")
-    (license licence:expat)))
+    (license license:expat)))
