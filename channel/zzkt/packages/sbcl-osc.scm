@@ -20,6 +20,7 @@
   #:use-module (guix)
   #:use-module (guix build-system asdf)
   #:use-module (gnu packages lisp-xyz)
+  #:use-module (gnu packages lisp-check)
   #:use-module (guix git-download)
   #:use-module ((guix licenses)
                 #:prefix license:))
