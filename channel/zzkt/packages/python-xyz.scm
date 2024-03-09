@@ -24,7 +24,7 @@
   #:use-module (gnu packages python-xyz) ;; python-bibtexparser
   #:use-module (gnu packages web)        ;; python-feedparser, python-httpretty
   #:use-module (gnu packages time)       ;; python-pytz, python-dateutil
-  #:use-module (gnu packages test)       ;; python-pytest
+  #:use-module (gnu packages check)       ;; python-pytest
   #:use-module (guix utils)
   #:use-module (guix import utils)
   #:use-module (guix packages)
