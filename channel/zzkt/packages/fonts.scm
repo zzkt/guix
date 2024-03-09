@@ -62,7 +62,7 @@
        (method url-fetch)
        (uri "https://fonderiz.fr/site/assets/files/1021/paragon.zip")
        (sha256
-        (base32 "0dkdxi6nwqp76y7dp5jynxazbn4r9hb0zx5j7i8hh9xgwjqqdb98"))))
+        (base32 "1wymrz64v03gqlc110m64blg99s2hi52hi1cbs4a6h4shm54k4kq"))))
     (build-system font-build-system)
     (home-page "https://fonderiz.fr/paragon/")
     (synopsis "Revival of Paragon, one of the typefaces in Griffith's 'Legibility Group'")
