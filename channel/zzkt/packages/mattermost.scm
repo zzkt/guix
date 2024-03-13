@@ -35,7 +35,7 @@
        (method url-fetch)
        (uri "https://releases.mattermost.com/desktop/5.6.0/mattermost-desktop-5.6.0-linux-x64.tar.gz")
        (sha256
-        (base32 ""))))
+        (base32 "1x0pigcl1a6clrv8zki4m9qnjc15fzz0c0h2y19f8pvwgp67yh99"))))
     (build-system copy-build-system)
     (home-page "https://mattermost.com/")
     (synopsis "Collaboration platform for technical and operational teams. (binary release)")
