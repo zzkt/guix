@@ -26,9 +26,9 @@
 
 ;; https://github.com/mattermost/desktop
 
-(define-public mattermost-client
+(define-public mattermost-desktop
   (package
-    (name "gephi-binary")
+    (name "mattermost-desktop")
     (version "5.6.0")
     (source
      (origin
