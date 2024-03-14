@@ -19,9 +19,12 @@
 (define-module (zzkt packages mattermost)
   #:use-module (guix)
   #:use-module (gnu packages)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages video)
+  #:use-module (gnu packages linux)
   #:use-module (gnu packages xorg)
+  #:use-module (gnu packages gtk)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system node)
   #:use-module (guix git-download)
@@ -86,6 +89,8 @@
            alsa-lib      ;; libasound
            glib          ;; libgobject, libglib
            xorg
+           pango
+           gtk
            ))
     (arguments
      ;; via readme.md
