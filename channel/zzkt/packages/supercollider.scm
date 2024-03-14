@@ -201,11 +201,11 @@ using Guix System.")
     (list ableton-link pkg-config qttools-5 xorg-server-for-tests))
    (inputs (modify-inputs
             (package-inputs supercollider-cli)
-            (append "qtbase-5"
-                    "qtdeclarative-5"
-                    "qtsvg-5"
-                    "qtwebchannel-5"
-                    "qtwebsockets-5")))
+            (append "qtbase"
+                    "qtdeclarative"
+                    "qtsvg"
+                    "qtwebchannel"
+                    "qtwebsockets")))
    (propagated-inputs
     (list qtwebengine-5))
    (synopsis "Synthesis engine and programming language (including IDE)")))
