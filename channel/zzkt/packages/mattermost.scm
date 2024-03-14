@@ -33,6 +33,37 @@
 ;; - create_desktop_file.sh
 ;; - mattermost-desktop
 
+;; - 'libffmpeg.so', which cannot be found in RUNPATH ()
+;; - 'libgobject-2.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libglib-2.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libgio-2.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libnss3.so', which cannot be found in RUNPATH ()
+;; - 'libnssutil3.so', which cannot be found in RUNPATH ()
+;; - 'libsmime3.so', which cannot be found in RUNPATH ()
+;; - 'libnspr4.so', which cannot be found in RUNPATH ()
+;; - 'libatk-1.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libatk-bridge-2.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libcups.so.2', which cannot be found in RUNPATH ()
+;; - 'libdbus-1.so.3', which cannot be found in RUNPATH ()
+;; - 'libdrm.so.2', which cannot be found in RUNPATH ()
+;; - 'libgtk-3.so.0', which cannot be found in RUNPATH ()
+;; - 'libpango-1.0.so.0', which cannot be found in RUNPATH ()
+;; - 'libcairo.so.2', which cannot be found in RUNPATH ()
+;; - 'libX11.so.6', which cannot be found in RUNPATH ()
+;; - 'libXcomposite.so.1', which cannot be found in RUNPATH ()
+;; - 'libXdamage.so.1', which cannot be found in RUNPATH ()
+;; - 'libXext.so.6', which cannot be found in RUNPATH ()
+;; - 'libXfixes.so.3', which cannot be found in RUNPATH ()
+;; - 'libXrandr.so.2', which cannot be found in RUNPATH ()
+;; - 'libgbm.so.1', which cannot be found in RUNPATH ()
+;; - 'libexpat.so.1', which cannot be found in RUNPATH ()
+;; - 'libxcb.so.1', which cannot be found in RUNPATH ()
+;; - 'libxkbcommon.so.0', which cannot be found in RUNPATH ()
+;; - 'libasound.so.2', which cannot be found in RUNPATH ()
+;; - 'libatspi.so.0', which cannot be found in RUNPATH ()
+;; - 'libgcc_s.so.1', which cannot be found in RUNPATH ()
+;; - 'ld-linux-x86-64.so.2', which cannot be found in RUNPATH ()
+
 (define-public mattermost-desktop-binary
   (package
     (name "mattermost-desktop-binary")
@@ -44,6 +75,13 @@
        (sha256
         (base32 "1x0pigcl1a6clrv8zki4m9qnjc15fzz0c0h2y19f8pvwgp67yh99"))))
     (build-system copy-build-system)
+    (propagated-inputs
+     (list ffmpeg
+           binutils      ;; ld
+           gcc-toolchain ;; libgcc
+           alsa-lib      ;; libasound
+           glib          ;; libgobject, libglib
+           ))
     (arguments
      ;; via readme.md
      ;; /opt/mattermost-desktop/create_desktop_file.sh
