@@ -83,7 +83,7 @@
        (sha256
         (base32 "1x0pigcl1a6clrv8zki4m9qnjc15fzz0c0h2y19f8pvwgp67yh99"))))
     (build-system copy-build-system)
-    (propagated-inputs
+    (inputs
      (list ffmpeg
            binutils      ;; ld
            ;; gcc-toolchain ;; libgcc
