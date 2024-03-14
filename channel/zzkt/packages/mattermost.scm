@@ -25,6 +25,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages gtk)
+  #:use-module (gnu packages commencement)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system node)
   #:use-module (guix git-download)
