@@ -25,7 +25,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages gtk)
-  #:use-module (gnu packages commencement)
+;;  #:use-module (gnu packages commencement)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system node)
   #:use-module (guix git-download)
@@ -86,7 +86,7 @@
     (propagated-inputs
      (list ffmpeg
            binutils      ;; ld
-           gcc-toolchain ;; libgcc
+           ;; gcc-toolchain ;; libgcc
            alsa-lib      ;; libasound
            glib          ;; libgobject, libglib
            libx11
