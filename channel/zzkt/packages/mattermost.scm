@@ -89,7 +89,7 @@
            gcc-toolchain ;; libgcc
            alsa-lib      ;; libasound
            glib          ;; libgobject, libglib
-           xorg
+           libx11
            pango
            gtk
            ))
