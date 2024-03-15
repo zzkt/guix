@@ -60,7 +60,6 @@
 ;; )
 
     (build-system go-build-system)
-    (arguments (list #:configure-flags #~(list "--enable-silent-rules")))
     (home-page "https://www.gnu.org/software/hello/")
     (synopsis "Disk Usage/Free Utility. A better 'df' alternative")
     (description "Disk Usage/Free Utility. Features include; User-friendly, colorful output; Adjusts to your terminal's theme & width; Sort the results according to your needs; Groups & filters devices; Can conveniently output JSON.")
