@@ -58,7 +58,9 @@
 ;; 	github.com/mattn/go-isatty v0.0.17 // indirect
 ;; 	github.com/rivo/uniseg v0.2.0 // indirect
 ;; )
-
+    (arguments
+     (list
+      #:import-path "https://github.com/muesli/duf"))
     (build-system go-build-system)
     (home-page "https://www.gnu.org/software/hello/")
     (synopsis "Disk Usage/Free Utility. A better 'df' alternative")
