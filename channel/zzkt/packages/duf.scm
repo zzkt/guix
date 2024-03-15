@@ -133,7 +133,6 @@ matching.")
     (build-system go-build-system)
     (arguments
      (list
-      #:go 1.19
       #:import-path "github.com/chromedp/cdproto"))
     (propagated-inputs `(("go-github-com-mailru-easyjson" ,go-github-com-mailru-easyjson)
                          ("go-github-com-chromedp-sysutil" ,go-github-com-chromedp-sysutil)))
@@ -434,7 +433,8 @@ Rust ABI defined at
     (build-system go-build-system)
     (arguments
      (list
-      #:go 1.19
+      ;; #:go 1.19
+      ;; -> (value "Wrong type argument in position 1 (expecting struct): ~S") (value (1.19)) (value (1.19)))
       #:import-path "github.com/google/pprof"))
     (propagated-inputs `(("go-github-com-ianlancetaylor-demangle" ,go-github-com-ianlancetaylor-demangle)
                          ("go-github-com-chzyer-readline" ,go-github-com-chzyer-readline)
