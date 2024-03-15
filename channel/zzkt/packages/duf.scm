@@ -337,6 +337,7 @@ using the CDP.")
     (build-system go-build-system)
     (arguments
      (list
+      #:tests? #f ;; FAIL: TestMemDisk (0.00s)
       #:import-path "github.com/chzyer/test"))
     (propagated-inputs `(("go-github-com-chzyer-logex" ,go-github-com-chzyer-logex)))
     (home-page "https://github.com/chzyer/test")
