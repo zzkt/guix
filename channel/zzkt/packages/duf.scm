@@ -307,6 +307,7 @@ functions may be called concurrently with themselves and each other.")
     (build-system go-build-system)
     (arguments
      (list
+      #:tests? #f ;;     chromedp_test.go:138: exec: "google-chrome": executable file not found in $PATH
       #:import-path "github.com/chromedp/chromedp"))
     (propagated-inputs `(("go-github-com-orisano-pixelmatch" ,go-github-com-orisano-pixelmatch)
                          ("go-github-com-mailru-easyjson" ,go-github-com-mailru-easyjson)
