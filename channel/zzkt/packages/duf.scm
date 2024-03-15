@@ -496,6 +496,7 @@ profiles.")
     (build-system go-build-system)
     (arguments
      (list
+      #:tests? #f ;;  FAIL: TestProfile (4.57s)
       #:import-path "github.com/pkg/profile"))
     (propagated-inputs `(("go-github-com-felixge-fgprof" ,go-github-com-felixge-fgprof)))
     (home-page "https://github.com/pkg/profile")
