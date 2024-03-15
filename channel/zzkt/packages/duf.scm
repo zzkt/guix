@@ -45,6 +45,7 @@
     (inputs
      (list go-github-com-iglou-eu-go-wildcard
            go-github-com-mattn-go-runewidth
+           go-github-com-jedib0t-go-pretty-v6
            go-github-com-muesli-mango
            go-github-com-muesli-roff
            go-github-com-muesli-termenv
