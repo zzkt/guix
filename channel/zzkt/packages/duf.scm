@@ -25,7 +25,7 @@
   #:use-module (gnu packages)
   #:use-module (guix build-system go)
   #:use-module (guix git-download)
-  #:use-module (gnu packages gawk))
+  #:use-module (gnu packages golang))
 
 (define-public duf
   (package
