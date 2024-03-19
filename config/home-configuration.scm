@@ -1,13 +1,13 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-03-07 15:41:27+01:00)
+;; tangled from home-configuration.org on 2024-03-19 15:08:39+01:00)
 
 (use-modules (gnu)
+             (gnu home)
              (gnu services)
              (gnu packages)
              (gnu packages gnupg)
              (gnu packages shells)
-             (gnu home)
              (gnu home services)
              (gnu home services guix)
              (gnu home services shells)
@@ -21,7 +21,6 @@
 (home-environment
  (packages (specifications->packages
             (list
-
              "nordic-theme"
              "firefox"
              "emacs-guix"
@@ -35,13 +34,13 @@
              "tree"
              "password-store"
 
-             "kmail"
-             "krunner"
-             "akonadi"
+             ;; "kmail"
+             ;; "krunner"
+             ;; "akonadi"
 
-             ;; "kitty-next"
              "kitty"
 
+             "icedove" ;; aka thunderbird
              "getmail6"
              "notmuch"
 
@@ -109,7 +108,7 @@
     (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
                      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
-                       ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
+                       ("NOTMUCH_CONFIG" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
                        ("GPG_TTY" . "$TTY")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
@@ -121,11 +120,12 @@
              (environment-variables
               '(("HISTFILE" . "$XDG_CONFIG_HOME/zsh/.history")
                 ("HISTSIZE" . "800000")
-                ("SAVEHIST" . "800000")))
-             (zshenv
-              (list (local-file ".zshenv" "zshenv")))
-             (zshrc
-              (list (local-file ".zshrc" "zshrc")))))
+                ("SAVEHIST" . "800000")))))
+
+             ;; (zshenv
+             ;;  (list (local-file ".zshenv" "zshenv")))
+             ;; (zshrc
+             ;;  (list (local-file ".zshrc" "zshrc")))))
 
    (service home-gpg-agent-service-type
             (home-gpg-agent-configuration
@@ -133,9 +133,12 @@
               (file-append pinentry-qt "/bin/pinentry-qt"))
              (ssh-support? #t)))
 
-   (service home-dotfiles-service-type
-            (home-dotfiles-configuration
-             (directories (list "dotfiles"))))
+         (service home-dotfiles-service-type
+                  (home-dotfiles-configuration
+                   (layout 'plain)
+                   (directories (list "dotfiles"))
+                   (excluded
+                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore" ".zshenv"))))
 
   ;; ssh config in 'dotfiles'
 

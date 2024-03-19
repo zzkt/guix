@@ -24,11 +24,11 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
 
 #+BEGIN_SRC scheme
 (use-modules (gnu)
+             (gnu home)
              (gnu services)
              (gnu packages)
              (gnu packages gnupg)
              (gnu packages shells)
-             (gnu home)
              (gnu home services)
              (gnu home services guix)
              (gnu home services shells)
@@ -67,18 +67,18 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              #+END_SRC
 *** KDE packages
              #+BEGIN_SRC scheme
-             "kmail"
-             "krunner"
-             "akonadi"
+             ;; "kmail"
+             ;; "krunner"
+             ;; "akonadi"
              #+END_SRC
 *** terminal
 kitty config is in  =dotfiles/kitty/kitty.conf=
              #+BEGIN_SRC scheme
-             ;; "kitty-next"
              "kitty"
              #+END_SRC
 *** Mail
              #+BEGIN_SRC scheme
+             "icedove" ;; aka thunderbird
              "getmail6"
              "notmuch"
              #+END_SRC
@@ -176,7 +176,7 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
     (simple-service 'variant-env-vars-service
                      home-environment-variables-service-type
                      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")
-                       ("NOTMUCH_PROFILE" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
+                       ("NOTMUCH_CONFIG" . "$XDG_CONFIG_HOME/notmuch/notmuch.conf")
                        ("LD_LIBRARY_PATH" . "$HOME/.guix-profile/lib")
                        ("GPG_TTY" . "$TTY")
                        ("SHELL" . ,(file-append zsh "/bin/zsh"))))
@@ -194,11 +194,14 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
              (environment-variables
               '(("HISTFILE" . "$XDG_CONFIG_HOME/zsh/.history")
                 ("HISTSIZE" . "800000")
-                ("SAVEHIST" . "800000")))
-             (zshenv
-              (list (local-file ".zshenv" "zshenv")))
-             (zshrc
-              (list (local-file ".zshrc" "zshrc")))))
+                ("SAVEHIST" . "800000")))))
+   #+END_SRC
+the zsh dotfiles are managed by =home-dotfiles-service= for now.
+#+BEGIN_SRC scheme
+             ;; (zshenv
+             ;;  (list (local-file ".zshenv" "zshenv")))
+             ;; (zshrc
+             ;;  (list (local-file ".zshrc" "zshrc")))))
    #+END_SRC
 
 *** gnupg
@@ -212,16 +215,19 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
    #+END_SRC
 
 *** dotfiles
- (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
+  (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
 
 #+BEGIN_SRC scheme
-   (service home-dotfiles-service-type
-            (home-dotfiles-configuration
-             (directories (list "dotfiles"))))
+         (service home-dotfiles-service-type
+                  (home-dotfiles-configuration
+                   (layout 'plain)
+                   (directories (list "dotfiles"))
+                   (excluded
+                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore" ".zshenv"))))
 #+END_SRC
 
 *** ssh & sundry
-(see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
+ (see also [[https://guix.gnu.org/manual/devel/en/html_node/Secure-Shell.html][guix manual]])
 
 #+BEGIN_SRC scheme
   ;; ssh config in 'dotfiles'
