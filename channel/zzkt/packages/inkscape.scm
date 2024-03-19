@@ -306,8 +306,9 @@ as the native format.")
         (base32 "0sq81smxwypgnp7r3wgza8w25dsz9qa8ga79sc85xzj3qi6q9lfv"))))
     (build-system cmake-build-system)
     (arguments
-     (#:tests? #f)
-     (substitute-keyword-arguments (package-arguments inkscape/stable)
+     (list
+      (#:tests? #f
+       (substitute-keyword-arguments (package-arguments inkscape/stable)
        ((#:phases phases)
         `(modify-phases ,phases
            (replace 'wrap-program
@@ -320,7 +321,7 @@ as the native format.")
                    ;; Wrapping GDK_PIXBUF_MODULE_FILE allows Inkscape to load
                    ;; its own icons in pure environments.
                    `("GDK_PIXBUF_MODULE_FILE" =
-                     (,(getenv "GDK_PIXBUF_MODULE_FILE")))))))))))
+                     (,(getenv "GDK_PIXBUF_MODULE_FILE")))))))))))))
     (inputs (modify-inputs (package-inputs inkscape/stable)
               (append python-cssselect)))        ;to render qrcode
     (properties (alist-delete 'hidden? (package-properties inkscape/stable)))))
