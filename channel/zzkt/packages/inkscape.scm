@@ -29,9 +29,9 @@
 
 
 (define-module (zzkt packages inkscape)
+  #:use-module (gnu packages inkscape) ;; inherit from hidden package
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
-  #:use-module (guix packages inkscape) ;; inherit
   #:use-module (guix download)
   #:use-module (guix utils)
   #:use-module (guix build-system cmake)
