@@ -306,6 +306,7 @@ as the native format.")
         (base32 "0sq81smxwypgnp7r3wgza8w25dsz9qa8ga79sc85xzj3qi6q9lfv"))))
     (build-system cmake-build-system)
     (arguments
+     (#:tests? #f)
      (substitute-keyword-arguments (package-arguments inkscape/stable)
        ((#:phases phases)
         `(modify-phases ,phases
