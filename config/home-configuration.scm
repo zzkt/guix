@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-03-19 15:08:39+01:00)
+;; tangled from home-configuration.org on 2024-03-19 23:04:17+01:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -21,22 +21,20 @@
 (home-environment
  (packages (specifications->packages
             (list
-             "nordic-theme"
-             "firefox"
+
              "emacs-guix"
              "emacs-next"
              "libreoffice"
              "rsync"
-             ;; "nyxt"
              "gnupg"
+             "rbw"
              "crda"
              "htop"
              "tree"
              "password-store"
 
-             ;; "kmail"
-             ;; "krunner"
-             ;; "akonadi"
+             "dolphin-plugins"
+             "akonadi"
 
              "kitty"
 
@@ -63,7 +61,11 @@
              "gcc-toolchain"
              "git" "git:send-email"
 
+             "firefox"
+             ;; "nyxt"
              "nextcloud-client"
+             "nmap"
+             "w3m"
 
              "font-monaspace"
              "font-recursive"
@@ -98,7 +100,7 @@
                       (url "https://gitlab.com/zzkt/guix")
                       (branch "endless")
                       (commit
-                       "ef1868ed9bdcf1a49771442e405bd88207b3ab0c")
+                       "02cdb798288a79e77e2b42f712c64b758de22499")
                       (introduction
                        (make-channel-introduction
                         "fc0ada85de1980e1fc9ee50672d827c0c17c3e7d"

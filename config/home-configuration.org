@@ -52,27 +52,25 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
                          #+END_SRC
 *** generally useful
              #+BEGIN_SRC scheme
-             "nordic-theme"
-             "firefox"
              "emacs-guix"
              "emacs-next"
              "libreoffice"
              "rsync"
-             ;; "nyxt"
              "gnupg"
+             "rbw"
              "crda"
              "htop"
              "tree"
              "password-store"
              #+END_SRC
 *** KDE packages
+various features  not installed as part of =plasma-desktop-service=
              #+BEGIN_SRC scheme
-             ;; "kmail"
-             ;; "krunner"
-             ;; "akonadi"
+             "dolphin-plugins"
+             "akonadi"
              #+END_SRC
 *** terminal
-kitty config is in  =dotfiles/kitty/kitty.conf=
+kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              #+BEGIN_SRC scheme
              "kitty"
              #+END_SRC
@@ -110,7 +108,11 @@ kitty config is in  =dotfiles/kitty/kitty.conf=
 
 *** network & interconnect
 #+BEGIN_SRC scheme
+             "firefox"
+             ;; "nyxt"
              "nextcloud-client"
+             "nmap"
+             "w3m"
 #+END_SRC
 *** fonts & typography
 
@@ -162,7 +164,7 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
                       (url "https://gitlab.com/zzkt/guix")
                       (branch "endless")
                       (commit
-                       "ef1868ed9bdcf1a49771442e405bd88207b3ab0c")
+                       "02cdb798288a79e77e2b42f712c64b758de22499")
                       (introduction
                        (make-channel-introduction
                         "fc0ada85de1980e1fc9ee50672d827c0c17c3e7d"
