@@ -162,7 +162,8 @@ endif()~%~%"
               ((".*find_package\\(DoubleConversion.*") ""))))))
      (build-system cmake-build-system)
      (arguments
-      `(#:test-target "check"         ;otherwise some test binaries are missing
+      `(#:tests? #f                   ;; surface without tests?
+        #:test-target "check"         ;; otherwise some test binaries are missing
         #:imported-modules (,@%cmake-build-system-modules
                             (guix build glib-or-gtk-build-system))
         #:modules ((guix build cmake-build-system)
@@ -307,8 +308,7 @@ as the native format.")
     (build-system cmake-build-system)
     (arguments
        (substitute-keyword-arguments (package-arguments inkscape/stable)
-        ((#:tests? #f)
-        (#:phases phases)
+        ((#:phases phases)
         `(modify-phases ,phases
            (replace 'wrap-program
              ;; Ensure Python is available at runtime.
