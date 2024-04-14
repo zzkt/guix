@@ -72,7 +72,7 @@ Some kernel corruption may be required to enable WIFI. Since the non-free kernel
 
 #+begin_src scheme
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.7
+  (corrupt-linux linux-libre-6.8
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
                  #+end_src
@@ -115,14 +115,15 @@ Kernel & driver details
 
 Using =linux-6.7= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.7) ;; previously (kernel linux-FWL13)
+ (kernel linux-6.8)
+ ;; (kernel linux-FWL13)
  #+end_src
 
 testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055][Adaptive Backlight Management (ABM)]]
 #+BEGIN_SRC scheme
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
- (kernel-arguments '("splash quiet"))
+ (kernel-arguments '("splash" "quiet"))
 #+END_SRC
 
 …and required firmware (should be possible to reduce to specifics)
@@ -191,7 +192,6 @@ Packages installed system-wide.  Users can also install packages under their own
                  "xfce4-session"
                  "xfce4-panel"
                  ;; gnome extras
-                 "gnome-tweaks"
                  "gvfs"
                  ; sddm
                  "chili-sddm-theme"
@@ -202,7 +202,7 @@ Packages installed system-wide.  Users can also install packages under their own
 #+end_src
 
 ** system services
-Below is the list of enabled system services.  To search for any available services, run 'guix system search KEYWORD' in a terminal.
+Below is the list of enabled system services.  To search for any available services, run =guix system search KEYWORD= in a terminal.
 
 #+begin_src scheme
  (services
@@ -222,15 +222,14 @@ Below is the list of enabled system services.  To search for any available servi
 
 *** mail
 use dovecot for local IMAP
-#+begin_src scheme
 
+#+begin_src scheme
            (service dovecot-service-type
                     (dovecot-configuration
                      (mail-location "maildir:%h/Maildir:LAYOUT=fs")))
 #+end_src
 
 *** iptables
-
 =iptables= configuration to allow SSH on port 22, IMAPS on 993, wireguard (wg0), mDNS and local smb for 192.168.0.0/16
 
 #+BEGIN_SRC scheme :session
@@ -375,10 +374,10 @@ Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
 *** desktop environments
 Provide Gnome, KDE (plasma) and xfce as desktop environments. exwm is enabled automatically via module.
 #+begin_src scheme
-           ;; (service plasma-desktop-service-type)
+           (service plasma-desktop-service-type)
            ;; (service gnome-desktop-service-type)
            ;; (service xfce-desktop-service-type)
-           (service lxqt-desktop-service-type)
+           ;; (service lxqt-desktop-service-type)
 #+end_src
 
 *** file sharing
@@ -479,11 +478,11 @@ initrd with AMD microcode blobs
 #+end_src
 
 ** swap device
-
+ % swapon --show
+%  swapon -L swap
 #+begin_src scheme
  (swap-devices (list (swap-space
-                      (target (uuid
-                               "e7cc2ca5-169a-4511-865f-d2d7ed72c05c")))))
+                      (target (file-system-label "swap")))))
 #+end_src
 
 ** file systems & mount points

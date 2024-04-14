@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-03-19 23:04:17+01:00)
+;; tangled from home-configuration.org on 2024-04-14 13:47:30+02:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -27,11 +27,12 @@
              "libreoffice"
              "rsync"
              "gnupg"
-             "rbw"
              "crda"
              "htop"
              "tree"
              "password-store"
+             "tomb"
+             "rbw"
 
              "dolphin-plugins"
              "akonadi"
@@ -53,6 +54,8 @@
              "audacity"
              "qpwgraph"
              "patchage"
+             "aubio"
+             "ffmpeg"
 
              "guile"
              "sbcl"
@@ -61,7 +64,7 @@
              "gcc-toolchain"
              "git" "git:send-email"
 
-             "firefox"
+             "librewolf"
              ;; "nyxt"
              "nextcloud-client"
              "nmap"
@@ -120,14 +123,14 @@
              ;; configs in $XDG_CONFIG_HOME/zsh
              (xdg-flavor? #t)
              (environment-variables
-              '(("HISTFILE" . "$XDG_CONFIG_HOME/zsh/.history")
+              '(("HISTFILE" . "$HOME/.config/zsh/.history")
                 ("HISTSIZE" . "800000")
                 ("SAVEHIST" . "800000")))))
 
-             ;; (zshenv
-             ;;  (list (local-file ".zshenv" "zshenv")))
-             ;; (zshrc
-             ;;  (list (local-file ".zshrc" "zshrc")))))
+             (zshenv
+              (list (local-file "dotfiles/.config/zsh/.zshenv" "zshenv")))
+             (zshrc
+              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))
 
    (service home-gpg-agent-service-type
             (home-gpg-agent-configuration
@@ -140,7 +143,8 @@
                    (layout 'plain)
                    (directories (list "dotfiles"))
                    (excluded
-                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore" ".zshenv"))))
+                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore"
+                      ".zshenv" ".zshrc"))))
 
   ;; ssh config in 'dotfiles'
 

@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-03-07 16:38:09+01:00)
+;; tangled from framework13-system.org on 2024-04-14 13:37:25+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -35,7 +35,7 @@
                      vpn)
 
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.7
+  (corrupt-linux linux-libre-6.8
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
 
@@ -51,11 +51,12 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-6.7) ;; previously (kernel linux-FWL13)
+ (kernel linux-6.8)
+ ;; (kernel linux-FWL13)
 
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
- (kernel-arguments '("splash quiet"))
+ (kernel-arguments '("splash" "quiet"))
 
  (firmware (list linux-firmware))
  ;; (firmware (list amdgpu-firmware
@@ -106,7 +107,6 @@
                  "xfce4-session"
                  "xfce4-panel"
                  ;; gnome extras
-                 "gnome-tweaks"
                  "gvfs"
                  ; sddm
                  "chili-sddm-theme"
@@ -239,10 +239,10 @@ COMMIT
                                             Option \"AccelProfile\" \"adaptive\"
                                         EndSection"))))))
 
-           ;; (service plasma-desktop-service-type)
+           (service plasma-desktop-service-type)
            ;; (service gnome-desktop-service-type)
            ;; (service xfce-desktop-service-type)
-           (service lxqt-desktop-service-type)
+           ;; (service lxqt-desktop-service-type)
 
            (service samba-service-type
                     (samba-configuration
@@ -305,8 +305,7 @@ writable = yes
               (keyboard-layout keyboard-layout)))
 
  (swap-devices (list (swap-space
-                      (target (uuid
-                               "e7cc2ca5-169a-4511-865f-d2d7ed72c05c")))))
+                      (target (file-system-label "swap")))))
 
  (file-systems (cons* (file-system
                        (mount-point "/boot/efi")

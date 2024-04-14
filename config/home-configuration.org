@@ -43,7 +43,7 @@ echo ";; -*- mode: scheme;  coding: utf-8; -*-
 * home environment
 ** packages
 
-Packages that will show up in the  home profile under =~/.guix-home/profile=
+Packages that will show up in the  home profile under =~/.guix-home/profile= (this setup might make more sense split  into several composible profiles or project based manifest files)
 
 #+BEGIN_SRC scheme
 (home-environment
@@ -57,11 +57,12 @@ Packages that will show up in the  home profile under =~/.guix-home/profile=
              "libreoffice"
              "rsync"
              "gnupg"
-             "rbw"
              "crda"
              "htop"
              "tree"
              "password-store"
+             "tomb"
+             "rbw"
              #+END_SRC
 *** KDE packages
 various features  not installed as part of =plasma-desktop-service=
@@ -95,6 +96,8 @@ kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              "audacity"
              "qpwgraph"
              "patchage"
+             "aubio"
+             "ffmpeg"
              #+END_SRC
 *** programming, dev & ops
 #+BEGIN_SRC scheme :session
@@ -108,7 +111,7 @@ kitty config located in  =dotfiles/.config/kitty/kitty.conf=
 
 *** network & interconnect
 #+BEGIN_SRC scheme
-             "firefox"
+             "librewolf"
              ;; "nyxt"
              "nextcloud-client"
              "nmap"
@@ -194,16 +197,16 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
              ;; configs in $XDG_CONFIG_HOME/zsh
              (xdg-flavor? #t)
              (environment-variables
-              '(("HISTFILE" . "$XDG_CONFIG_HOME/zsh/.history")
+              '(("HISTFILE" . "$HOME/.config/zsh/.history")
                 ("HISTSIZE" . "800000")
                 ("SAVEHIST" . "800000")))))
    #+END_SRC
-the zsh dotfiles are managed by =home-dotfiles-service= for now.
+the zsh dotfiles are added manually rather than using dotfiles-service (duplicate errors when managed by =home-dotfiles-service= )
 #+BEGIN_SRC scheme
-             ;; (zshenv
-             ;;  (list (local-file ".zshenv" "zshenv")))
-             ;; (zshrc
-             ;;  (list (local-file ".zshrc" "zshrc")))))
+             (zshenv
+              (list (local-file "dotfiles/.config/zsh/.zshenv" "zshenv")))
+             (zshrc
+              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))
    #+END_SRC
 
 *** gnupg
@@ -217,7 +220,7 @@ the zsh dotfiles are managed by =home-dotfiles-service= for now.
    #+END_SRC
 
 *** dotfiles
-  (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]])
+  (see [[https://guix.gnu.org/manual/devel/en/html_node/Essential-Home-Services.html][guix docs]] and note about zsh config)
 
 #+BEGIN_SRC scheme
          (service home-dotfiles-service-type
@@ -225,7 +228,8 @@ the zsh dotfiles are managed by =home-dotfiles-service= for now.
                    (layout 'plain)
                    (directories (list "dotfiles"))
                    (excluded
-                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore" ".zshenv"))))
+                    '(".*~" ".*\\.swp" "\\.git" "\\.gitignore"
+                      ".zshenv" ".zshrc"))))
 #+END_SRC
 
 *** ssh & sundry
