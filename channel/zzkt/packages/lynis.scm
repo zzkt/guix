@@ -92,15 +92,16 @@
 ;; https://github.com/CISOfy/lynis-sdk/commit/f4f885f1f049f59940487a6ffc2d53806c729d12
 
 (define-module (zzkt packages lynis)
-  #:use-module (guix)
-  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
+  #:use-module (guix packages)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (guix utils)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu))
 
 (define-public lynis
   (package
-    (name "lynis")
+    (name "lynis-next")
     ;; Also update the ‘lynis-sdk’ input to the commit matching this release.
     (version "3.1.1")
     (source
