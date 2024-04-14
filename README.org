@@ -9,6 +9,10 @@ design & publishing
 - fonts & type collections from [[http://osp.kitchen/][OSP]] and [[https://velvetyne.fr/][velvetyne]] in particular with selections from [[https://usemodify.com/][usemodify]] (curated by Raphaël Bastide.)
 - [[https://www.scribus.net/][scribus]] (release version 1.6.1 and =scribus-next= development branch)
 - [[https://soupault.app/][soupault]] static site generator and robotic webmaster (version 4.6.0 and dependencies not currently in guix)
+- [[https://www.zotero.org/][zotero]] (via guix-science)
+- supercollider (GUI and TUI versions)
+- pipeworld for arcan
+- frameworkinfo
 
 various and sundry
 - [[https://gephi.org][gephi]] (release version 0.10.1 installed as binary. not currently building from source)

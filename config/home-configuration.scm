@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-04-14 13:47:30+02:00)
+;; tangled from home-configuration.org on 2024-04-14 14:56:58+02:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -69,6 +69,7 @@
              "nextcloud-client"
              "nmap"
              "w3m"
+             "bind:utils"
 
              "font-monaspace"
              "font-recursive"
@@ -125,12 +126,12 @@
              (environment-variables
               '(("HISTFILE" . "$HOME/.config/zsh/.history")
                 ("HISTSIZE" . "800000")
-                ("SAVEHIST" . "800000")))))
+                ("SAVEHIST" . "800000")))
 
              (zshenv
               (list (local-file "dotfiles/.config/zsh/.zshenv" "zshenv")))
              (zshrc
-              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))
+              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))))
 
    (service home-gpg-agent-service-type
             (home-gpg-agent-configuration

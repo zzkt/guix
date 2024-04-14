@@ -116,6 +116,7 @@ kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              "nextcloud-client"
              "nmap"
              "w3m"
+             "bind:utils"
 #+END_SRC
 *** fonts & typography
 
@@ -199,14 +200,14 @@ zsh (and/or completions and/or [[https://lists.gnu.org/archive/html/help-guix/20
              (environment-variables
               '(("HISTFILE" . "$HOME/.config/zsh/.history")
                 ("HISTSIZE" . "800000")
-                ("SAVEHIST" . "800000")))))
+                ("SAVEHIST" . "800000")))
    #+END_SRC
 the zsh dotfiles are added manually rather than using dotfiles-service (duplicate errors when managed by =home-dotfiles-service= )
 #+BEGIN_SRC scheme
              (zshenv
               (list (local-file "dotfiles/.config/zsh/.zshenv" "zshenv")))
              (zshrc
-              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))
+              (list (local-file "dotfiles/.config/zsh/.zshrc" "zshrc")))))))
    #+END_SRC
 
 *** gnupg
