@@ -18,7 +18,7 @@
 
 ;; via https://issues.guix.gnu.org/60699
 
-(define-module (zzkt services firmware)
+(define-module (gnu services firmware)
   #:use-module (guix diagnostics)
   #:use-module (guix gexp)
   #:use-module (guix records)
