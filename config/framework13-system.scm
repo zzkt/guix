@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-04-14 13:37:25+02:00)
+;; tangled from framework13-system.org on 2024-04-25 09:46:25+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -100,7 +100,6 @@
                  "emacs-guix"
                  "emacs-exwm"
                  "openssh-sans-x"
-                 "nss-certs"
                  ;; xfce
                  "xfce4-power-manager"
                  "xfce4-settings"
@@ -273,6 +272,9 @@ writable = yes
            (service bluetooth-service-type)
 
            (service cups-service-type)
+
+           (simple-service 'fwupd-dbus dbus-service-type
+                (list fwupd-nonfree))
 
         ) ;; end services list
 
