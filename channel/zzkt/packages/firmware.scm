@@ -74,9 +74,9 @@
   #:use-module (gnu packages web)
   #:use-module (gnu packages xml))
 
-(define-public fwupd
+(define-public fwupd-zzkt
   (package
-    (name "fwupd")
+    (name "fwupd-zzkt")
     (version "1.8.14")
     (source (origin
               (method git-fetch)
