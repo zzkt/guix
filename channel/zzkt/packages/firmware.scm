@@ -103,7 +103,8 @@
                                 "-Dsupported_build=true"
                                 ;; (don't) disable LVFS, (just) because it contains
                                 ;; nonfree firmwares.
-                                "-Dlvfs=enabled")
+                                ;; "-Dlvfs=disabled"
+                                )
       #:glib-or-gtk? #t               ;To wrap binaries and/or compile schemas
       #:phases
       #~(modify-phases %standard-phases
@@ -167,12 +168,13 @@
                    protobuf-c
                    mingw-w64-tools
                    gnu-efi)
-             (if (supported-package? libsmbios
-                                     (or (and=> (%current-target-system)
-                                                platform-target->system)
-                                         (%current-system)))
-                 (list libsmbios)
-                 '())))
+             ;; (if (supported-package? libsmbios
+             ;;                         (or (and=> (%current-target-system)
+             ;;                                    platform-target->system)
+             ;;                             (%current-system)))
+             ;;     (list libsmbios)
+             ;;     '())
+             ))
     ;; In Requires of fwupd*.pc.
     (propagated-inputs (list curl
                              gcab
