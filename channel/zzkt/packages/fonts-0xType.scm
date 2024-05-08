@@ -21,7 +21,7 @@
 ;; 0xType is a type foundry specialized in programming fonts.
 ;;                                            https://0xtype.dev/
 
-(define-module (zzkt packages fonts)
+(define-module (zzkt packages fonts-0xProto)
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
@@ -32,6 +32,25 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system trivial))
+
+;; a metapackage for all packaged fonts
+(define-public font-collection-0xType
+  (package
+    (name "font-collection-0xType")
+    (version "0.1")
+    (source #f)
+    (build-system trivial-build-system)
+    (arguments
+     '(#:builder (begin
+                   (mkdir %output) #t)))
+    (propagated-inputs (list font-0xProto
+                             font-0xPropo))
+    (synopsis "A collection of fonts from 0xType")
+    (home-page "https://0xtype.dev/")
+    (description
+     "A collection of fonts from 0xType including 0xProto and 0xPropo")
+    (license license:silofl1.1)))
+
 
 (define-public font-0xProto
   (package
