@@ -21,7 +21,7 @@
 ;; 0xType is a type foundry specialized in programming fonts.
 ;;                                            https://0xtype.dev/
 
-(define-module (zzkt packages fonts-0xProto)
+(define-module (zzkt packages fonts-0xType)
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
