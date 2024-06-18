@@ -72,7 +72,7 @@ Some kernel corruption may be required to enable WIFI. Since the non-free kernel
 
 #+begin_src scheme
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.8
+  (corrupt-linux linux-libre-6.9
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
                  #+end_src
@@ -113,9 +113,9 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-Using =linux-6.7= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
+Using =linux-6.9=  from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.8)
+ (kernel linux-6.9)
  ;; (kernel linux-FWL13)
  #+end_src
 
@@ -422,8 +422,10 @@ real-time scheduling for the  =realtime= group (sound, supercollider, etc)
            (service cups-service-type)
 #+end_src
 
+*** firmware updates
+ via fwdup
 #+BEGIN_SRC emacs-lisp
-           (simple-service 'fwupd-dbus dbus-service-type
+           (simple-service 'fwupd-dbus dbus-root-service-type
                 (list fwupd-nonfree))
 #+END_SRC
 
@@ -440,9 +442,9 @@ If gdm is reconfigured (see above) or any other display manager is declared, gdm
 #+end_src
 
 *** mDNS
-Enable resolution of '.local' host names with mDNS.
+Enable resolution of '.local' host names with mDNS (as of 2024-06-17 looks like this conflicts with smbd)
 #+begin_src scheme
- (name-service-switch %mdns-host-lookup-nss)
+;; (name-service-switch %mdns-host-lookup-nss)
 #+end_src
 
 *** screen locker

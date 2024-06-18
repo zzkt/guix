@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-04-25 09:46:25+02:00)
+;; tangled from framework13-system.org on 2024-06-18 12:53:06+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -35,7 +35,7 @@
                      vpn)
 
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.8
+  (corrupt-linux linux-libre-6.9
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
 
@@ -51,7 +51,7 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-6.8)
+ (kernel linux-6.9)
  ;; (kernel linux-FWL13)
 
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
@@ -273,7 +273,7 @@ writable = yes
 
            (service cups-service-type)
 
-           (simple-service 'fwupd-dbus dbus-service-type
+           (simple-service 'fwupd-dbus dbus-root-service-type
                 (list fwupd-nonfree))
 
         ) ;; end services list
@@ -281,7 +281,7 @@ writable = yes
           (modify-services %desktop-services
                            (delete gdm-service-type))))
 
- (name-service-switch %mdns-host-lookup-nss)
+;; (name-service-switch %mdns-host-lookup-nss)
 
 ;;  (service screen-locker-service-type
 ;;   (screen-locker-configuration
