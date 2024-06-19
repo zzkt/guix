@@ -20,6 +20,7 @@
 (define-module (zzkt packages python-xyz)
   #:use-module (gnu packages python-web) ;; python-requests
   #:use-module (gnu packages python-xyz) ;; python-bibtexparser
+  #:use-module (gnu packages python-build) ;; python-toml
   #:use-module (gnu packages web)        ;; python-feedparser, python-httpretty
   #:use-module (gnu packages time)       ;; python-pytz, python-dateutil
   #:use-module (gnu packages check)      ;; python-pytest
