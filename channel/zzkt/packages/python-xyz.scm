@@ -17,14 +17,12 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 
-;; via guix import pypi -r pyzotero
-
 (define-module (zzkt packages python-xyz)
   #:use-module (gnu packages python-web) ;; python-requests
   #:use-module (gnu packages python-xyz) ;; python-bibtexparser
   #:use-module (gnu packages web)        ;; python-feedparser, python-httpretty
   #:use-module (gnu packages time)       ;; python-pytz, python-dateutil
-  #:use-module (gnu packages check)       ;; python-pytest
+  #:use-module (gnu packages check)      ;; python-pytest
   #:use-module (guix utils)
   #:use-module (guix packages)
   #:use-module (guix download)
@@ -35,6 +33,8 @@
   #:use-module (guix build-system python)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system trivial))
+
+;; via guix import pypi -r pyzotero
 
 (define-public python-pyzotero
   (package
@@ -58,3 +58,25 @@
     (synopsis "Python wrapper for the Zotero API")
     (description "Python wrapper for the Zotero API")
     (license license:expat)))
+
+;; via guix import pypi -r mausoleum
+
+(define-public python-mausoleum
+  (package
+    (name "python-mausoleum")
+    (version "0.10.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "mausoleum" version))
+       (sha256
+        (base32 "160n1i4aabzwlrjyn8vlc26acvwwx9kizp52bqy5znyz58rmbc6a"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-appdirs
+                             python-click
+                             python-pytoml))
+    (home-page "https://github.com/mandeep/Mausoleum")
+    (synopsis "A Python GUI, CLI, and wrapper for Tomb")
+    (description
+     "This package provides a Python GUI, CLI, and wrapper for Tomb.")
+    (license #f)))
