@@ -483,30 +483,43 @@ initrd with AMD microcode blobs
               (keyboard-layout keyboard-layout)))
 #+end_src
 
-** swap device
- % swapon --show
-%  swapon -L swap
-#+begin_src scheme
- (swap-devices (list (swap-space
-                      (target (file-system-label "swap")))))
-#+end_src
-
 ** file systems & mount points
+
+Using LUKS for encrypted partitions requires =mapped-devices=
+
+#+BEGIN_SRC scheme :session
+  (mapped-devices (list (mapped-device
+                          (source (uuid
+                                   "9b5d47cd-d865-4ec9-81ec-30565fa767e4"))
+                          (target "cryptroot")
+                          (type luks-device-mapping))))
+#+END_SRC
 
 The list of file systems that get mounted.  The unique  file system identifiers ("UUIDs") can be obtained by running =blkid= in a terminal.
 
 #+begin_src scheme
- (file-systems (cons* (file-system
-                       (mount-point "/boot/efi")
-                       (device (uuid "8B3C-3BC0" 'fat32))
-                       (type "vfat"))
-                      (file-system
-                       (mount-point "/")
-                       (device (uuid
-                                "e0ece027-0396-4546-8aba-2ce91285d061"
-                                'ext4))
-                       (type "ext4"))
-                      %base-file-systems))
+  (file-systems (cons* (file-system
+                         (mount-point "/boot/efi")
+                         (device (uuid "0D77-7016" 'fat32))
+                         (type "vfat"))
+                       (file-system
+                         (mount-point "/")
+                         (device "/dev/mapper/cryptroot")
+                         (type "ext4")
+                         (dependencies mapped-devices)) %base-file-systems))
+#+end_src
+
+** swap device
+
+keep swap file within the encrypted partition:
+ - dd if=/dev/zero of=/mnt/swapfile bs=1M count=32768
+ - chmod 0600 /mnt/swapfile && mkswap /mnt/swapfile && swapon
+ - UUID=31a16935-3c08-4a5f-a35c-e28773954a3f
+
+#+begin_src scheme
+;; (swap-devices (list (swap-space
+;;                      (target (file-system-label "swap")))))
+  (swap-devices `("/mnt/swapfile"))
 #+end_src
 
 ** FIN

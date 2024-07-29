@@ -33,6 +33,12 @@
 ;; various fonts & foundries
 
 ;; https://github.com/dharmatype/Bebas-Neue
+;; https://fonts.google.com/specimen/Spline+Sans
+;; https://github.com/lettersoup/Sofia-Sans
+;; https://fontesk.com/sofia-sans-typeface/
+
+;; more generally -> https://fontesk.com/license/ofl-gpl/
+
 
 (define-public font-monaspace
   (package

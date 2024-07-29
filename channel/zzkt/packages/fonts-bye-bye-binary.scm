@@ -16,10 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-;; as seen near gnu/packages/fonts.scm
-
 (define-module (zzkt packages fonts-bye-bye-binary)
-  #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
                 #:prefix license:)
@@ -86,7 +83,7 @@
 
 (define-public font-baskervvol
   (package
-    (name "font-")
+    (name "font-baskervvol")
     (version "V1.0 — 2022")
     (source
      (origin
@@ -107,7 +104,7 @@
 
 (define-public font-dindong
   (package
-    (name "font-")
+    (name "font-dindong")
     (version "1")
     (source
      (origin
@@ -128,7 +125,7 @@
 
 (define-public font-homoneta
   (package
-    (name "font-")
+    (name "font-homoneta")
     (version "1")
     (source
      (origin

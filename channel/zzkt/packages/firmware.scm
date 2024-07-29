@@ -76,8 +76,8 @@
 
 (define-public fwupd-zzkt
   (package
-    (name "fwupd-zzkt")
-    (version "1.8.14")
+    (name "fwupd-lvfs")
+    (version "1.9.18")
     (source (origin
               (method git-fetch)
               (uri (git-reference

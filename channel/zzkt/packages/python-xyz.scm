@@ -61,6 +61,8 @@
     (license license:expat)))
 
 ;; via guix import pypi -r mausoleum
+;; really? pytoml==0.1.13
+;; also requires pyqt5
 
 (define-public python-mausoleum
   (package
@@ -81,3 +83,8 @@
     (description
      "This package provides a Python GUI, CLI, and wrapper for Tomb.")
     (license #f)))
+
+
+;; via guix import pypi -r amphi-etl
+;; requires `https://github.com/benfred/py-spy' to be built (rust)
+;; cargo install py-spy

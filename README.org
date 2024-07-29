@@ -31,9 +31,10 @@ add to =~/.config/guix/channels.scm= (or wherever local channel declarations are
    (name 'zzkt)
    (url "https://gitlab.com/zzkt/guix")
    (branch "endless")
+   (commit "c24ecaae83f67d495a3951f372c69c2682c090a9")
    (introduction
     (make-channel-introduction
-     "fc0ada85de1980e1fc9ee50672d827c0c17c3e7d"
+     "c24ecaae83f67d495a3951f372c69c2682c090a9"
      (openpgp-fingerprint
       "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))
 #+END_SRC
