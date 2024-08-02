@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-06-18 12:53:06+02:00)
+;; tangled from framework13-system.org on 2024-08-02 11:16:35+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -158,6 +158,9 @@ COMMIT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
 
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 8384 -j ACCEPT
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 21027 -j ACCEPT
+
 -A INPUT -j REJECT --reject-with icmp-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP
 COMMIT
@@ -188,6 +191,9 @@ COMMIT
 -A INPUT -p udp -m udp --dport 51820 -j ACCEPT
 -A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 -A FORWARD -i wg0 -j ACCEPT
+
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 8384 -j ACCEPT
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 21027 -j ACCEPT
 
 -A INPUT -j REJECT --reject-with icmp6-port-unreachable
 -A INPUT -m conntrack --ctstate INVALID -j DROP
@@ -306,19 +312,24 @@ writable = yes
               (targets (list "/boot/efi"))
               (keyboard-layout keyboard-layout)))
 
- (swap-devices (list (swap-space
-                      (target (file-system-label "swap")))))
+  (mapped-devices (list (mapped-device
+                          (source (uuid
+                                   "9b5d47cd-d865-4ec9-81ec-30565fa767e4"))
+                          (target "cryptroot")
+                          (type luks-device-mapping))))
 
- (file-systems (cons* (file-system
-                       (mount-point "/boot/efi")
-                       (device (uuid "8B3C-3BC0" 'fat32))
-                       (type "vfat"))
-                      (file-system
-                       (mount-point "/")
-                       (device (uuid
-                                "e0ece027-0396-4546-8aba-2ce91285d061"
-                                'ext4))
-                       (type "ext4"))
-                      %base-file-systems))
+  (file-systems (cons* (file-system
+                         (mount-point "/boot/efi")
+                         (device (uuid "0D77-7016" 'fat32))
+                         (type "vfat"))
+                       (file-system
+                         (mount-point "/")
+                         (device "/dev/mapper/cryptroot")
+                         (type "ext4")
+                         (dependencies mapped-devices)) %base-file-systems))
+
+;; (swap-devices (list (swap-space
+;;                      (target (file-system-label "swap")))))
+  (swap-devices `("/mnt/swapfile"))
 
  ) ;; end operating-system declaration

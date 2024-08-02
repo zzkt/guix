@@ -240,6 +240,12 @@ the zsh dotfiles are added manually rather than using dotfiles-service (duplicat
   ;; ssh config in 'dotfiles'
 #+END_SRC
 
+*** syncthing
+using [[https://syncthing.net/][syncthing]] for local & point-to-point filesync across machines (see also nextcloud)
+#+BEGIN_SRC scheme
+          (service home-syncthing-service-type)
+#+END_SRC
+
 *** sound
  via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
 

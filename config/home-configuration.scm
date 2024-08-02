@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-04-14 14:56:58+02:00)
+;; tangled from home-configuration.org on 2024-08-02 11:17:18+02:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -148,6 +148,8 @@
                       ".zshenv" ".zshrc"))))
 
   ;; ssh config in 'dotfiles'
+
+          (service home-syncthing-service-type)
 
    (service home-dbus-service-type)
 
