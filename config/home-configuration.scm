@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-08-02 11:17:18+02:00)
+;; tangled from home-configuration.org on 2024-10-29 11:47:07+01:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -35,7 +35,10 @@
              "rbw"
 
              "dolphin-plugins"
-             "akonadi"
+             "spectacle"         ;; screencapture
+             "akonadi"           ;; PIM
+             "kamoso"            ;; webcam
+             "okular"            ;; doc viewer
 
              "kitty"
 
@@ -43,6 +46,7 @@
              "getmail6"
              "notmuch"
 
+             "mesa" "mesa-opencl" "vulkan-loader" "vulkan-tools"
              "scribus"
              "inkscape"
              "gimp"
@@ -63,6 +67,11 @@
              "python"
              "gcc-toolchain"
              "git" "git:send-email"
+             "cryptsetup"
+             "glances"
+             "file"
+
+             "zotero"
 
              "librewolf"
              ;; "nyxt"

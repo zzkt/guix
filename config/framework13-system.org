@@ -72,7 +72,7 @@ Some kernel corruption may be required to enable WIFI. Since the non-free kernel
 
 #+begin_src scheme
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.9
+  (corrupt-linux linux-libre-6.11
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
                  #+end_src
@@ -87,7 +87,7 @@ The =operating-system= declaration
  (timezone "Europe/Amsterdam")
                                #+end_src
 
-hosts file for local & LAN name resolving and persistent =/etc/hosts=  (maybe convert to =hosts-service-type=)
+hosts file for local & LAN name resolving and persistent =/etc/hosts= (maybe convert to =hosts-service-type=)
 
 #+BEGIN_SRC scheme :session
  (hosts-file (local-file "hosts.conf"))
@@ -113,9 +113,9 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-Using =linux-6.9=  from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
+Using =linux-6.11= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.9)
+ (kernel linux-6.11)
  ;; (kernel linux-FWL13)
  #+end_src
 
@@ -123,12 +123,16 @@ testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055
 #+BEGIN_SRC scheme
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
- (kernel-arguments '("splash" "quiet"))
+ (kernel-arguments  (cons* "resume=/swapfile"
+                           "splash" "quiet")
+                          %default-kernel-arguments)
 #+END_SRC
 
 …and required firmware (should be possible to reduce to specifics)
 #+begin_src scheme
- (firmware (list linux-firmware))
+ (firmware (list linux-firmware
+                 amdgpu-firmware
+                 amd-microcode))
  ;; (firmware (list amdgpu-firmware
  ;;                 amd-microcode
  ;;                 realtek-firmware))
@@ -381,7 +385,7 @@ Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
 #+end_src
 
 *** desktop environments
-Provide Gnome, KDE (plasma) and xfce as desktop environments. exwm is enabled automatically via module.
+Provide Gnome, KDE (plasma) and/or xfce as desktop environments. exwm is enabled automatically via module.
 #+begin_src scheme
            (service plasma-desktop-service-type)
            ;; (service gnome-desktop-service-type)
@@ -433,14 +437,14 @@ real-time scheduling for the  =realtime= group (sound, supercollider, etc)
 #+end_src
 
 *** firmware updates
- via fwdup
+ via fwdup (incomplete)
 #+BEGIN_SRC emacs-lisp
-           (simple-service 'fwupd-dbus dbus-root-service-type
-                (list fwupd-nonfree))
+           ;; (simple-service 'fwupd-dbus dbus-root-service-type
+           ;;     (list fwupd-nonfree))
 #+END_SRC
 
 *** modify desktop services
-If gdm is reconfigured (see above) or any other display manager is declared, gdm needs to be  removed from  =%desktop-services=
+If gdm is reconfigured (see above) or any other display manager is declared, gdm needs to be removed from  =%desktop-services=
 
 #+begin_src scheme
         ) ;; end services list
@@ -505,7 +509,7 @@ Using LUKS for encrypted partitions requires =mapped-devices=
                           (type luks-device-mapping))))
 #+END_SRC
 
-The list of file systems that get mounted.  The unique  file system identifiers ("UUIDs") can be obtained by running =blkid= in a terminal.
+The list of file systems that get mounted. The unique file system identifiers ("UUIDs") can be obtained by running =blkid= in a terminal.
 
 #+begin_src scheme
   (file-systems (cons* (file-system
@@ -516,20 +520,22 @@ The list of file systems that get mounted.  The unique  file system identifiers 
                          (mount-point "/")
                          (device "/dev/mapper/cryptroot")
                          (type "ext4")
-                         (dependencies mapped-devices)) %base-file-systems))
+                         (dependencies mapped-devices))
+                       %base-file-systems))
 #+end_src
 
 ** swap device
 
 keep swap file within the encrypted partition:
- - dd if=/dev/zero of=/mnt/swapfile bs=1M count=32768
- - chmod 0600 /mnt/swapfile && mkswap /mnt/swapfile && swapon
- - UUID=31a16935-3c08-4a5f-a35c-e28773954a3f
+ - dd if=/dev/zero of=/swapfile bs=1M count=32768
+ - chmod 0600 /swapfile && mkswap /swapfile && swapon
+ - add "resume=/swapfile" to =kernel-arguments=
 
 #+begin_src scheme
-;; (swap-devices (list (swap-space
-;;                      (target (file-system-label "swap")))))
-  (swap-devices `("/mnt/swapfile"))
+  (swap-devices (list (swap-space
+                       (target "/swapfile")
+                       (dependencies mapped-devices))))
+
 #+end_src
 
 ** FIN

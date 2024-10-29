@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-08-02 11:16:35+02:00)
+;; tangled from framework13-system.org on 2024-10-29 11:47:13+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -35,7 +35,7 @@
                      vpn)
 
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.9
+  (corrupt-linux linux-libre-6.11
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
 
@@ -51,14 +51,18 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-6.9)
+ (kernel linux-6.11)
  ;; (kernel linux-FWL13)
 
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
- (kernel-arguments '("splash" "quiet"))
+ (kernel-arguments  (cons* "resume=/swapfile"
+                           "splash" "quiet")
+                          %default-kernel-arguments)
 
- (firmware (list linux-firmware))
+ (firmware (list linux-firmware
+                 amdgpu-firmware
+                 amd-microcode))
  ;; (firmware (list amdgpu-firmware
  ;;                 amd-microcode
  ;;                 realtek-firmware))
@@ -279,8 +283,8 @@ writable = yes
 
            (service cups-service-type)
 
-           (simple-service 'fwupd-dbus dbus-root-service-type
-                (list fwupd-nonfree))
+           ;; (simple-service 'fwupd-dbus dbus-root-service-type
+           ;;     (list fwupd-nonfree))
 
         ) ;; end services list
 
@@ -326,10 +330,11 @@ writable = yes
                          (mount-point "/")
                          (device "/dev/mapper/cryptroot")
                          (type "ext4")
-                         (dependencies mapped-devices)) %base-file-systems))
+                         (dependencies mapped-devices))
+                       %base-file-systems))
 
-;; (swap-devices (list (swap-space
-;;                      (target (file-system-label "swap")))))
-  (swap-devices `("/mnt/swapfile"))
+  (swap-devices (list (swap-space
+                       (target "/swapfile")
+                       (dependencies mapped-devices))))
 
  ) ;; end operating-system declaration

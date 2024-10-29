@@ -65,10 +65,13 @@ Packages that will show up in the  home profile under =~/.guix-home/profile= (th
              "rbw"
              #+END_SRC
 *** KDE packages
-various features  not installed as part of =plasma-desktop-service=
+various features not installed as part of =plasma-desktop-service=
              #+BEGIN_SRC scheme
              "dolphin-plugins"
-             "akonadi"
+             "spectacle"         ;; screencapture
+             "akonadi"           ;; PIM
+             "kamoso"            ;; webcam
+             "okular"            ;; doc viewer
              #+END_SRC
 *** terminal
 kitty config located in  =dotfiles/.config/kitty/kitty.conf=
@@ -82,7 +85,9 @@ kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              "notmuch"
              #+END_SRC
 *** graphics
+drivers for opengl, opencl, vulkan, etc and some apps
              #+BEGIN_SRC scheme
+             "mesa" "mesa-opencl" "vulkan-loader" "vulkan-tools"
              "scribus"
              "inkscape"
              "gimp"
@@ -107,6 +112,14 @@ kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              "python"
              "gcc-toolchain"
              "git" "git:send-email"
+             "cryptsetup"
+             "glances"
+             "file"
+#+END_SRC
+
+*** research & reading
+#+BEGIN_SRC scheme :session
+             "zotero"
 #+END_SRC
 
 *** network & interconnect
@@ -247,7 +260,7 @@ using [[https://syncthing.net/][syncthing]] for local & point-to-point filesync 
 #+END_SRC
 
 *** sound
- via pipewire which requires dbus  (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
+ via pipewire which requires dbus (see also [[https://guix.gnu.org/manual/devel/en/html_node/Sound-Home-Services.html][guix manual]])
 
 #+BEGIN_SRC scheme
    (service home-dbus-service-type)
@@ -258,7 +271,7 @@ using [[https://syncthing.net/][syncthing]] for local & point-to-point filesync 
 #+END_SRC
 
 *** fonts
- ( see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html)
+ (see -> https://guix.gnu.org/manual/devel/en/html_node/Fonts-Home-Services.html)
 
 #+BEGIN_SRC scheme
   )) ;; end services
