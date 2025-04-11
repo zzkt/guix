@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2024-10-29 11:47:13+01:00)
+;; tangled from framework13-system.org on 2025-04-11 09:01:48+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -51,7 +51,7 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-6.11)
+ (kernel linux-6.13)
  ;; (kernel linux-FWL13)
 
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
@@ -63,9 +63,6 @@
  (firmware (list linux-firmware
                  amdgpu-firmware
                  amd-microcode))
- ;; (firmware (list amdgpu-firmware
- ;;                 amd-microcode
- ;;                 realtek-firmware))
 
  (users (cons* (user-account
                 (name "zzk")
@@ -111,10 +108,11 @@
                  "xfce4-panel"
                  ;; gnome extras
                  "gvfs"
-                 ; sddm
+                 ;; sddm
                  "chili-sddm-theme"
                  ;; vpn
                  "wireguard-tools"
+                 "ufw"
                  ))
           %base-packages))
 

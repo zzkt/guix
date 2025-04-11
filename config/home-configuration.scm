@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from home-configuration.org on 2024-10-29 11:47:07+01:00)
+;; tangled from home-configuration.org on 2025-04-11 09:00:44+02:00)
 
 (use-modules (gnu)
              (gnu home)
@@ -39,10 +39,13 @@
              "akonadi"           ;; PIM
              "kamoso"            ;; webcam
              "okular"            ;; doc viewer
+             "xremap-kde"
 
              "kitty"
+             "fish"
+             "pv"
 
-             "icedove" ;; aka thunderbird
+             "icedove"    ;; aka thunderbird
              "getmail6"
              "notmuch"
 
@@ -61,8 +64,9 @@
              "aubio"
              "ffmpeg"
 
-             "guile"
              "sbcl"
+             "julia"
+             "guile"
              "racket"
              "python"
              "gcc-toolchain"

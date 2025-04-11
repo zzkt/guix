@@ -115,7 +115,7 @@ Kernel & driver details
 
 Using =linux-6.11= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.11)
+ (kernel linux-6.13)
  ;; (kernel linux-FWL13)
  #+end_src
 
@@ -133,9 +133,6 @@ testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055
  (firmware (list linux-firmware
                  amdgpu-firmware
                  amd-microcode))
- ;; (firmware (list amdgpu-firmware
- ;;                 amd-microcode
- ;;                 realtek-firmware))
 #+end_src
 
 ** users & groups
@@ -180,7 +177,8 @@ testing [[https://community.frame.work/t/adaptive-backlight-management-abm/41055
 #+end_src
 
 ** system-wide packages
-Packages installed system-wide.  Users can also install packages under their own account: use =guix search KEYWORD= to search  for packages and =guix install PACKAGE= to install a package.
+
+Packages installed system-wide. Kept to a minimum(ish) since users can install packages as required using the =home-service=. Use =guix search KEYWORD= to search for packages and =guix install PACKAGE= to install a package.
 
 #+begin_src scheme
  (packages
@@ -196,10 +194,11 @@ Packages installed system-wide.  Users can also install packages under their own
                  "xfce4-panel"
                  ;; gnome extras
                  "gvfs"
-                 ; sddm
+                 ;; sddm
                  "chili-sddm-theme"
                  ;; vpn
                  "wireguard-tools"
+                 "ufw"
                  ))
           %base-packages))
 #+end_src

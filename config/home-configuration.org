@@ -72,15 +72,18 @@ various features not installed as part of =plasma-desktop-service=
              "akonadi"           ;; PIM
              "kamoso"            ;; webcam
              "okular"            ;; doc viewer
+             "xremap-kde"
              #+END_SRC
-*** terminal
+*** terminal & shells
 kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              #+BEGIN_SRC scheme
              "kitty"
+             "fish"
+             "pv"
              #+END_SRC
 *** Mail
              #+BEGIN_SRC scheme
-             "icedove" ;; aka thunderbird
+             "icedove"    ;; aka thunderbird
              "getmail6"
              "notmuch"
              #+END_SRC
@@ -106,8 +109,9 @@ drivers for opengl, opencl, vulkan, etc and some apps
              #+END_SRC
 *** programming, dev & ops
 #+BEGIN_SRC scheme :session
-             "guile"
              "sbcl"
+             "julia"
+             "guile"
              "racket"
              "python"
              "gcc-toolchain"
@@ -153,7 +157,7 @@ drivers for opengl, opencl, vulkan, etc and some apps
 
 ** services
 
-The list of home services.  To search for available services run =guix home search KEYWORD= in a terminal.
+The list of home services. To search for available services run =guix home search KEYWORD= in a terminal.
 
 #+BEGIN_SRC scheme
  (services
