@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2025-04-11 09:01:48+02:00)
+;; tangled from framework13-system.org on 2025-05-02 12:39:58+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -35,7 +35,7 @@
                      vpn)
 
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.11
+  (corrupt-linux linux-libre-6.14
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
 
@@ -51,7 +51,7 @@
                    #:options '("ctrl:nocaps"
                                "altwin:swap_lalt_lwin")))
 
- (kernel linux-6.13)
+ (kernel linux-6.14)
  ;; (kernel linux-FWL13)
 
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))

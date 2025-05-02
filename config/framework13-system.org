@@ -72,7 +72,7 @@ Some kernel corruption may be required to enable WIFI. Since the non-free kernel
 
 #+begin_src scheme
 (define-public linux-FWL13
-  (corrupt-linux linux-libre-6.11
+  (corrupt-linux linux-libre-6.14
                  #:name "linux-fwl13"
                  #:configs '("CONFIG_MT7921E=m")))
                  #+end_src
@@ -113,9 +113,9 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-Using =linux-6.11= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
+Using =linux-6.14= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.13)
+ (kernel linux-6.14)
  ;; (kernel linux-FWL13)
  #+end_src
 
@@ -525,7 +525,7 @@ The list of file systems that get mounted. The unique file system identifiers ("
 
 ** swap device
 
-keep swap file within the encrypted partition:
+keep swap file within the encrypted partition
  - dd if=/dev/zero of=/swapfile bs=1M count=32768
  - chmod 0600 /swapfile && mkswap /swapfile && swapon
  - add "resume=/swapfile" to =kernel-arguments=
@@ -534,7 +534,6 @@ keep swap file within the encrypted partition:
   (swap-devices (list (swap-space
                        (target "/swapfile")
                        (dependencies mapped-devices))))
-
 #+end_src
 
 ** FIN
