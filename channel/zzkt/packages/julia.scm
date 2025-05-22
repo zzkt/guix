@@ -131,7 +131,7 @@
        (sha256
         (base32 "0788hbcr1v89crv2j3insy89lxs0zwjbxk9q73jpj4g7j26bszcd"))
        (patches (search-patches "julia-SOURCE_DATE_EPOCH-mtime.patch"
-                                "inria/patches/julia.patch"))))
+                                "patches/julia.patch"))))
     (build-system gnu-build-system)
     (arguments
      (list #:test-target "test"
