@@ -1,6 +1,6 @@
 ;; via https://gitlab.inria.fr/guix-hpc/guix-hpc/-/blob/master/inria/julia.scm
 
-(define-module (zzkt julia)
+(define-module (zzkt packages julia)
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (guix gexp)
@@ -420,7 +420,7 @@
                    ;; disabling REPL tests because they require a stdin
                    ;; There are some read-only precompile issues in the 1.6 series.
                    ;; https://github.com/JuliaLang/julia/pull/41614
-                   ;; https://github.com/JuliaLang/julia/issues/41156
+>                   ;; https://github.com/JuliaLang/julia/issues/41156
                    (substitute* "test/choosetests.jl"
                      (("\"cmdlineargs\",")
                       "")
