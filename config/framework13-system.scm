@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework13-system.org on 2025-05-02 12:39:58+02:00)
+;; tangled from framework13-system.org on 2025-05-27 18:06:50+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -57,7 +57,8 @@
  ;; (kernel-arguments '("amdgpu.abmlevel=3"))
  ;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
  (kernel-arguments  (cons* "resume=/swapfile"
-                           "splash" "quiet")
+                           "splash" "quiet"
+                           "threadirqs")
                           %default-kernel-arguments)
 
  (firmware (list linux-firmware
