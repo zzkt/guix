@@ -29,7 +29,7 @@ add to =~/.config/guix/channels.scm= (or wherever local channel declarations are
 #+BEGIN_SRC scheme
   (channel
    (name 'zzkt)
-   (url "https://gitlab.com/zzkt/guix")
+   (url "https://codeberg.org/zzkt/guix")
    (branch "endless")
    (commit "c24ecaae83f67d495a3951f372c69c2682c090a9")
    (introduction
@@ -39,6 +39,9 @@ add to =~/.config/guix/channels.scm= (or wherever local channel declarations are
       "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))
 #+END_SRC
 
+#+RESULTS:
+: #f
+
 * Channel surfing
 
-further guix channels, package and symbols with https://toys.whereis.みんな/
+further guix channels, package and symbols with https://toys.whereis.social/
