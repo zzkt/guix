@@ -84,7 +84,7 @@
            (lambda _ (system* "make" "VERBOSE=1" "USE_BINARYBUILDER=0" "-k" "-C" "deps" "extract")))
 
          (add-before 'check 'set-home
-<           ;; Some tests require a home directory to be set.
+           ;; Some tests require a home directory to be set.
            (lambda _ (setenv "HOME" "/tmp")))
 
          (add-before 'build 'replace-default-shell
