@@ -127,7 +127,7 @@
 
         ;; TODO - use all the packages we can from Guix instead of bundled
         ;; with Julia.
-        ;; "USE_SYSTEM_LLVM=1"
+        "USE_SYSTEM_LLVM=1"
 
         (string-append "prefix=" (assoc-ref %outputs "out"))
 
