@@ -153,9 +153,9 @@
      `(("bash-minimal" ,bash-minimal)
        ("coreutils" ,coreutils) ; for bindings to "mkdir" and the like
        ("curl" ,curl-ssh)
-       ("gfortran-toolchain" ,gfortran-toolchain)
+       ("gfortran" ,gfortran)
        ;; required for libgcc_s.so
-       ;;("gfortran:lib" ,gfortran "lib")
+       ("gfortran:lib" ,gfortran "lib")
        ("which" ,which)
        ("zlib" ,zlib)))
 
