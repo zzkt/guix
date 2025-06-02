@@ -39,9 +39,6 @@ add to =~/.config/guix/channels.scm= (or wherever local channel declarations are
       "24A7 4604 91E6 A60F 5BB4  A00F 989F 5E6E DB47 8160"))))
 #+END_SRC
 
-#+RESULTS:
-: #f
-
 * Channel surfing
 
 further guix channels, package and symbols with https://toys.whereis.social/
