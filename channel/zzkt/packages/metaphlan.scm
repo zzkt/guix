@@ -44,7 +44,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (zzk packages metaphlan)
+(define-module (zzkt packages metaphlan)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix gexp)
@@ -218,3 +218,4 @@ shotgun sequencing data (i.e.  not 16S) with species-level.  With the newly
 added @code{StrainPhlAn} module, it is now possible to perform accurate
 strain-level microbial profiling.")
     (license #f)))
+
