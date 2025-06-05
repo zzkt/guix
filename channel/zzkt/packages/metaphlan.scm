@@ -113,9 +113,10 @@
           (variable "METAPHLAN_DB_DIR")
           (separator #f)
           (files (list "/var/lib/metaphlan/metaphlan_databases/")))))
-    (synopsis
-     "Database mpa_vJan25_CHOCOPhlAnSGB_202503 for MetaPhlAn.")
-    (description
+     (home-page "http://github.com/biobakery/MetaPhlAn/")
+     (synopsis
+      "Database mpa_vJan25_CHOCOPhlAnSGB_202503 for MetaPhlAn.")
+     (description
      "@code{MetaPhlAn} relies on ~5.1M unique clade-specific marker genes (the latest marker information file can be found here) identified from ~1M microbial genomes (~236,600 references and 771,500 metagenomic assembled genomes) spanning 26,970 species-level genome bins (SGBs), 4,992 of them taxonomically unidentified at the species level, allowing:
 
 - unambiguous taxonomic assignments;
