@@ -50,7 +50,7 @@
     (native-inputs (list python-setuptools python-wheel))
     (home-page "http://github.com/biobakery/MetaPhlAn/")
     ;; set database directory to a writable location
-    (wrap-program (string-append bin "metaphlan")
+    (wrap-program (string-append out "/bin/metaphlan")
                   '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/"))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
