@@ -51,7 +51,7 @@
     (home-page "http://github.com/biobakery/MetaPhlAn/")
     (arguments
      (list
-      #:modules ((guix build utils))
+      #:modules '((guix build utils))
       #:phases
        #~(modify-phases %standard-phases
            (add-after 'install 'wrap-program
