@@ -75,7 +75,7 @@
               (lambda* _
                 ;; set database directory to a writable location
                 (wrap-program (string-append #$output "/bin/metaphlan")
-                              '("METAPHLAN_DB_DIR" = "/var/lib/metaphlan/metaphlan_databases/")))))))
+                              '("METAPHLAN_DB_DIR" = ("/var/lib/metaphlan/metaphlan_databases/"))))))))
     ;; search paths for shared databases
      (search-paths
       (list (search-path-specification
