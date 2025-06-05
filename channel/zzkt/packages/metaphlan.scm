@@ -55,9 +55,10 @@
       #:phases
        #~(modify-phases %standard-phases
            (add-after 'install 'wrap-program
-           ;; set database directory to a writable location
-             (wrap-program (string-append %output "/bin/metaphlan")
-                           '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/"))))))
+             (lambda _
+             ;; set database directory to a writable location
+               (wrap-program (string-append %output "/bin/metaphlan")
+                             '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/")))))))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
     (description
