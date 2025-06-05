@@ -57,7 +57,7 @@
            (add-after 'install 'wrap-program
              (lambda _
              ;; set database directory to a writable location
-               (wrap-program (string-append %output "/bin/metaphlan")
+               (wrap-program (string-append #$output "/bin/metaphlan")
                              '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/")))))))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
