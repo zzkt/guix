@@ -12,6 +12,7 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system python)
+  #:use-module (guix build utils)
   #:use-module (gnu packages)
   #:use-module (gnu packages bioinformatics)
   #:use-module (gnu packages python)
@@ -51,14 +52,13 @@
     (home-page "http://github.com/biobakery/MetaPhlAn/")
     (arguments
      (list
-      #:modules '((guix build utils))
       #:phases
-       #~(modify-phases %standard-phases
-           (add-after 'install 'wrap-program
-             (lambda _
+      #~(modify-phases %standard-phases
+           (add-after 'check 'wrap-program
+              (lambda* _
              ;; set database directory to a writable location
-               (wrap-program (string-append #$output "/bin/metaphlan")
-                             '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/")))))))
+                (wrap-program (string-append #$output "/bin/metaphlan")
+                             '("METAPHLAN_DB_DIR" = ("/tmp/metaphlan_databases/"))))))))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
     (description
