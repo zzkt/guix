@@ -51,7 +51,7 @@
     (home-page "http://github.com/biobakery/MetaPhlAn/")
     ;; set database directory to a writable location
     (wrap-program metaphlan
-                  '("METAPHLAN_DB_DIR" "$HOME/metaphlan_databases/"))
+                  '("METAPHLAN_DB_DIR" ":" = "$HOME/metaphlan_databases/"))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
     (description
