@@ -50,13 +50,14 @@
     (native-inputs (list python-setuptools python-wheel))
     (home-page "http://github.com/biobakery/MetaPhlAn/")
     (arguments
+     (list
       #:modules ((guix build utils))
       #:phases
-       (modify-phases %standard-phases
-         (add-after 'install 'wrap-program
-                    ;; set database directory to a writable location
-                    (wrap-program (string-append %output "/bin/metaphlan")
-                                  '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/")))))
+       #~(modify-phases %standard-phases
+           (add-after 'install 'wrap-program
+           ;; set database directory to a writable location
+             (wrap-program (string-append %output "/bin/metaphlan")
+                           '("METAPHLAN_DB_DIR" = "$HOME/metaphlan_databases/"))))))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
     (description
