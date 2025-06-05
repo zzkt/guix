@@ -26,9 +26,6 @@
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match))
 
-;; for database downloads
-(setenv "METAPHLAN_DB_DIR" "$HOME/.metaphlan/")
-
 (define-public metaphlan
   (package
     (name "metaphlan")
@@ -52,6 +49,9 @@
                              python-scipy))
     (native-inputs (list python-setuptools python-wheel))
     (home-page "http://github.com/biobakery/MetaPhlAn/")
+    ;; set database directory to a writable location
+    (wrap-program "metaphlan"
+                  '("METAPHLAN_DB_DIR" "$HOME/metaphlan_databases/"))
     (synopsis
      "Profiling of microbial communities from Metagenomic Shotgun Sequencing data.")
     (description
