@@ -194,6 +194,11 @@ phylogenetically- and taxonomically-driven investigation.")
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
     (inputs (list bowtie diamond))
+    ;; other requirements
+    ;; - MinPath
+    ;; - Xipe
+    ;; - SAMtools (only required if bam input files are provided)
+    ;; - Biom-format (only required if input or output files are in biom format)
     (propagated-inputs (list python-biopython
                              python-matplotlib
                              python-scipy))
@@ -202,11 +207,16 @@ phylogenetically- and taxonomically-driven investigation.")
       #:phases
       #~(modify-phases %standard-phases
                        ;; sanity check fails since databases are not downloaded (yet)
+                       ;; can be tested post-install using 'humann_test'
                        (delete 'sanity-check))))
     (home-page "https://github.com/biobakery/humann")
     (synopsis "HUMAnN: The HMP Unified Metabolic Analysis Network")
     (description
      "HUMAnN is a method for efficiently and accurately profiling the abundance of microbial metabolic pathways and other molecular functions from metagenomic or metatranscriptomic sequencing data.")
     (license license:expat)))
+
+;; humann_data
+;; - humann_databases --download chocophlan full /var/lib/humann
+;; - humann_databases --download uniref uniref90_diamond /var/lib/humann
 
 ;; https://github.com/fbreitwieser/pavian
