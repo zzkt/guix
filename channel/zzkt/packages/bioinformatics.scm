@@ -18,7 +18,7 @@
 
 ;; based on /gnu/packages/bioinformatics.scm
 
-(define-module (zzkt packages metaphlan)
+(define-module (zzkt packages bioinformatics)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix gexp)
@@ -44,9 +44,9 @@
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match))
 
-(define-public metaphlan
+(define-public python-metaphlan
   (package
-    (name "metaphlan")
+    (name "python-metaphlan")
     (version "4.2.2")
     (source
      (origin
@@ -142,3 +142,30 @@
 - orders of magnitude speedups compared to existing methods.
 - metagenomic strain-level population genomics")
     (license license:expat)))
+
+
+(define-public python-graphlan
+  (package
+    (name "python-graphlan")
+    (version "1.1.3.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "graphlan" version))
+       (sha256
+        (base32 "02pdnhkyp3w588n2sp17dc2x8rwqn1bf2m9qwvbysfd12dzxh3ml"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-biopython
+                             python-matplotlib
+                             python-scipy))
+    (native-inputs (list python-setuptools
+                         python-wheel))
+    (home-page "http://github.com/biobakery/graphlan")
+    (synopsis
+     "Circular representations of taxonomic and phylogenetic trees.")
+    (description
+     "@code{GraPhlAn} is a software tool for producing high-quality circular
+representations of taxonomic and phylogenetic trees. @code{GraPhlAn} focuses on
+concise, integrative, informative, and publication-ready representations of
+phylogenetically- and taxonomically-driven investigation.")
+   (license license:expat)))
