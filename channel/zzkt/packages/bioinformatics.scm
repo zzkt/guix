@@ -197,6 +197,12 @@ phylogenetically- and taxonomically-driven investigation.")
     (propagated-inputs (list python-biopython
                              python-matplotlib
                              python-scipy))
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+                       ;; sanity check fails since databases are not downloaded (yet)
+                       (delete 'sanity-check))))
     (home-page "https://github.com/biobakery/humann")
     (synopsis "HUMAnN: The HMP Unified Metabolic Analysis Network")
     (description
