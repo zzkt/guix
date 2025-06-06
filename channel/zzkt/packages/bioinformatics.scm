@@ -44,9 +44,9 @@
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match))
 
-(define-public python-metaphlan
+(define-public metaphlan
   (package
-    (name "python-metaphlan")
+    (name "metaphlan")
     (version "4.2.2")
     (source
      (origin
@@ -144,9 +144,9 @@
     (license license:expat)))
 
 
-(define-public python-graphlan
+(define-public graphlan
   (package
-    (name "python-graphlan")
+    (name "graphlan")
     (version "1.1.3.1")
     (source
      (origin
