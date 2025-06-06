@@ -193,7 +193,11 @@ phylogenetically- and taxonomically-driven investigation.")
         (base32 "11r27f2rz19phbffr31c7lhvldqpbypb8806108kwpjzwjxxs66h"))))
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
-    (inputs (list bowtie diamond))
+    (propagated-inputs (list bowtie
+                             diamond
+                             python-biopython
+                             python-matplotlib
+                             python-scipy))
     (home-page "https://github.com/biobakery/humann")
     (synopsis "HUMAnN: The HMP Unified Metabolic Analysis Network")
     (description
