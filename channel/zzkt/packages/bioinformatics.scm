@@ -162,7 +162,7 @@
                          python-wheel))
     (arguments
      (list
-      #:tests #f
+      #:tests? #f
       #:phases
           #~(modify-phases %standard-phases
                            ;; fix check for biopython==1.76
