@@ -143,6 +143,8 @@
 - metagenomic strain-level population genomics")
     (license license:expat)))
 
+;; graahlan
+;;  install via https://github.com/biobakery/graphlan
 
 (define-public graphlan
   (package
@@ -176,3 +178,26 @@ representations of taxonomic and phylogenetic trees. @code{GraPhlAn} focuses on
 concise, integrative, informative, and publication-ready representations of
 phylogenetically- and taxonomically-driven investigation.")
    (license license:expat)))
+
+;; https://github.com/biobakery/humann
+
+(define-public humann
+  (package
+    (name "humann")
+    (version "3.9")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "humann" version))
+       (sha256
+        (base32 "11r27f2rz19phbffr31c7lhvldqpbypb8806108kwpjzwjxxs66h"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-setuptools python-wheel))
+    (inputs (list bowtie diamond))
+    (home-page "https://github.com/biobakery/humann")
+    (synopsis "HUMAnN: The HMP Unified Metabolic Analysis Network")
+    (description
+     "HUMAnN is a method for efficiently and accurately profiling the abundance of microbial metabolic pathways and other molecular functions from metagenomic or metatranscriptomic sequencing data.")
+    (license license:expat)))
+
+;; https://github.com/fbreitwieser/pavian
