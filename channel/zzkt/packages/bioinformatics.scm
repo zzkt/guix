@@ -193,13 +193,49 @@ phylogenetically- and taxonomically-driven investigation.")
         (base32 "11r27f2rz19phbffr31c7lhvldqpbypb8806108kwpjzwjxxs66h"))))
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
-    (inputs (list bowtie diamond))
     ;; other requirements
     ;; - MinPath
     ;; - Xipe
     ;; - SAMtools (only required if bam input files are provided)
     ;; - Biom-format (only required if input or output files are in biom format)
-    (propagated-inputs (list python-biopython
+    (propagated-inputs (list bowtie
+                             diamond
+                             python-biopython
+                             python-matplotlib
+                             python-scipy))
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+                       ;; sanity check fails since databases are not downloaded (yet)
+                       ;; can be tested post-install using 'humann_test'
+                       (delete 'sanity-check))))
+    (home-page "https://github.com/biobakery/humann")
+    (synopsis "HUMAnN: The HMP Unified Metabolic Analysis Network")
+    (description
+     "HUMAnN is a method for efficiently and accurately profiling the abundance of microbial metabolic pathways and other molecular functions from metagenomic or metatranscriptomic sequencing data.")
+    (license license:expat)))
+
+(define-public humann-next
+  (package
+    (name "humann-next")
+    (version "4.0.0a1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "humann" version))
+       (sha256
+        (base32 "1nprwmx9k2kfklwsck0fa9i1mnci76xlpyb6a1z236f45x0bsk43"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-setuptools python-wheel))
+    ;; other requirements
+    ;; - MinPath
+    ;; - Xipe
+    ;; - SAMtools (only required if bam input files are provided)
+    ;; - Biom-format (only required if input or output files are in biom format)
+    (propagated-inputs (list bowtie
+                             diamond
+                             python-biopython
                              python-matplotlib
                              python-scipy))
     (arguments
