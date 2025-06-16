@@ -27,7 +27,6 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system pyproject)
-  #:use-module (guix build-system python)
   #:use-module (guix build-system copy)
   #:use-module (guix build utils)
   #:use-module (gnu packages)
@@ -227,8 +226,8 @@ phylogenetically- and taxonomically-driven investigation.")
      (uri (git-reference
            (url "https://github.com/zzkt/humann")
            (commit "dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4")))
-       (sha256
-        (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c"))))
+     (sha256
+      (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c")))
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
     ;; other requirements
