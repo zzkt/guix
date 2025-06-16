@@ -223,13 +223,14 @@ phylogenetically- and taxonomically-driven investigation.")
     (name "humann-next")
     (version "4.0.0a1-zzkt")
     (source
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/zzkt/humann")
-           (commit "dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4")))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c")))
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/zzkt/humann")
+             (commit "dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4")))
+       ;; (file-name (git-file-name name version))
+       (sha256
+        (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c"))))
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
     ;; other requirements
