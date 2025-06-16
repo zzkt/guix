@@ -216,16 +216,19 @@ phylogenetically- and taxonomically-driven investigation.")
      "HUMAnN is a method for efficiently and accurately profiling the abundance of microbial metabolic pathways and other molecular functions from metagenomic or metatranscriptomic sequencing data.")
     (license license:expat)))
 
+;; guix download --git https://github.com/zzkt/humann --commit=dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4
+
 (define-public humann-next
   (package
     (name "humann-next")
-    (version "4.0.0a1")
+    (version "4.0.0a1-zzkt")
     (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "humann" version))
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/zzkt/humann")
+           (commit "dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4")))
        (sha256
-        (base32 "1nprwmx9k2kfklwsck0fa9i1mnci76xlpyb6a1z236f45x0bsk43"))))
+        (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c"))))
     (build-system pyproject-build-system)
     (native-inputs (list python-setuptools python-wheel))
     ;; other requirements
