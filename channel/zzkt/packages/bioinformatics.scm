@@ -98,7 +98,7 @@
 
 (define-public metaphlan_data
   (package
-    (name "metaphlan_data")
+    (name "metaphlan-data")
     (version "mpa_vJan25_CHOCOPhlAnSGB_202503")
     (source
      (origin
@@ -227,6 +227,7 @@ phylogenetically- and taxonomically-driven investigation.")
      (uri (git-reference
            (url "https://github.com/zzkt/humann")
            (commit "dac9a42997d8b1030f8b871f5ab0bdd5cd6834b4")))
+     (file-name (git-file-name name version))
      (sha256
       (base32 "1hfszsychcbh5j8x32ks7x7bllynbmvycvv4za985bdplamlpc7c")))
     (build-system pyproject-build-system)
