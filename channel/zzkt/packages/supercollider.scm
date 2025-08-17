@@ -46,7 +46,7 @@
 (define-public supercollider-cli
   (package
    (name "supercollider-cli")
-   (version "3.13.0")
+   (version "3.14.0")
    (source
     (origin
      (method git-fetch)
@@ -58,7 +58,7 @@
      (file-name (git-file-name name version))
      (sha256
       (base32
-       "1dkpnaly4m2j41ypy7xj5m2yhbl4ykw3vbnam345z4dk6qhyj9b1"))
+       "1k950znz86v1zy6sb8qnl7z0vf41vdfb3xx5siqna8qsz90z2c47"))
      (modules '((guix build utils)
                 (ice-9 ftw)))
      (snippet
