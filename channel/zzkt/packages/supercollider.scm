@@ -58,7 +58,7 @@
      (file-name (git-file-name name version))
      (sha256
       (base32
-       "1k950znz86v1zy6sb8qnl7z0vf41vdfb3xx5siqna8qsz90z2c47"))
+       "1qp163c6mg1d8c59ar3v1yixryr1paa9bs8pkz6yd3c86qz24n0h"))
      (modules '((guix build utils)
                 (ice-9 ftw)))
      (snippet
