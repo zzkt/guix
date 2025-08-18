@@ -17,10 +17,12 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (zzkt packages supercollider)
+
+  ;; audio.scm
+
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
-  #:use-module ((guix licenses)
-                #:prefix license:)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (guix gexp)
@@ -40,7 +42,72 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages pulseaudio) ;; libsndfile
   #:use-module (guix build-system cmake)
-  #:use-module (guix build-system trivial))
+  #:use-module (guix build-system trivial)
+
+;; lisp-xyz.scm
+
+  #:use-module (guix build-system asdf)
+  #:use-module (guix build-system gnu)
+  #:use-module (guix build-system emacs)
+  #:use-module (gnu packages autotools)
+  #:use-module (gnu packages base)
+  #:use-module (gnu packages c)
+  #:use-module (gnu packages compression)
+  #:use-module (gnu packages databases)
+  #:use-module (gnu packages enchant)
+  #:use-module (gnu packages figlet)
+  #:use-module (gnu packages file)
+  #:use-module (gnu packages fonts)
+  #:use-module (gnu packages fontutils)
+  #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages game-development)
+  #:use-module (gnu packages gcc)
+  #:use-module (gnu packages gl)
+  #:use-module (gnu packages glib)
+  #:use-module (gnu packages gnome)
+  #:use-module (gnu packages gnupg)
+  #:use-module (gnu packages graphics)
+  #:use-module (gnu packages graphviz)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages image)
+  #:use-module (gnu packages imagemagick)
+  #:use-module (gnu packages kerberos)
+  #:use-module (gnu packages libevent)
+  #:use-module (gnu packages libffi)
+  #:use-module (gnu packages linux)
+  #:use-module (gnu packages lisp)
+  #:use-module (gnu packages lisp-check)
+  #:use-module (gnu packages maths)
+  #:use-module (gnu packages mp3)
+  #:use-module (gnu packages mpi)
+  #:use-module (gnu packages ncurses)
+  #:use-module (gnu packages networking)
+  #:use-module (gnu packages package-management)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages python)
+  #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages readline)
+  #:use-module (gnu packages rsync)
+  #:use-module (gnu packages sdl)
+  #:use-module (gnu packages serialization)
+  #:use-module (gnu packages sqlite)
+  #:use-module (gnu packages statistics)
+  #:use-module (gnu packages tcl)
+  #:use-module (gnu packages texinfo)
+  #:use-module (gnu packages tls)
+  #:use-module (gnu packages uml)
+  #:use-module (gnu packages version-control)
+  #:use-module (gnu packages video)
+  #:use-module (gnu packages web)
+  #:use-module (gnu packages webkit)
+  #:use-module (gnu packages xdisorg)
+  #:use-module (gnu packages xiph)
+  #:use-module (gnu packages xml)
+  #:use-module (gnu packages xorg)
+  #:use-module (ice-9 match)
+  #:use-module (srfi srfi-1)
+  #:use-module (srfi srfi-19))
+
 
 
 (define-public supercollider-cli
@@ -216,3 +283,67 @@ using Guix System.")
   (package
    (inherit supercollider-gui)
    (name "supercollider-default")))
+
+
+;; in lisp-xyz.scm
+
+(define-public sbcl-cl-collider
+  (let ((commit "7e0ebb0756dda0a34401abafcd5ee22e043ce4c4")
+        (revision "0"))
+    (package
+     (name "sbcl-cl-collider")
+     (version (git-version "2025-08-18" revision commit))
+     (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/byulparan/cl-collider")
+               (commit commit)))
+         (file-name (git-file-name "cl-collider" version))
+         (sha256
+          (base32 "0a9bkr726fzj1ab9qw7hxwf7pz7ywgk31kqdqjpjj7cs57xa812w"))))
+     (build-system asdf-build-system/sbcl)
+     (arguments
+       (list #:phases
+             #~(modify-phases %standard-phases
+                 (add-after 'unpack 'patch-executables-and-paths
+                   (lambda* (#:key inputs #:allow-other-keys)
+                     (substitute* "server.lisp"
+                       (("/usr/local/lib/SuperCollider/plugins")
+                        (search-input-directory
+                         inputs "/lib/SuperCollider/plugins"))
+                       (("/usr/local/share/SuperCollider/Extensions")
+                        (search-input-directory
+                         inputs "/share/SuperCollider/Extensions"))
+                       (("which scsynth")
+                        (string-append
+                         "which "
+                         (search-input-file inputs "/bin/scsynth")))
+                       (("jack_connect")
+                        (search-input-file inputs "/bin/jack_connect"))))))))
+     (inputs
+       (list jack-1
+             supercollider
+             sbcl-alexandria
+             sbcl-bordeaux-threads
+             sbcl-cffi
+             sbcl-cl-ppcre
+             sbcl-flexi-streams
+             sbcl-ieee-floats ; sc-osc dependencies.
+             sbcl-named-readtables
+             sbcl-osc
+             sbcl-pileup
+             sbcl-simple-inferiors ; For ecl.
+             sbcl-split-sequence
+             sbcl-usocket))
+     (synopsis "SuperCollider client for CommonLisp")
+     (description "This package provides a SuperCollider client for
+Common Lisp.")
+     (home-page "https://github.com/byulparan/cl-collider/")
+     (license license:public-domain))))
+
+(define-public cl-collider
+  (sbcl-package->cl-source-package sbcl-cl-collider))
+
+(define-public ecl-cl-collider
+  (sbcl-package->ecl-package sbcl-cl-collider))
