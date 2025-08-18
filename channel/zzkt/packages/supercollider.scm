@@ -77,6 +77,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-check)
+  #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages maths)
   #:use-module (gnu packages mp3)
   #:use-module (gnu packages mpi)
@@ -292,7 +293,7 @@ using Guix System.")
         (revision "0"))
     (package
      (name "sbcl-cl-collider")
-     (version (git-version "2025-08-18" revision commit))
+     (version (git-version "20250818" revision commit))
      (source
        (origin
          (method git-fetch)
