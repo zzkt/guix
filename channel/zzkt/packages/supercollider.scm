@@ -353,7 +353,7 @@ for @code{SuperCollider}.  An installation extends the functionality of
                (commit commit)))
          (file-name (git-file-name "cl-collider" version))
          (sha256
-          (base32 "0a9bkr726fzj1ab9qw7hxwf7pz7ywgk31kqdqjpjj7cs57xa812w"))))
+          (base32 "19i8fn7l5gm9k0ypb9kpn919hv86swdq2426vg4vb2r13h49b6vm"))))
      (build-system asdf-build-system/sbcl)
      (arguments
        (list #:phases
