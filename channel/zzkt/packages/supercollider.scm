@@ -280,8 +280,9 @@ using Guix System.")
 
 
 ;; Supercollider GUI version by default
-(define-public supercollider-default
+(define-public supercollider
   (package
+   (version "3.14.0")
    (inherit supercollider-gui)
    (name "supercollider-default")))
 
