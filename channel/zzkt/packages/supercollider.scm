@@ -286,7 +286,58 @@ using Guix System.")
    (name "supercollider-default")))
 
 
-;; in lisp-xyz.scm
+;; Supercollider plugins
+(define-public sc3-plugins
+  (let ((commit "69cd2b68a6ad3b88c23745bbfa0f76955aaf529e")
+        (revision "0")
+        (version "3.14.0-pre"))
+    (package
+      (name "sc3-plugins")
+      (version (git-version version revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/supercollider/sc3-plugins")
+               (commit commit)
+               ;; for nova-simd, TLSF, stk
+               (recursive? #t)))
+         (sha256
+          (base32
+           "1qvnkqgdzfglrzm9rswpmk3cwjji40d2mssf36rv4xwdk1wdkbzp"))))
+      (build-system cmake-build-system)
+      (arguments
+       (list
+        #:tests? #f
+        #:configure-flags
+        #~(list
+           (string-append "-DSC_PATH=" #$(this-package-input "supercollider")
+                          "/include/SuperCollider")
+           "-DCMAKE_BUILD_TYPE=Release"
+           "-DSUPERNOVA=ON")
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'configure 'patch-supercollider-version
+              (lambda* (#:key inputs #:allow-other-keys)
+                (substitute* "CMakeLists.txt"
+                  (("include\\(\"\\$\\{SC_PATH\\}/SCVersion.txt\"\\)")
+                   (string-append "include("
+                                  (search-input-file
+                                   inputs
+                                   "/include/SuperCollider/SCVersion.txt") ")"))))))))
+      (native-inputs
+       (list pkg-config))
+      (inputs (list fftwf supercollider))
+      (home-page "https://github.com/supercollider/sc3-plugins")
+      (synopsis "Community plugins for SuperCollider")
+      (description "Community collection of unit generator plugins
+for @code{SuperCollider}.  An installation extends the functionality of
+@code{SuperCollider} by additional UGens that run on scsynth, the
+@code{SuperCollider} audio synthesis server.")
+      (license license:gpl2))))
+
+
+;; as seen in in lisp-xyz.scm
 
 (define-public sbcl-cl-collider
   (let ((commit "7e0ebb0756dda0a34401abafcd5ee22e043ce4c4")
