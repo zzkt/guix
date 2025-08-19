@@ -304,7 +304,7 @@ using Guix System.")
                (recursive? #t)))
          (sha256
           (base32
-           "1qvnkqgdzfglrzm9rswpmk3cwjji40d2mssf36rv4xwdk1wdkbzp"))))
+           "10srxcz8bs33f7qr9lpaf4pxcw6zr2aisgv2gwpy5p9ham89hn5s"))))
       (build-system cmake-build-system)
       (arguments
        (list
