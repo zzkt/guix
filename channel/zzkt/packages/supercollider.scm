@@ -44,7 +44,7 @@
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial)
 
-;; lisp-xyz.scm
+  ;; lisp-xyz.scm
 
   #:use-module (guix build-system asdf)
   #:use-module (guix build-system gnu)
@@ -160,6 +160,9 @@ link REQUIRED)"))))))
              "-DSC_EL=OFF"
              "-DSC_QT=OFF"  ;; CLI only. buiild without Qt and IDE
              "-DCMAKE_BUILD_TYPE=Release")
+     #:modules '((guix build cmake-build-system)
+                 ((guix build gnu-build-system) #:prefix gnu:)
+                 (guix build utils))
      #:phases
      #~(modify-phases %standard-phases
                       ;; HOME must be defined otherwise supercollider throws a "ERROR:
@@ -250,7 +253,6 @@ using Guix System.")
                                                    (string-append "Path(\"" scclass-dir "\")"))))))
                       (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
                                  (lambda _
-                                   (display (getcwd)) (newline)
                                    (substitute* "include/plugin_interface/SC_SndBuf.h"
                                                 (("SNDFILE_tag")
                                                  "sf_private_tag"))))
@@ -258,6 +260,7 @@ using Guix System.")
                                   (lambda _
                                     (system "Xvfb &")
                                     (setenv "DISPLAY" ":0")))
+                      (replace 'install (assoc-ref gnu:%standard-phases 'install))
                       (add-before 'install 'install-ide
                                   (lambda _
                                     (let* ((ide #$output:ide)
@@ -267,13 +270,32 @@ using Guix System.")
                                       (delete-file scide)))))))
    (native-inputs
     (list ableton-link pkg-config qttools-5 xorg-server-for-tests))
-   (inputs (modify-inputs
-            (package-inputs supercollider-cli)
-            (prepend qtbase-5
-                     qtdeclarative-5
-                     qtsvg-5
-                     qtwebchannel-5
-                     qtwebsockets-5)))
+   ;; (inputs (modify-inputs
+   ;;          (package-inputs supercollider-cli)
+   ;;          (prepend qtbase-5
+   ;;                   qtdeclarative-5
+   ;;                   qtsvg-5
+   ;;                   qtwebchannel-5
+   ;;                   qtwebsockets-5)))
+   (inputs (list jack-1
+                 libsndfile
+                 fftw
+                 libxt
+                 readline              ;readline support for sclang's CLI
+                 alsa-lib              ;for sclang's MIDI interface
+                 eudev                 ;for user interactions with devices
+                 avahi                 ;zeroconf service discovery support
+                 icu4c
+                 boost
+                 boost-sync
+                 yaml-cpp
+                 python-wrapper        ;there were warnings in the build process
+                 ruby                  ;there were warnings in the build process
+                 qtbase-5
+                 qtdeclarative-5
+                 qtsvg-5
+                 qtwebchannel-5
+                 qtwebsockets-5))
    (propagated-inputs
     (list qtwebengine-5))
    (synopsis "Synthesis engine and programming language (including IDE)")))
@@ -292,49 +314,49 @@ using Guix System.")
         (revision "0")
         (version "3.14.0-pre"))
     (package
-      (name "sc3-plugins")
-      (version (git-version version revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/supercollider/sc3-plugins")
-               (commit commit)
-               ;; for nova-simd, TLSF, stk
-               (recursive? #t)))
-         (sha256
-          (base32
-           "10srxcz8bs33f7qr9lpaf4pxcw6zr2aisgv2gwpy5p9ham89hn5s"))))
-      (build-system cmake-build-system)
-      (arguments
-       (list
-        #:tests? #f
-        #:configure-flags
-        #~(list
-           (string-append "-DSC_PATH=" #$(this-package-input "supercollider")
-                          "/include/SuperCollider")
-           "-DCMAKE_BUILD_TYPE=Release"
-           "-DSUPERNOVA=ON")
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'configure 'patch-supercollider-version
-              (lambda* (#:key inputs #:allow-other-keys)
-                (substitute* "CMakeLists.txt"
-                  (("include\\(\"\\$\\{SC_PATH\\}/SCVersion.txt\"\\)")
-                   (string-append "include("
-                                  (search-input-file
-                                   inputs
-                                   "/include/SuperCollider/SCVersion.txt") ")"))))))))
-      (native-inputs
-       (list pkg-config))
-      (inputs (list fftwf supercollider))
-      (home-page "https://github.com/supercollider/sc3-plugins")
-      (synopsis "Community plugins for SuperCollider")
-      (description "Community collection of unit generator plugins
+     (name "sc3-plugins")
+     (version (git-version version revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/supercollider/sc3-plugins")
+             (commit commit)
+             ;; for nova-simd, TLSF, stk
+             (recursive? #t)))
+       (sha256
+        (base32
+         "10srxcz8bs33f7qr9lpaf4pxcw6zr2aisgv2gwpy5p9ham89hn5s"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list
+       #:tests? #f
+       #:configure-flags
+       #~(list
+          (string-append "-DSC_PATH=" #$(this-package-input "supercollider")
+                         "/include/SuperCollider")
+          "-DCMAKE_BUILD_TYPE=Release"
+          "-DSUPERNOVA=ON")
+       #:phases
+       #~(modify-phases %standard-phases
+                        (add-before 'configure 'patch-supercollider-version
+                                    (lambda* (#:key inputs #:allow-other-keys)
+                                      (substitute* "CMakeLists.txt"
+                                                   (("include\\(\"\\$\\{SC_PATH\\}/SCVersion.txt\"\\)")
+                                                    (string-append "include("
+                                                                   (search-input-file
+                                                                    inputs
+                                                                    "/include/SuperCollider/SCVersion.txt") ")"))))))))
+     (native-inputs
+      (list pkg-config))
+     (inputs (list fftwf supercollider))
+     (home-page "https://github.com/supercollider/sc3-plugins")
+     (synopsis "Community plugins for SuperCollider")
+     (description "Community collection of unit generator plugins
 for @code{SuperCollider}.  An installation extends the functionality of
 @code{SuperCollider} by additional UGens that run on scsynth, the
 @code{SuperCollider} audio synthesis server.")
-      (license license:gpl2))))
+     (license license:gpl2))))
 
 
 ;; as seen in in lisp-xyz.scm
@@ -346,48 +368,49 @@ for @code{SuperCollider}.  An installation extends the functionality of
      (name "sbcl-cl-collider")
      (version (git-version "20250818" revision commit))
      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/byulparan/cl-collider")
-               (commit commit)))
-         (file-name (git-file-name "cl-collider" version))
-         (sha256
-          (base32 "19i8fn7l5gm9k0ypb9kpn919hv86swdq2426vg4vb2r13h49b6vm"))))
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/byulparan/cl-collider")
+             (commit commit)))
+       (file-name (git-file-name "cl-collider" version))
+       (sha256
+        (base32 "19i8fn7l5gm9k0ypb9kpn919hv86swdq2426vg4vb2r13h49b6vm"))))
      (build-system asdf-build-system/sbcl)
      (arguments
-       (list #:phases
-             #~(modify-phases %standard-phases
-                 (add-after 'unpack 'patch-executables-and-paths
-                   (lambda* (#:key inputs #:allow-other-keys)
-                     (substitute* "server.lisp"
-                       (("/usr/local/lib/SuperCollider/plugins")
-                        (search-input-directory
-                         inputs "/lib/SuperCollider/plugins"))
-                       (("/usr/local/share/SuperCollider/Extensions")
-                        (search-input-directory
-                         inputs "/share/SuperCollider/Extensions"))
-                       (("which scsynth")
-                        (string-append
-                         "which "
-                         (search-input-file inputs "/bin/scsynth")))
-                       (("jack_connect")
-                        (search-input-file inputs "/bin/jack_connect"))))))))
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+                        (add-after 'unpack 'patch-executables-and-paths
+                                   (lambda* (#:key inputs #:allow-other-keys)
+                                     (substitute* "server.lisp"
+                                                  (("/usr/local/lib/SuperCollider/plugins")
+                                                   (search-input-directory
+                                                    inputs "/lib/SuperCollider/plugins"))
+                                                  (("/usr/local/share/SuperCollider/Extensions")
+                                                   (search-input-directory
+                                                    inputs "/share/SuperCollider/Extensions"))
+                                                  (("which scsynth")
+                                                   (string-append
+                                                    "which "
+                                                    (search-input-file inputs "/bin/scsynth")))
+                                                  (("jack_connect")
+                                                   (search-input-file inputs "/bin/jack_connect"))))))))
      (inputs
-       (list jack-1
-             supercollider
-             sbcl-alexandria
-             sbcl-bordeaux-threads
-             sbcl-cffi
-             sbcl-cl-ppcre
-             sbcl-flexi-streams
-             sbcl-ieee-floats ; sc-osc dependencies.
-             sbcl-named-readtables
-             sbcl-osc
-             sbcl-pileup
-             sbcl-simple-inferiors ; For ecl.
-             sbcl-split-sequence
-             sbcl-usocket))
+      (list jack-1
+            supercollider
+            sbcl-alexandria
+            sbcl-bordeaux-threads
+            sbcl-cffi
+            sbcl-cl-ppcre
+            sbcl-flexi-streams
+            sbcl-ieee-floats ; sc-osc dependencies.
+            sbcl-named-readtables
+            sbcl-osc
+            sbcl-pileup
+            sbcl-simple-inferiors ; For ecl.
+            sbcl-split-sequence
+            sbcl-usocket))
      (synopsis "SuperCollider client for CommonLisp")
      (description "This package provides a SuperCollider client for
 Common Lisp.")
