@@ -425,12 +425,12 @@ for @code{SuperCollider}.  An installation extends the functionality of
                         (add-after 'unpack 'patch-executables-and-paths
                                    (lambda* (#:key inputs #:allow-other-keys)
                                      (substitute* "server.lisp"
-                                                  (("/usr/local/lib/SuperCollider/plugins")
+                                                  (("/usr/lib/SuperCollider/plugins")
                                                    (search-input-directory
                                                     inputs "/lib/SuperCollider/plugins"))
-                                                  (("/usr/local/share/SuperCollider/Extensions")
-                                                   (search-input-directory
-                                                    inputs "/share/SuperCollider/Extensions"))
+                                                  ;; (("/usr/share/SuperCollider/Extensions")
+                                                  ;;  (search-input-directory
+                                                  ;;   inputs "/share/SuperCollider/Extensions"))
                                                   (("which scsynth")
                                                    (string-append
                                                     "which "
