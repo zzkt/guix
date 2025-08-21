@@ -49,7 +49,7 @@
       "Disconnect from the online world for a while")
     (description
       "A simple package to disconnect from the online world for a while, possibly reconnecting later. Any interruptions or distractions which occur once the command is run are guaranteed to be local.")
-    (license :gpl3)))
+    (license license:gpl3+)))
 
 
 
@@ -73,4 +73,4 @@
     (synopsis "The Book of Changes")
     (description
       "Documentation at https://melpa.org/#/i-ching")
-    (license :gpl3))))
+    (license license:gpl3+))))
