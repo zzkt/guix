@@ -50,3 +50,27 @@
     (description
       "A simple package to disconnect from the online world for a while, possibly reconnecting later. Any interruptions or distractions which occur once the command is run are guaranteed to be local.")
     (license :gpl3)))
+
+
+
+(define-public emacs-i-ching
+  (package
+    (name "emacs-i-ching")
+    (version "20241113.1642")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://codeberg.org/zzkt/i-ching.git")
+               (commit
+                 "e4339cb64a97e0d04a4cb8e7183aeec4e4ae6a29")))
+        (sha256
+          (base32
+            "08827zq4jni4bxlmjq24nbj6k2q07ks6mb47xfs2bp8hjqb0m07f"))))
+    (build-system emacs-build-system)
+    (propagated-inputs (list emacs-request))
+    (home-page "https://codeberg.org/zzkt/i-ching")
+    (synopsis "The Book of Changes")
+    (description
+      "Documentation at https://melpa.org/#/i-ching")
+    (license :gpl3))))
