@@ -53,7 +53,6 @@
     (license license:gpl3+)))
 
 
-
 (define-public emacs-i-ching
   (package
     (name "emacs-i-ching")
@@ -74,4 +73,4 @@
     (synopsis "The Book of Changes")
     (description
       "Documentation at https://melpa.org/#/i-ching")
-    (license license:gpl3+))))
+    (license license:gpl3+)))
