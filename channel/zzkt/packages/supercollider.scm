@@ -17,9 +17,9 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (zzkt packages supercollider)
-  
+
   ;; audio.scm
-  
+
   #:use-module (ice-9 regex)
   #:use-module (guix utils)
   #:use-module ((guix licenses)
@@ -46,7 +46,7 @@
   #:use-module (guix build-system trivial)
 
   ;; lisp-xyz.scm
-  
+
   #:use-module (guix build-system asdf)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system emacs)
