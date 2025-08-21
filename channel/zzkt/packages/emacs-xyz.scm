@@ -28,6 +28,7 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system emacs)
   #:use-module (gnu packages emacs)
+  #:use-module (gnu packages emacs-xyz) ;; emacs-request
   #:use-module (gnu packages emacs-build))
 
 (define-public emacs-quiet
@@ -72,5 +73,5 @@
     (home-page "https://codeberg.org/zzkt/i-ching")
     (synopsis "The Book of Changes")
     (description
-      "Documentation at https://melpa.org/#/i-ching")
+      "Cast hexagrams and consult the The Book of Changes from the comfort of Emacs.")
     (license license:gpl3+)))
