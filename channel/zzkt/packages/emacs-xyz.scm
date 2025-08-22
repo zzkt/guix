@@ -75,3 +75,107 @@
     (description
       "Cast hexagrams and consult the The Book of Changes from the comfort of Emacs.")
     (license license:gpl3+)))
+
+
+(define-public emacs-aqi
+  (package
+    (name "emacs-aqi")
+    (version "20230530.1204")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://codeberg.org/zzkt/aqi.git")
+               (commit
+                 "cbff3c6ce691a3a1d2f5636384e29d43f0e1d236")))
+        (sha256
+          (base32
+            "0r87kvcdj93q61kxk1713z3rza0p1mircsadx53dj3i0f01bx3qa"))))
+    (build-system emacs-build-system)
+    (propagated-inputs (list emacs-request
+                             emacs-let-alist))
+    (home-page "https://codeberg.org/zzkt/aqi")
+    (synopsis "Air quality data from the World Air Quality Index project.")
+    (description
+      "An emacs interface to the World Air Quality Index, providing air quality information from around 12,000 stations in over 100 countries and 1000 major cities")
+    (license license:gpl3+)))
+
+
+(define-public emacs-smog
+  (package
+    (name "emacs-smog")
+    (version "20230530.843")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://codeberg.org/zzkt/smog.git")
+               (commit
+                 "2fc5fef0f5000027b3550495259a65966c68ec52")))
+        (sha256
+          (base32
+            "1x9iwbfyvh34x3gnm7nwwl1lgsyzgs1374bf5khzif9h4wd09ffa"))))
+    (build-system emacs-build-system)
+    (propagated-inputs (list style))
+    (home-page "https://codeberg.org/zzkt/smog")
+    (synopsis
+     "Analyse the writing style, word use and readability of prose.")
+    (description
+      "A simple way to analyse the writing style, word use and readability of prose in Emacs. It performs several readability tests on the text including; Flesch-Kincaid readability tests, Automated Readability Index (aka 'ARI'), Coleman-Liau Index, Gunning fog index (aka 'Fog Index'), and SMOG Index (aka 'SMOG-Grading', 'Simple Measure Of Gobbledygook'). It also summarises word usage and provides information about sentence and paragraph structure.")
+    (license license:gpl3+)))
+
+
+;; via emacs-xyz.scm (reduce & update to 3.14.0)
+
+(define-public emacs-scel
+  (let ((version "20170629")
+        (revision "1")
+        (commit "aeea3ad4be9306d14c3a734a4ff54fee10ac135b"))
+    (package
+      (name "emacs-scel")
+      (version (git-version version revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/supercollider/scel")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32
+           "0jvmzs1lsjyndqshhii2y4mnr3wghai26i3p75453zrpxpg0zvvw"))))
+      (build-system emacs-build-system)
+      (arguments
+       (list
+        #:tests? #f ; No tests.
+        #:modules '((guix build emacs-build-system)
+                    ((guix build cmake-build-system) #:prefix cmake:)
+                    (guix build utils))
+        #:imported-modules `(,@%emacs-build-system-modules
+                             (guix build cmake-build-system))
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'configure
+              (lambda* (#:key outputs #:allow-other-keys)
+                (substitute* "el/CMakeLists.txt"
+                  (("share/emacs/site-lisp/SuperCollider")
+                   (elpa-directory #$output)))
+                ((assoc-ref cmake:%standard-phases 'configure)
+                 #:outputs outputs
+                 #:configure-flags '("-DSC_EL_BYTECOMPILE=OFF"))))
+            (add-after 'expand-load-path 'add-el-dir-to-emacs-load-path
+              (lambda _
+                (setenv "EMACSLOADPATH"
+                        (string-append (getcwd)
+                                       "/el:"
+                                       (getenv "EMACSLOADPATH")))))
+            (replace 'install (assoc-ref cmake:%standard-phases 'install)))))
+      (inputs
+       (list supercollider))
+      (native-inputs
+       (list cmake-minimal))
+      (home-page "https://github.com/supercollider/scel")
+      (synopsis "SuperCollider Emacs interface")
+      (description "@code{emacs-scel} is an Emacs interface to SuperCollider.
+SuperCollider is a platform for audio synthesis and algorithmic composition.")
+      (license license:gpl2+))))
