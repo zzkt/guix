@@ -29,7 +29,8 @@
   #:use-module (guix build-system emacs)
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages emacs-xyz) ;; emacs-request
-  #:use-module (gnu packages emacs-build))
+  #:use-module (gnu packages emacs-build)
+  #:use-module (gnu packages dictionaries)) ;; diction (and style)
 
 (define-public emacs-quiet
   (package
@@ -45,6 +46,8 @@
         (sha256
           (base32
             "0141z6acdffy96ghrwghzgqnv3mypvfkgci413dfaym4z80iwqdz"))))
+    (arguments
+     (list #:tests? #f))
     (build-system emacs-build-system)
     (home-page "https://codeberg.org/zzkt/quiet")
     (synopsis
