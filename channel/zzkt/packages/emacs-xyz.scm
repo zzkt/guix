@@ -127,55 +127,55 @@
 
 ;; via emacs-xyz.scm (reduce & update to 3.14.0)
 
-(define-public emacs-scel
-  (let ((version "20170629")
-        (revision "1")
-        (commit "aeea3ad4be9306d14c3a734a4ff54fee10ac135b"))
-    (package
-      (name "emacs-scel")
-      (version (git-version version revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/supercollider/scel")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "0jvmzs1lsjyndqshhii2y4mnr3wghai26i3p75453zrpxpg0zvvw"))))
-      (build-system emacs-build-system)
-      (arguments
-       (list
-        #:tests? #f ; No tests.
-        #:modules '((guix build emacs-build-system)
-                    ((guix build cmake-build-system) #:prefix cmake:)
-                    (guix build utils))
-        #:imported-modules `(,@%emacs-build-system-modules
-                             (guix build cmake-build-system))
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'configure
-              (lambda* (#:key outputs #:allow-other-keys)
-                (substitute* "el/CMakeLists.txt"
-                  (("share/emacs/site-lisp/SuperCollider")
-                   (elpa-directory #$output)))
-                ((assoc-ref cmake:%standard-phases 'configure)
-                 #:outputs outputs
-                 #:configure-flags '("-DSC_EL_BYTECOMPILE=OFF"))))
-            (add-after 'expand-load-path 'add-el-dir-to-emacs-load-path
-              (lambda _
-                (setenv "EMACSLOADPATH"
-                        (string-append (getcwd)
-                                       "/el:"
-                                       (getenv "EMACSLOADPATH")))))
-            (replace 'install (assoc-ref cmake:%standard-phases 'install)))))
-      (inputs
-       (list supercollider))
-      (native-inputs
-       (list cmake-minimal))
-      (home-page "https://github.com/supercollider/scel")
-      (synopsis "SuperCollider Emacs interface")
-      (description "@code{emacs-scel} is an Emacs interface to SuperCollider.
-SuperCollider is a platform for audio synthesis and algorithmic composition.")
-      (license license:gpl2+))))
+;; (define-public emacs-scel
+;;   (let ((version "20170629")
+;;         (revision "1")
+;;         (commit "aeea3ad4be9306d14c3a734a4ff54fee10ac135b"))
+;;     (package
+;;       (name "emacs-scel")
+;;       (version (git-version version revision commit))
+;;       (source
+;;        (origin
+;;          (method git-fetch)
+;;          (uri (git-reference
+;;                (url "https://github.com/supercollider/scel")
+;;                (commit commit)))
+;;          (file-name (git-file-name name version))
+;;          (sha256
+;;           (base32
+;;            "0jvmzs1lsjyndqshhii2y4mnr3wghai26i3p75453zrpxpg0zvvw"))))
+;;       (build-system emacs-build-system)
+;;       (arguments
+;;        (list
+;;         #:tests? #f ; No tests.
+;;         #:modules '((guix build emacs-build-system)
+;;                     ((guix build cmake-build-system) #:prefix cmake:)
+;;                     (guix build utils))
+;;         #:imported-modules `(,@%emacs-build-system-modules
+;;                              (guix build cmake-build-system))
+;;         #:phases
+;;         #~(modify-phases %standard-phases
+;;             (add-after 'unpack 'configure
+;;               (lambda* (#:key outputs #:allow-other-keys)
+;;                 (substitute* "el/CMakeLists.txt"
+;;                   (("share/emacs/site-lisp/SuperCollider")
+;;                    (elpa-directory #$output)))
+;;                 ((assoc-ref cmake:%standard-phases 'configure)
+;;                  #:outputs outputs
+;;                  #:configure-flags '("-DSC_EL_BYTECOMPILE=OFF"))))
+;;             (add-after 'expand-load-path 'add-el-dir-to-emacs-load-path
+;;               (lambda _
+;;                 (setenv "EMACSLOADPATH"
+;;                         (string-append (getcwd)
+;;                                        "/el:"
+;;                                        (getenv "EMACSLOADPATH")))))
+;;             (replace 'install (assoc-ref cmake:%standard-phases 'install)))))
+;;       (inputs
+;;        (list supercollider))
+;;       (native-inputs
+;;        (list cmake-minimal))
+;;       (home-page "https://github.com/supercollider/scel")
+;;       (synopsis "SuperCollider Emacs interface")
+;;       (description "@code{emacs-scel} is an Emacs interface to SuperCollider.
+;; SuperCollider is a platform for audio synthesis and algorithmic composition.")
+;;      (license license:gpl2+))))
