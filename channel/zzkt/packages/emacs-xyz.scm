@@ -73,7 +73,7 @@
     (home-page "https://codeberg.org/zzkt/i-ching")
     (synopsis "The Book of Changes")
     (description
-      "Cast hexagrams and consult the The Book of Changes from the comfort of Emacs.")
+      "Cast hexagrams and consult the I Ching, or 'Book of Changes' from the comfort of Emacs. The I Ching can be used as a divination method, pattern generator or fixed point for millennia of commentary & exegesis. This package provides methods for casting and describing hexagrams, querying the oracle, and finding patterns in randomness. The descriptions of hexagrams and their classification have been drawn from public domain sources, tradition and antiquity.")
     (license license:gpl3+)))
 
 
@@ -116,7 +116,7 @@
           (base32
             "1x9iwbfyvh34x3gnm7nwwl1lgsyzgs1374bf5khzif9h4wd09ffa"))))
     (build-system emacs-build-system)
-    (propagated-inputs (list style))
+    (propagated-inputs (list diction))
     (home-page "https://codeberg.org/zzkt/smog")
     (synopsis
      "Analyse the writing style, word use and readability of prose.")
