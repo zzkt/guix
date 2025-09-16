@@ -4,7 +4,7 @@
 
 ;; via https://codeberg.org/look/saayix/src/branch/main/modules/saayix/packages/terminals.scm
 
-(define-module (zzkt packages terminals)
+(define-module (zzkt packages ghostty)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages compression)
