@@ -75,16 +75,14 @@ various features not installed as part of =plasma-desktop-service=
              "xremap-kde"
              #+END_SRC
 *** terminal & shells
-kitty config located in  =dotfiles/.config/kitty/kitty.conf=
              #+BEGIN_SRC scheme
-             "kitty"
              "fish"
              "pv"
              #+END_SRC
 *** Mail
              #+BEGIN_SRC scheme
              "icedove"    ;; aka thunderbird
-             "getmail6"
+             ;; "getmail6"
              "notmuch"
              #+END_SRC
 *** graphics
@@ -182,7 +180,7 @@ Additional channels → nonguix (aka “The GUIX Channel That Shall Not Be Named
                          "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
                      (channel
                       (name 'zzkt)
-                      (url "https://gitlab.com/zzkt/guix")
+                      (url "https://codeberg.org/zzkt/guix")
                       (branch "endless")
                       (commit
                        "02cdb798288a79e77e2b42f712c64b758de22499")
