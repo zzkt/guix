@@ -181,16 +181,9 @@
                   (((string-append
                      "SC_Filesystem::instance\\(\\)\\.getDirectory"
                      "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
-                   (string-append "Path(\"" scclass-dir "\")"))))))
-          (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
-            (lambda _
-              (display (getcwd))
-              (newline)
-              (substitute* "include/plugin_interface/SC_SndBuf.h"
-                (("SNDFILE_tag")
-                 "sf_private_tag")))))))
+                   (string-append "Path(\"" scclass-dir "\")")))))))))
     (native-inputs (list ableton-link pkg-config))
-    (inputs (list jack-1
+    (inputs (list jack-2
                   libsndfile
                   fftw
                   libxt
