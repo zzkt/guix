@@ -256,7 +256,7 @@ using Guix System.")
             (substitute* "lang/CMakeLists.txt"
               (("include\\(\\.\\./external_libraries/link/AbletonLinkConfig\\.cmake\\)")
                "find_package(AbletonLink NAMES AbletonLink ableton-link link REQUIRED)"))))))
-    (build-system cmake-build-system)
+    (build-system qt-build-system)
     (outputs '("out" ;core language
                "ide")) ;qt ide
     (arguments
@@ -269,7 +269,7 @@ using Guix System.")
               "-DFORTIFY=ON"
               "-DLIBSCSYNTH=ON"
               "-DSC_EL=OFF") ;scel is packaged individually as emacs-scel
-      #:modules '((guix build cmake-build-system)
+      #:modules '((guix build qt-build-system)
                   ((guix build gnu-build-system)
                    #:prefix gnu:)
                   (guix build utils))
@@ -291,15 +291,6 @@ using Guix System.")
                      "SC_Filesystem::instance\\(\\)\\.getDirectory"
                      "\\(DirName::Resource\\) / CLASS_LIB_DIR_NAME"))
                    (string-append "Path(\"" scclass-dir "\")"))))))
-          (add-after 'patch-scclass-dir 'fix-struct-SOUNDFILE-tag
-            (lambda _
-              (substitute* "include/plugin_interface/SC_SndBuf.h"
-                (("SNDFILE_tag")
-                 "sf_private_tag"))))
-          (add-before 'build 'prepare-x
-            (lambda _
-              (system "Xvfb &")
-              (setenv "DISPLAY" ":0")))
           (replace 'install
             (assoc-ref gnu:%standard-phases
                        'install))
@@ -310,9 +301,9 @@ using Guix System.")
                 (install-file scide
                               (string-append ide "/bin"))
                 (delete-file scide)))))))
-    (native-inputs (list ableton-link pkg-config qttools-5
-                         xorg-server-for-tests))
-    (inputs (list jack-1
+    (native-inputs
+     (list ableton-link pkg-config qttools))
+    (inputs (list jack-2
                   libsndfile
                   fftw
                   libxt
@@ -326,13 +317,12 @@ using Guix System.")
                   yaml-cpp
                   python-wrapper ;there were warnings in the build process
                   ruby ;there were warnings in the build process
-                  qtbase-5
-                  qtdeclarative-5
-                  qtsvg-5
-                  qtwebchannel-5
-                  qtwebsockets-5))
+                  qtdeclarative
+                  qtsvg
+                  qtwebchannel
+                  qtwebsockets))
     (propagated-inputs ;to get native-search-path
-                       (list qtwebengine-5))
+                       (list qtwebengine))
     (home-page "https://github.com/supercollider/supercollider")
     (synopsis "Synthesis engine and programming language")
     (description
@@ -459,3 +449,10 @@ Common Lisp.")
 
 (define-public ecl-cl-collider
   (sbcl-package->ecl-package sbcl-cl-collider))
+
+
+;; shared paths tests (see bioinformatics & #:install-plan)
+
+;; in supercollider(?)
+
+;; in plugins & cl-collider(?)

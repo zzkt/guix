@@ -32,6 +32,8 @@
   #:use-module (gnu packages emacs-build)
   #:use-module (gnu packages dictionaries)) ;; diction (and style)
 
+
+;; in guix-mainline as of 120e5fd1491893c6923bae1feec663fa82617b7e
 (define-public emacs-quiet
   (package
     (name "emacs-quiet")
@@ -57,6 +59,7 @@
     (license license:gpl3+)))
 
 
+;; in guix-mainline as of b27e023e87a41b41b57a0b788a01e7bb6928cada
 (define-public emacs-i-ching
   (package
     (name "emacs-i-ching")
