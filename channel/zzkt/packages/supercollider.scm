@@ -42,6 +42,7 @@
   #:use-module (gnu packages qt)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages pulseaudio) ;libsndfile
+  #:use-module (guix build-system qt)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system trivial)
 
