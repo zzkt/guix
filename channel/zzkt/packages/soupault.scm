@@ -491,6 +491,139 @@ collation and locale-sensitive case mappings, and more.  The library is
 currently designed for Unicode Standard 3.2.")
     (license #f)))
 
+;; via guix import opam -r dune
+
+(define-public ocaml-melange
+  (package
+    (name "ocaml-melange")
+    (version "6.0.1-414")
+    (source
+     no-source-information)
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-cmdliner ocaml-dune-build-info ocaml-ppxlib
+                             ocaml-menhir ocaml-odoc))
+    (native-inputs (list ocaml-cppo))
+    (home-page "https://github.com/melange-re/melange")
+    (synopsis "Toolchain to produce JS from Reason/OCaml")
+    (description #f)
+    (license license:lgpl2.1+)))
+
+(define-public ocaml-menhirSdk
+  (package
+    (name "ocaml-menhirSdk")
+    (version "20250912")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://gitlab.inria.fr/fpottier/menhir/-/archive/20250912/archive.tar.gz")
+       (sha256
+        (base32 "0x7ki5975xd3ma4j6i105g838hn7q5awi24i06fl1rbv2lwwimnr"))))
+    (build-system dune-build-system)
+    (home-page "http://gitlab.inria.fr/fpottier/menhir")
+    (synopsis "Compile-time library for auxiliary tools related to Menhir")
+    (description #f)
+    (license #f)))
+
+(define-public ocaml-js-of-ocaml-compiler
+  (package
+    (name "ocaml-js-of-ocaml-compiler")
+    (version "6.2.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocsigen/js_of_ocaml/releases/download/6.2.0/js_of_ocaml-6.2.0.tbz")
+       (sha256
+        (base32 "1nm5sa6xpzcbwf3rpkfg19d3c8f6x3h3wcw858sjl5qvimvl3ikw"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-ppxlib
+                             ocaml-cmdliner
+                             ocaml-sedlex
+                             ocaml-menhir
+                             ocaml-menhirLib
+                             ocaml-menhirSdk
+                             ocaml-yojson
+                             ocaml-odoc))
+    (native-inputs (list ocaml-num ocaml-ppx-expect ocaml-re ocaml-qcheck))
+    (properties `((upstream-name . "js_of_ocaml-compiler")))
+    (home-page "https://ocsigen.org/js_of_ocaml/latest/manual/overview")
+    (synopsis "Compiler from OCaml bytecode to JavaScript")
+    (description
+     "Js_of_ocaml is a compiler from OCaml bytecode to @code{JavaScript}.  It makes it
+possible to run pure OCaml programs in @code{JavaScript} environment like
+browsers and Node.js.")
+    (license (list license:gpl2+ #f))))
+
+(define-public ocaml-js-of-ocaml
+  (package
+    (name "ocaml-js-of-ocaml")
+    (version "6.2.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocsigen/js_of_ocaml/releases/download/6.2.0/js_of_ocaml-6.2.0.tbz")
+       (sha256
+        (base32 "1nm5sa6xpzcbwf3rpkfg19d3c8f6x3h3wcw858sjl5qvimvl3ikw"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-js-of-ocaml-compiler ocaml-ppxlib
+                             ocaml-odoc))
+    (native-inputs (list ocaml-num ocaml-ppx-expect ocaml-re))
+    (properties `((upstream-name . "js_of_ocaml")))
+    (home-page "https://ocsigen.org/js_of_ocaml/latest/manual/overview")
+    (synopsis "Compiler from OCaml bytecode to JavaScript")
+    (description
+     "Js_of_ocaml is a compiler from OCaml bytecode to @code{JavaScript}.  It makes it
+possible to run pure OCaml programs in @code{JavaScript} environment like
+browsers and Node.js.")
+    (license (list license:gpl2+ #f))))
+
+(define-public ocaml-dune
+  (package
+    (name "ocaml-dune")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system ocaml-build-system)
+    (propagated-inputs (list ocaml-lwt
+                             ocaml-cinaps
+                             ocaml-csexp
+                             ocaml-js-of-ocaml
+                             ocaml-js-of-ocaml-compiler
+                             ocaml-mdx
+                             ocaml-menhir
+                             ocaml-odoc
+                             ocaml-ppx-expect
+                             ocaml-spawn
+                             ocaml-ppx-inline-test
+                             ocaml-ppxlib
+                             ocaml-ctypes
+                             ocaml-utop
+                             ocaml-melange
+                             ocaml-uutf))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Fast, portable, and opinionated build system")
+    (description
+     "Dune is a build system that was designed to simplify the release of Jane Street
+packages.  It reads metadata from \"dune\" files following a very simple
+s-expression syntax.  Dune is fast, has very low-overhead, and supports parallel
+builds on all platforms.  It has no system dependencies; all you need to build
+dune or packages using dune is OCaml.  You don't need make or bash as long as
+the packages themselves don't use bash explicitly.  Dune is composable;
+supporting multi-package development by simply dropping multiple repositories
+into the same directory.  Dune also supports multi-context builds, such as
+building against several opam roots/switches simultaneously.  This helps
+maintaining packages across several versions of OCaml and gives
+cross-compilation for free.")
+    (license license:expat)))
+
+
 ;; via guix import opam -r dune-site
 
 (define-public ocaml-dune-site
