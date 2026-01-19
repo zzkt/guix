@@ -496,16 +496,16 @@ currently designed for Unicode Standard 3.2.")
 (define-public ocaml-dune-site
   (package
     (name "ocaml-dune-site")
-    (version "3.12.2")
+    (version "3.21.0")
     (source
      (origin
        (method url-fetch)
        (uri
-        "https://github.com/ocaml/dune/releases/download/3.12.2/dune-3.12.2.tbz")
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
        (sha256
-        (base32 "1csz543wq66dcn08piabaascvbiswb1vxw1xfg4glgp8zq0mzap8"))))
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
     (build-system dune-build-system)
-    (propagated-inputs (list dune ocaml-lwt ocaml-base ocaml-odoc))
+    (propagated-inputs (list ocaml-dune-private-libs ocaml-odoc))
     (home-page "https://github.com/ocaml/dune")
     (synopsis "Embed locations information inside executable and libraries")
     (description #f)
