@@ -561,7 +561,7 @@ currently designed for Unicode Standard 3.2.")
      "Js_of_ocaml is a compiler from OCaml bytecode to @code{JavaScript}.  It makes it
 possible to run pure OCaml programs in @code{JavaScript} environment like
 browsers and Node.js.")
-    (license (list license:gpl2+ #f))))
+    (license  #f)))
 
 (define-public ocaml-js-of-ocaml
   (package
@@ -585,7 +585,7 @@ browsers and Node.js.")
      "Js_of_ocaml is a compiler from OCaml bytecode to @code{JavaScript}.  It makes it
 possible to run pure OCaml programs in @code{JavaScript} environment like
 browsers and Node.js.")
-    (license (list license:gpl2+ #f))))
+    (license  #f)))
 
 (define-public ocaml-dune
   (package
