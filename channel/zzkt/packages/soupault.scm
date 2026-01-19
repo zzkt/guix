@@ -491,7 +491,7 @@ collation and locale-sensitive case mappings, and more.  The library is
 currently designed for Unicode Standard 3.2.")
     (license #f)))
 
-;; via guix import opam dune-site
+;; via guix import opam -r dune-site
 
 (define-public ocaml-dune-site
   (package
@@ -509,6 +509,104 @@ currently designed for Unicode Standard 3.2.")
     (home-page "https://github.com/ocaml/dune")
     (synopsis "Embed locations information inside executable and libraries")
     (description #f)
+    (license license:expat)))
+
+(define-public ocaml-top-closure
+  (package
+    (name "ocaml-top-closure")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Topological Closure")
+    (description "Generic Topological Closure.")
+    (license license:expat)))
+
+(define-public ocaml-fs-io
+  (package
+    (name "ocaml-fs-io")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "File System Operations")
+    (description "Misc.  Collection of File System Operations.")
+    (license license:expat)))
+
+(define-public ocaml-stdune
+  (package
+    (name "ocaml-stdune")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-csexp
+                             ocaml-dyn
+                             ocaml-fs-io
+                             ocaml-ordering
+                             ocaml-pp
+                             ocaml-top-closure
+                             ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Dune's unstable standard library")
+    (description
+     "This library offers no backwards compatibility guarantees.  Use at your own
+risk.")
+    (license license:expat)))
+
+(define-public ocaml-ordering
+  (package
+    (name "ocaml-ordering")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Element ordering")
+    (description "Element ordering.")
+    (license license:expat)))
+
+(define-public ocaml-dyn
+  (package
+    (name "ocaml-dyn")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-ordering ocaml-pp ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Dynamic type")
+    (description "Dynamic type.")
     (license license:expat)))
 
 (define-public ocaml-dune-private-libs
@@ -533,6 +631,9 @@ package contains code that is shared between various dune-xxx packages.
 However, it is not meant for public consumption and provides no stability
 guarantee.")
     (license license:expat)))
+
+
+
 
 
 ;; via guix import opam lwt
