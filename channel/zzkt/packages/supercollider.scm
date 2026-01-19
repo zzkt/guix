@@ -336,11 +336,16 @@ using Guix System.")
     (inherit supercollider-gui)
     (name "supercollider")))
 
+
 ;; Supercollider plugins
+
+;; SC_PLUGIN_PATH for plugins, and maybe SC_SYNTHDEF_PATH for pre-compiled synthdefs.
+;; as described in https://doc.sccode.org/Guides/Server-Guide.html
+
 (define-public sc3-plugins
   (let ((commit "69cd2b68a6ad3b88c23745bbfa0f76955aaf529e")
         (revision "0")
-        (version "3.14.0-pre"))
+        (version "3.14.0"))
     (package
       (name "sc3-plugins")
       (version (git-version version revision commit))
