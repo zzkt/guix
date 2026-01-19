@@ -493,12 +493,20 @@ currently designed for Unicode Standard 3.2.")
 
 ;; via guix import opam -r dune
 
+;; https://github.com/melange-re/melange/releases/download/6.0.1-54/melange-6.0.1-54.tbz
+;; 0rqn05xp5b0839bx4g9zb8ac2c44y925pgfr87qdwbm5r87m6pkd
+
 (define-public ocaml-melange
   (package
     (name "ocaml-melange")
-    (version "6.0.1-414")
+    (version "6.0.1-54")
     (source
-     no-source-information)
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/melange-re/melange/releases/download/6.0.1-54/melange-6.0.1-54.tbz")
+       (sha256
+        (base32 "0rqn05xp5b0839bx4g9zb8ac2c44y925pgfr87qdwbm5r87m6pkd"))))
     (build-system dune-build-system)
     (propagated-inputs (list ocaml-cmdliner ocaml-dune-build-info ocaml-ppxlib
                              ocaml-menhir ocaml-odoc))
