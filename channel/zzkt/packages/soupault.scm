@@ -515,35 +515,35 @@ currently designed for Unicode Standard 3.2.")
 ;; note: v5.6 is currently available in guix
 ;; see also https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/ocaml.scm#n2800
 
-(define-public ocaml-lwt
-  (package
-    (name "ocaml-lwt")
-    (version "5.7.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri "https://github.com/ocsigen/lwt/archive/refs/tags/5.7.0.tar.gz")
-       (sha256
-        (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
-    (build-system dune-build-system)
-    (arguments
-     `(#:package "lwt"))
-    (native-inputs (list ocaml-cppo ocaml-base pkg-config))
-    (inputs (list glib))
-    (propagated-inputs (list ocaml-mmap ocaml-ocplib-endian ocaml-result
-                             ocaml-seq libev))
-    ;; (propagated-inputs (list dune-configurator ocaml-ocplib-endian))
-    ;; (native-inputs (list ocaml-cppo))
-    (home-page "https://github.com/ocsigen/lwt")
-    (synopsis "Promises and event-driven I/O")
-    (description
-     "This package provides a promise is a value that may become determined in the
-future.  Lwt provides typed, composable promises.  Promises that are resolved by
-I/O are resolved by Lwt in parallel.  Meanwhile, OCaml code, including code
-creating and waiting on promises, runs in a single thread by default.  This
-reduces the need for locks or other synchronization primitives.  Code can be run
-in parallel on an opt-in basis.")
-    (license license:expat)))
+;; (define-public ocaml-lwt
+;;   (package
+;;     (name "ocaml-lwt")
+;;     (version "5.7.0")
+;;     (source
+;;      (origin
+;;        (method url-fetch)
+;;        (uri "https://github.com/ocsigen/lwt/archive/refs/tags/5.7.0.tar.gz")
+;;        (sha256
+;;         (base32 "11dpr0aprqqjgb2n4j4czpw3l0bc8dzy1jqmp2qz3xkih31k241p"))))
+;;     (build-system dune-build-system)
+;;     (arguments
+;;      `(#:package "lwt"))
+;;     (native-inputs (list ocaml-cppo ocaml-base pkg-config))
+;;     (inputs (list glib))
+;;     (propagated-inputs (list ocaml-mmap ocaml-ocplib-endian ocaml-result
+;;                              ocaml-seq libev))
+;;     ;; (propagated-inputs (list dune-configurator ocaml-ocplib-endian))
+;;     ;; (native-inputs (list ocaml-cppo))
+;;     (home-page "https://github.com/ocsigen/lwt")
+;;     (synopsis "Promises and event-driven I/O")
+;;     (description
+;;      "This package provides a promise is a value that may become determined in the
+;; future.  Lwt provides typed, composable promises.  Promises that are resolved by
+;; I/O are resolved by Lwt in parallel.  Meanwhile, OCaml code, including code
+;; creating and waiting on promises, runs in a single thread by default.  This
+;; reduces the need for locks or other synchronization primitives.  Code can be run
+;; in parallel on an opt-in basis.")
+;;     (license license:expat)))
 
 ;; via guix import opam base
 
