@@ -31,6 +31,10 @@
   #:use-module ((guix licenses)
                 #:prefix license:))
 
+;; v5.2.1
+;; https://codeberg.org/PataphysicalSociety/soupault/archive/5.2.1.tar.gz
+;; 069nldh8ngakkyksi0w9d9jiczlf403skz4k3g6xwdf40vfrflwg
+
 ;; v4.7.0
 ;; https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.7.0.tar.gz
 ;; 0y4dlifiqs4x3w87lkfdiw0i89v8j69ax5mxp7g6lq0h40g8n4i6
@@ -42,14 +46,14 @@
 (define-public soupault
   (package
     (name "soupault")
-    (version "4.6.0")
+    (version "5.2.1")
     (source
      (origin
        (method url-fetch)
        (uri
-        "https://github.com/ocaml/opam-source-archives/raw/main/soupault.4.6.0.tar.gz")
+        "https://codeberg.org/PataphysicalSociety/soupault/archive/5.2.1.tar.gz")
        (sha256
-        (base32 "1rc1jqri24ib5w109y8ffl9k835b6s9cyxj0s2px7aabwsf3iidf"))))
+        (base32 "069nldh8ngakkyksi0w9d9jiczlf403skz4k3g6xwdf40vfrflwg"))))
     (build-system dune-build-system)
     (arguments
      `(#:tests? #f))
@@ -101,6 +105,7 @@ generator mode is optional, you can use it as post-processor for existing sites.
 ;; ocaml-lua-ml
 ;; ocaml-qcheck-core
 ;; ocaml-iter
+
 
 ;; via guix import opam containers
 
