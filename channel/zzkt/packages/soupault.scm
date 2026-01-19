@@ -511,6 +511,30 @@ currently designed for Unicode Standard 3.2.")
     (description #f)
     (license license:expat)))
 
+(define-public ocaml-dune-private-libs
+  (package
+    (name "ocaml-dune-private-libs")
+    (version "3.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/ocaml/dune/releases/download/3.21.0/dune-3.21.0.tbz")
+       (sha256
+        (base32 "1pgdxk01v5zi5afvyn9zp8fh6m2vgi7szblka41702la6s4lsvg7"))))
+    (build-system dune-build-system)
+    (propagated-inputs (list ocaml-csexp ocaml-pp ocaml-dyn ocaml-stdune
+                             ocaml-odoc))
+    (home-page "https://github.com/ocaml/dune")
+    (synopsis "Private libraries of Dune")
+    (description
+     "!!!!!!!!!!!!!!!!!!!!!! !!!!! DO NOT USE !!!!! !!!!!!!!!!!!!!!!!!!!!! This
+package contains code that is shared between various dune-xxx packages.
+However, it is not meant for public consumption and provides no stability
+guarantee.")
+    (license license:expat)))
+
+
 ;; via guix import opam lwt
 ;; note: v5.6 is currently available in guix
 ;; see also https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/ocaml.scm#n2800
