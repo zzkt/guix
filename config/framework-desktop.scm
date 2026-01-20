@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework-desktop-system.org on 2026-01-19 14:26:23+01:00)
+;; tangled from framework-desktop-system.org on 2026-01-20 22:56:57+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -34,17 +34,16 @@
                      tls
                      vpn)
 
-(define-public linux-FWL13
-  (corrupt-linux linux-libre-6.14
-                 #:name "linux-fwl13"
-                 #:configs '("CONFIG_MT7921E=m")))
+(define-public linux-FWD395
+  (corrupt-linux linux-libre-6.17
+                 #:name "linux-fwd395"))
 
 (operating-system
- (host-name "zxxcxxz")
+ (host-name "glider")
  (locale "en_GB.utf8")
- (timezone "Europe/Amsterdam")
+ (timezone "Europe/Belgrade")
 
-(hosts-file (local-file "hosts.conf"))
+;; (hosts-file (local-file "hosts.conf"))
 
 ;; (simple-service 'add-extra-hosts
 ;;                 hosts-service-type
@@ -59,14 +58,11 @@
                               "altwin:swap_lalt_lwin")))
 
 (kernel linux-6.17)
-;; (kernel linux-FWL13)
+;; (kernel linux-FWD395)
 
-;; (kernel-arguments '("amdgpu.abmlevel=3"))
-;; (kernel-arguments '("modprobe.blacklist=hid_sensor_hub")) ;; required prior to 6.7
-(kernel-arguments  (cons* "resume=/swapfile"
-                          "splash" "quiet"
+(kernel-arguments  (cons* "splash" "quiet"
                           "threadirqs")
-                         %default-kernel-arguments)
+                        %default-kernel-arguments)
 
 (firmware (list linux-firmware
                 amdgpu-firmware
@@ -107,20 +103,13 @@
  (append (map specification->package
               '("emacs"
                 "emacs-guix"
-                "emacs-exwm"
                 "openssh-sans-x"
-                ;; xfce
-                "xfce4-power-manager"
-                "xfce4-settings"
-                "xfce4-session"
-                "xfce4-panel"
                 ;; gnome extras
                 "gvfs"
                 ;; sddm
                 "chili-sddm-theme"
                 ;; vpn
                 "wireguard-tools"
-                "ufw"
                 ))
          %base-packages))
 
@@ -268,7 +257,7 @@ COMMIT
 protocol = SMB3
 logging = syslog@1
 workgroup = FOAM
-netbios name = zxXCXxz
+netbios name = drift
 security = user
 case sensitive = yes
 preserve case = yes
@@ -299,18 +288,6 @@ writable = yes
 
 ;; (name-service-switch %mdns-host-lookup-nss)
 
-;;  (service screen-locker-service-type
-;;   (screen-locker-configuration
-;;     (name "xscreensaver")
-;;     (program (file-append xscreensaver "/bin/xscreensaver")) (using-pam? #t)
-;;     (using-setuid? #f)))
-
- (setuid-programs
-  (cons*
-   (setuid-program
-    (program (file-append xsecurelock "/libexec/xsecurelock/authproto_pam")))
-          %setuid-programs))
-
 (initrd (lambda (file-systems . rest)
           (apply microcode-initrd file-systems
                  #:initrd base-initrd
@@ -322,25 +299,20 @@ writable = yes
              (targets (list "/boot/efi"))
              (keyboard-layout keyboard-layout)))
 
-(mapped-devices (list (mapped-device
-                        (source (uuid
-                                 "9b5d47cd-d865-4ec9-81ec-30565fa767e4"))
-                        (target "cryptroot")
-                        (type luks-device-mapping))))
-
 (file-systems (cons* (file-system
                        (mount-point "/boot/efi")
-                       (device (uuid "0D77-7016" 'fat32))
+                       (device (uuid "015E-6B5B"
+                                     'fat32))
                        (type "vfat"))
                      (file-system
                        (mount-point "/")
-                       (device "/dev/mapper/cryptroot")
-                       (type "ext4")
-                       (dependencies mapped-devices))
-                     %base-file-systems))
+                       (device (uuid
+                                "a5531379-e048-485b-9b64-77d90eada789"
+                                'ext4))
+                       (type "ext4")) %base-file-systems))
 
 (swap-devices (list (swap-space
-                     (target "/swapfile")
-                     (dependencies mapped-devices))))
+                    (target (uuid
+                             "41f59e92-ce1b-46ca-ba4d-ac90eea1c1ae")))))
 
 ) ;; end operating-system declaration

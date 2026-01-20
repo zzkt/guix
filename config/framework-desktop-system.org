@@ -1,0 +1,511 @@
+# -*- mode: org;  coding: utf-8; -*-
+#+title: a GUIX system config - Framework Desktop AMD Max+ 395
+#+property: header-args :tangle framework-desktop.scm
+
+A semi-literate config for GUIX running on a Framework Desktop
+- generate config with =org-babel-tangle= (bound to =C-c C-v t=)
+- rebuild with =guix system reconfigure framework-desktop.scm= (or similar)
+
+* header
+generate a header and timestamp if required
+
+#+name: timestamp
+#+BEGIN_SRC sh :results output code :tangle no
+echo ";; -*- mode: scheme;  coding: utf-8; -*-
+;;
+;; tangled from framework-desktop-system.org on `date --rfc-3339 seconds`)"
+#+end_src
+
+#+begin_src scheme :noweb yes
+<<timestamp()>>
+#+end_src
+
+* modules
+
+#+begin_src scheme
+(use-modules (gnu)
+             (gnu packages)
+             (guix modules)
+             (gnu system nss)
+             (gnu system setuid)
+             (gnu packages shells)
+             (gnu packages linux)
+             (gnu packages xdisorg)
+             (gnu packages display-managers)
+             (gnu packages emacs-xyz))
+#+end_src
+
+Include non-free linux kernel, modules and firmware from the [[https://gitlab.com/nonguix/nonguix/][nonguix channel]] (aka “The GUIX Channel That Shall Not Be Named”)
+#+begin_src scheme
+(use-modules (nongnu packages linux)
+             (nongnu system linux-initrd))
+#+end_src
+
+** service modules
+#+begin_src scheme
+(use-service-modules cups
+                     sddm
+                     desktop
+                     networking
+                     ssh
+                     xorg
+                     samba
+                     sound
+                     mail
+                     vpn)
+#+end_src
+
+** package modules
+
+#+begin_src scheme
+(use-package-modules admin
+                     certs
+                     package-management
+                     ssh
+                     tls
+                     vpn)
+#+end_src
+
+* kernel corruption
+
+Some kernel corruption may be required to enable WIFI (etc). Defined here and used in the =operating-system= declaration below.
+
+#+begin_src scheme
+(define-public linux-FWD395
+  (corrupt-linux linux-libre-6.17
+                 #:name "linux-fwd395"))
+                 #+end_src
+
+* operating-system
+The =operating-system= declaration
+
+#+begin_src scheme
+(operating-system
+ (host-name "glider")
+ (locale "en_GB.utf8")
+ (timezone "Europe/Belgrade")
+                               #+end_src
+
+hosts file for local & LAN name resolving and persistent =/etc/hosts= (maybe convert to =hosts-service-type=)
+
+#+BEGIN_SRC scheme :session
+;; (hosts-file (local-file "hosts.conf"))
+
+;; (simple-service 'add-extra-hosts
+;;                 hosts-service-type
+;;                 (list (host "192.0.2.1" "example.com"
+;;                             '("example.net" "example.org"))
+;;                       (host "2001:db8::1" "example.com"
+;;                             '("example.net" "example.org"))))
+#+END_SRC
+
+** keyboard layout
+Layout is qwerty, CAPS_LOCK is CTRL, Ctrl-Fn-Meta-super to left of SPACE. The =keyboard-layout= declared here can be used for boot, console and Xorg
+
+#+begin_src scheme
+ (keyboard-layout (keyboard-layout
+                   "us" "altgr-intl"
+                   #:options '("ctrl:nocaps"
+                               "altwin:swap_lalt_lwin")))
+                               #+end_src
+
+** kernel
+A custom kernel is configured above, kernel arguments are declared here.
+
+The =hid_sensor_hub= module needs to be disabled for screen dimming and keyboard backlight to work as expecrted. Some other kernel arguments possibly required for (in)compatability with other features include ="amdgpu.sg_display=0"=, ="acpi_osi=linux" "acpi_backlight=vendor"=
+
+Kernel & driver details
+- https://gitlab.com/nonguix/nonguix
+- https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
+- https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
+
+Using =linux-6.17= from nonguix
+#+begin_src scheme
+ (kernel linux-6.17)
+ ;; (kernel linux-FWD395)
+ #+end_src
+
+#+BEGIN_SRC scheme
+(kernel-arguments  (cons* "splash" "quiet"
+                          "threadirqs")
+                        %default-kernel-arguments)
+#+END_SRC
+
+…and required firmware (should be possible to reduce to specifics)
+#+begin_src scheme
+ (firmware (list linux-firmware
+                 amdgpu-firmware
+                 amd-microcode))
+#+end_src
+
+** users & groups
+
+#+begin_src scheme
+ (users (cons* (user-account
+                (name "zzk")
+                (comment "zzk")
+                (group "users")
+                (home-directory "/home/zzk")
+                (shell (file-append zsh "/bin/zsh"))
+                (supplementary-groups '("wheel"
+                                        "netdev"
+                                        "audio"
+                                        "video"
+                                        "www-data"
+                                        "realtime"
+                                        "lp")))
+               (user-account
+                (name "www-data")
+                (group "www-data")
+                (home-directory "/home/www"))
+               %base-user-accounts))
+#+end_src
+
+#+begin_src scheme
+ (groups (cons* (user-group
+                 (name "www-data"))
+                (user-group
+                 (system? #t)
+                 (name "realtime"))
+                %base-groups))
+#+end_src
+
+** sudoers
+
+#+begin_src scheme
+ (sudoers-file
+  (plain-file "sudoers"
+              "root ALL=(ALL) ALL
+%wheel ALL=NOPASSWD: ALL"))
+#+end_src
+
+** system-wide packages
+
+Packages installed system-wide. Kept to a minimum(ish) since users can install packages as required using the =home-service=. Use =guix search KEYWORD= to search for packages and =guix install PACKAGE= to install a package.
+
+#+begin_src scheme
+ (packages
+  (append (map specification->package
+               '("emacs"
+                 "emacs-guix"
+                 "openssh-sans-x"
+                 ;; gnome extras
+                 "gvfs"
+                 ;; sddm
+                 "chili-sddm-theme"
+                 ;; vpn
+                 "wireguard-tools"
+                 ))
+          %base-packages))
+#+end_src
+
+** system services
+Below is the list of enabled system services.  To search for any available services, run =guix system search KEYWORD= in a terminal.
+
+#+begin_src scheme
+ (services
+  (append (list
+#+end_src
+
+*** SSH
+#+begin_src scheme
+           (service openssh-service-type
+                    (openssh-configuration
+                     (openssh openssh-sans-x)
+                     (password-authentication? #true)
+                     (authorized-keys
+                      `(("zzk" ,(local-file "zzk_rsa.pub"))
+                        ("root" ,(local-file "zzk_rsa.pub"))))))
+#+end_src
+
+*** mail
+use dovecot for local IMAP
+
+#+begin_src scheme
+           (service dovecot-service-type
+                    (dovecot-configuration
+                     (mail-location "maildir:%h/Maildir:LAYOUT=fs")))
+#+end_src
+
+*** iptables
+=iptables= configuration to allow SSH on port 22, IMAPS on 993, wireguard (wg0), syncthing, mDNS and local smb for 192.168.0.0/16
+
+#+BEGIN_SRC scheme :session
+           (service iptables-service-type
+                    (iptables-configuration
+                     (ipv4-rules (plain-file "iptables.rules"
+#+end_src
+**** ipv4 rules
+#+BEGIN_SRC scheme
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+COMMIT
+,*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
+#+end_src
+SMB
+#+BEGIN_SRC scheme
+-A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 137 -j ACCEPT
+-A INPUT -p udp -m udp -s 192.168.0.0/16 --dport 138 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 139 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 445 -j ACCEPT
+#+end_src
+wireguard
+#+BEGIN_SRC scheme
+-A INPUT -p udp -m udp --dport 51820 -j ACCEPT
+-A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -i wg0 -j ACCEPT
+   #+end_src
+syncthing ports 8384?,21027,22000 (see [[https://docs.syncthing.net/users/firewall.html][docs]])
+#+BEGIN_SRC scheme
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 8384 -j ACCEPT
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 21027 -j ACCEPT
+#+END_SRC
+otherwise
+#+BEGIN_SRC scheme
+-A INPUT -j REJECT --reject-with icmp-port-unreachable
+-A INPUT -m conntrack --ctstate INVALID -j DROP
+COMMIT
+"))
+        #+end_src
+**** ipv6 rules
+#+BEGIN_SRC scheme
+                     (ipv6-rules (plain-file "ip6tables.rules"
+"*nat
+:PREROUTING ACCEPT
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:POSTROUTING ACCEPT
+-A POSTROUTING -o en0 -j MASQUERADE
+COMMIT
+,*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 993 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
+   #+end_src
+SMB
+#+BEGIN_SRC scheme
+-A INPUT -p udp -m udp -s fded:c2f7:43ef::/64 --dport 137 -j ACCEPT
+-A INPUT -p udp -m udp -s fded:c2f7:43ef::/64 --dport 138 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s fded:c2f7:43ef::/64 --dport 139 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s fded:c2f7:43ef::/64 --dport 445 -j ACCEPT
+   #+end_src
+wireguard
+#+BEGIN_SRC scheme
+-A INPUT -p udp -m udp --dport 51820 -j ACCEPT
+-A INPUT -i wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -i wg0 -j ACCEPT
+      #+end_src
+syncthing
+#+BEGIN_SRC scheme
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 8384 -j ACCEPT
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 21027 -j ACCEPT
+#+END_SRC
+otherwise
+#+BEGIN_SRC scheme
+-A INPUT -j REJECT --reject-with icmp6-port-unreachable
+-A INPUT -m conntrack --ctstate INVALID -j DROP
+COMMIT
+"))))
+#+END_SRC
+
+*** wireguard
+
+details can be found (and mostly ignored) in [[https://guix.gnu.org/cookbook/en/html_node/Connecting-to-Wireguard-VPN.html][Connecting to Wireguard VPN]] section of the cookbook
+
+#+BEGIN_SRC scheme :session
+               (service wireguard-service-type
+                   (wireguard-configuration
+                     (addresses '("10.0.0.23/32" "fded:dada::23/128"))
+                     (private-key "/etc/wireguard/private.key")
+                     (port 51820)
+                     (peers
+                      (list
+                       (wireguard-peer
+                        (name "lmn")
+                        (endpoint "example.org:51820")
+                        (public-key "WHmVhvgxkBxk8fqZU6pWEaH4iVzOcud9JQivwRsaIE8=")
+                        (allowed-ips '("10.0.0.1/24" "fded:dada::1/64"))
+                        (keep-alive 25))
+                       (wireguard-peer
+                        (name "beryllium")
+                        (endpoint "example.org:51820")
+                        (public-key "taeID3fNgci9OpE+1UYkS4DYZE6DIlhpLQL1BVN9sg8=")
+                        (allowed-ips '("10.0.0.13/32" "fded:dada::13/128"))
+                        (keep-alive 25))
+                       (wireguard-peer
+                        (name "vrt")
+                        (public-key "4xA6sNrHyAebXZ2i8szdN0WMhH61CE786H+pGQwuLlA=")
+                        (allowed-ips '("10.0.0.22/32" "fded:dada::22/128"))
+                        (keep-alive 25))))))
+#+END_SRC
+
+*** display manager
+#+begin_src scheme
+           (service sddm-service-type
+                   (sddm-configuration
+                    (display-server "x11")
+                    (remember-last-user? #t)
+                    (theme "chili")
+                    (xorg-configuration
+                     (xorg-configuration
+                       (keyboard-layout keyboard-layout)
+#+end_src
+
+Trackpad config using [[https://www.mankier.com/4/libinput][libinput]]
+#+begin_src scheme
+                       (extra-config '("Section \"InputClass\"
+                                            Identifier \"touchpad\"
+                                            Driver \"libinput\"
+                                            MatchIsTouchpad \"on\"
+                                            Option \"Tapping\" \"on\"
+                                            Option \"TappingButtonMap\" \"lrm\"
+                                            Option \"ClickMethod\" \"clickfinger\"
+                                            Option \"AccelProfile\" \"adaptive\"
+                                        EndSection"))))))
+#+end_src
+
+*** desktop environments
+Provide KDE (plasma) and/or xfce as desktop environments.
+
+#+begin_src scheme
+           (service plasma-desktop-service-type)
+           ;; (service gnome-desktop-service-type)
+           ;; (service xfce-desktop-service-type)
+           ;; (service lxqt-desktop-service-type)
+#+end_src
+
+*** file sharing
+#+begin_src scheme
+           (service samba-service-type
+                    (samba-configuration
+                     (enable-smbd? #t)
+                     (config-file
+                      (plain-file "smb.conf" "\
+[global]
+protocol = SMB3
+logging = syslog@1
+workgroup = FOAM
+netbios name = drift
+security = user
+case sensitive = yes
+preserve case = yes
+short preserve case = yes
+
+[homes]
+valid users = %S
+browsable = no
+writable = yes
+"))))
+#+end_src
+
+*** realtime
+real-time scheduling for the =realtime= group (sound, supercollider, etc)
+#+BEGIN_SRC scheme
+           (service pam-limits-service-type
+                    (list
+                     (pam-limits-entry "@realtime" 'both 'rtprio 99)
+                     (pam-limits-entry "@realtime" 'both 'memlock 'unlimited)))
+#+END_SRC
+
+*** bluetooth
+#+begin_src scheme
+           (service bluetooth-service-type)
+#+end_src
+
+*** printing
+#+begin_src scheme
+           (service cups-service-type)
+#+end_src
+
+*** firmware updates
+
+ via fwdup (incomplete)
+#+BEGIN_SRC emacs-lisp
+           ;; (simple-service 'fwupd-dbus dbus-root-service-type
+           ;;     (list fwupd-nonfree))
+#+END_SRC
+
+*** modify desktop services
+If gdm is reconfigured (see above) or any other display manager is declared, gdm needs to be removed from =%desktop-services=
+
+#+begin_src scheme
+        ) ;; end services list
+        #+end_src
+
+#+begin_src scheme
+          (modify-services %desktop-services
+                           (delete gdm-service-type))))
+#+end_src
+
+*** mDNS
+Enable resolution of '.local' host names with mDNS (as of 2024-06-17 looks like this conflicts with smbd)
+#+begin_src scheme
+;; (name-service-switch %mdns-host-lookup-nss)
+#+end_src
+
+** initrd
+
+initrd with AMD microcode blobs
+#+begin_src scheme
+ (initrd (lambda (file-systems . rest)
+           (apply microcode-initrd file-systems
+                  #:initrd base-initrd
+                  #:microcode-packages (list amd-microcode)
+                  rest)))
+                  #+end_src
+
+** bootloader
+
+#+begin_src scheme
+ (bootloader (bootloader-configuration
+              (bootloader grub-efi-bootloader)
+              (targets (list "/boot/efi"))
+              (keyboard-layout keyboard-layout)))
+#+end_src
+
+** file systems & mount points
+
+The list of file systems that get mounted. The unique file system identifiers ("UUIDs") can be obtained by running =blkid= in a terminal.
+
+#+begin_src scheme
+  (file-systems (cons* (file-system
+                         (mount-point "/boot/efi")
+                         (device (uuid "015E-6B5B"
+                                       'fat32))
+                         (type "vfat"))
+                       (file-system
+                         (mount-point "/")
+                         (device (uuid
+                                  "a5531379-e048-485b-9b64-77d90eada789"
+                                  'ext4))
+                         (type "ext4")) %base-file-systems))
+#+end_src
+
+** swap device
+
+#+begin_src scheme
+    (swap-devices (list (swap-space
+                        (target (uuid
+                                 "41f59e92-ce1b-46ca-ba4d-ac90eea1c1ae")))))
+#+end_src
+
+** FIN
+
+#+begin_src scheme
+ ) ;; end operating-system declaration
+#+end_src
