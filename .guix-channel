@@ -1,9 +1,12 @@
 ;; -*- mode: scheme; -*-
-
 (channel
  (version 0)
  (name 'zzkt)
  (news-file "news.scm")
  (directory "channel")
  (url "https://gitlab.com/zzkt/guix")
- (branch "endless"))
+ (branch "endless")
+ (dependencies
+   (channel
+    (name nonguix)
+    (url "https://gitlab.com/nonguix/nonguix.git"))))
