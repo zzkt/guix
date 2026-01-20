@@ -1,7 +1,7 @@
 
 ;; via https://codeberg.org/tusharhero/ollama-guix
 
-(define-module (ollama-bin)
+(define-module (zzkt packages ollama)
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (nonguix build-system binary)
@@ -12,9 +12,9 @@
 
 ;; https://github.com/ollama/ollama/releases/download/v0.14.3-rc2/ollama-linux-amd64-rocm.tar.zst
 
-(define-public ollama-linux-amd64-rocm
+(define-public ollama
   (package
-    (name "ollama-linux-amd64-rocm")
+    (name "ollama")
     (version "0.14.3-rc2")
     (source
      (origin
@@ -39,7 +39,8 @@
     (synopsis "Get up and running with large language models")
     (description
      "Get up and running with large language models.
-Run Llama 2, Code Llama, and other models. Customize and create your own.")
+Run Llama 2, Code Llama, and other models. Customize and create your own.
+Using binary -> ollama-linux-amd64-rocm")
     (license license:expat)))
 
 ;; https://github.com/ollama/ollama/releases/download/v0.14.2/ollama-linux-amd64.tar.zst

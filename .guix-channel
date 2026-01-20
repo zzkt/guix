@@ -6,6 +6,7 @@
  (directory "channel")
  (url "https://gitlab.com/zzkt/guix")
  (branch "endless")
+ ;; dependency on nonguix for module (nonguix build-system binary)
  (dependencies
    (channel
     (name nonguix)
