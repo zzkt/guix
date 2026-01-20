@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework-desktop-system.org on 2026-01-20 22:56:57+01:00)
+;; tangled from framework-desktop-system.org on 2026-01-20 23:22:19+01:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -60,9 +60,9 @@
 (kernel linux-6.17)
 ;; (kernel linux-FWD395)
 
-(kernel-arguments  (cons* "splash" "quiet"
-                          "threadirqs")
-                        %default-kernel-arguments)
+(kernel-arguments (cons* "splash" "quiet"
+                         "threadirqs"
+                        %default-kernel-arguments))
 
 (firmware (list linux-firmware
                 amdgpu-firmware
@@ -78,6 +78,7 @@
                                        "netdev"
                                        "audio"
                                        "video"
+                                       "render"
                                        "www-data"
                                        "realtime"
                                        "lp")))
@@ -92,6 +93,9 @@
                (user-group
                 (system? #t)
                 (name "realtime"))
+               (user-group
+                (system? #t)
+                (name "render"))
                %base-groups))
 
 (sudoers-file

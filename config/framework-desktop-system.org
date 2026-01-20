@@ -112,12 +112,9 @@ Layout is qwerty, CAPS_LOCK is CTRL, Ctrl-Fn-Meta-super to left of SPACE. The =k
 ** kernel
 A custom kernel is configured above, kernel arguments are declared here.
 
-The =hid_sensor_hub= module needs to be disabled for screen dimming and keyboard backlight to work as expecrted. Some other kernel arguments possibly required for (in)compatability with other features include ="amdgpu.sg_display=0"=, ="acpi_osi=linux" "acpi_backlight=vendor"=
-
 Kernel & driver details
 - https://gitlab.com/nonguix/nonguix
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
-- https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
 Using =linux-6.17= from nonguix
 #+begin_src scheme
@@ -126,9 +123,9 @@ Using =linux-6.17= from nonguix
  #+end_src
 
 #+BEGIN_SRC scheme
-(kernel-arguments  (cons* "splash" "quiet"
-                          "threadirqs")
-                        %default-kernel-arguments)
+(kernel-arguments (cons* "splash" "quiet"
+                         "threadirqs"
+                        %default-kernel-arguments))
 #+END_SRC
 
 …and required firmware (should be possible to reduce to specifics)
@@ -141,33 +138,37 @@ Using =linux-6.17= from nonguix
 ** users & groups
 
 #+begin_src scheme
- (users (cons* (user-account
-                (name "zzk")
-                (comment "zzk")
-                (group "users")
-                (home-directory "/home/zzk")
-                (shell (file-append zsh "/bin/zsh"))
-                (supplementary-groups '("wheel"
-                                        "netdev"
-                                        "audio"
-                                        "video"
-                                        "www-data"
-                                        "realtime"
-                                        "lp")))
-               (user-account
-                (name "www-data")
-                (group "www-data")
-                (home-directory "/home/www"))
-               %base-user-accounts))
+(users (cons* (user-account
+               (name "zzk")
+               (comment "zzk")
+               (group "users")
+               (home-directory "/home/zzk")
+               (shell (file-append zsh "/bin/zsh"))
+               (supplementary-groups '("wheel"
+                                       "netdev"
+                                       "audio"
+                                       "video"
+                                       "render"
+                                       "www-data"
+                                       "realtime"
+                                       "lp")))
+              (user-account
+               (name "www-data")
+               (group "www-data")
+               (home-directory "/home/www"))
+              %base-user-accounts))
 #+end_src
 
 #+begin_src scheme
- (groups (cons* (user-group
-                 (name "www-data"))
-                (user-group
-                 (system? #t)
-                 (name "realtime"))
-                %base-groups))
+(groups (cons* (user-group
+                (name "www-data"))
+               (user-group
+                (system? #t)
+                (name "realtime"))
+               (user-group
+                (system? #t)
+                (name "render"))
+               %base-groups))
 #+end_src
 
 ** sudoers
