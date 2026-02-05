@@ -261,3 +261,41 @@ phylogenetically- and taxonomically-driven investigation.")
 ;; - humann_databases --download uniref uniref90_diamond /var/lib/humann
 
 ;; https://github.com/fbreitwieser/pavian
+
+;; https://github.com/rcedgar/muscle/archive/refs/tags/v5.3.tar.gz
+;; 0s0rr0jlg5aa5l5mc7z4sd420b5yl8xfi6mxq8an1c9hwsa2mckl
+
+(define-public muscle
+  (package
+    (name "muscle")
+    (version "5.3")
+    (source (origin
+              (method url-fetch/tarbomb)
+              (uri (string-append
+                    "https://github.com/rcedgar/muscle/archive/refs/tags/v"
+                    version ".tar.gz"))
+              (sha256
+               (base32
+                "0s0rr0jlg5aa5l5mc7z4sd420b5yl8xfi6mxq8an1c9hwsa2mckl"))))
+    (build-system gnu-build-system)
+    (arguments
+     `(#:make-flags (list "LDLIBS = -lm")
+       #:phases
+       (modify-phases %standard-phases
+         (delete 'configure)
+         (replace 'check
+           ;; There are no tests, so just test if it runs.
+           (lambda _ (invoke "./muscle" "-version") #t))
+         (replace 'install
+           (lambda* (#:key outputs #:allow-other-keys)
+             (let* ((out (assoc-ref outputs "out"))
+                    (bin (string-append out "/bin")))
+               (install-file "muscle" bin)
+               #t))))))
+    (home-page "http://www.drive5.com/muscle")
+    (synopsis "Multiple sequence alignment program")
+    (description
+     "MUSCLE aims to be a fast and accurate multiple sequence alignment
+program for nucleotide and protein sequences.")
+    ;; License information found in 'muscle -h' and usage.cpp.
+    (license license:public-domain)))
