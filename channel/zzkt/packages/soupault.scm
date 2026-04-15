@@ -84,7 +84,7 @@
                         ocaml-digestif
                         ocaml-tsort
                         ocaml-lua-ml))
-    (home-page "https://www.soupault.app"
+    (home-page "https://www.soupault.app")
     (synopsis "Static website generator based on HTML rewriting")
     (description
      "This package provides a website generator that works with page element tree
