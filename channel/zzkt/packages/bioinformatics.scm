@@ -265,6 +265,9 @@ phylogenetically- and taxonomically-driven investigation.")
 ;; https://github.com/rcedgar/muscle/archive/refs/tags/v5.3.tar.gz
 ;; 0s0rr0jlg5aa5l5mc7z4sd420b5yl8xfi6mxq8an1c9hwsa2mckl
 
+;; see also https://github.com/rcedgar/muscle/wiki/Building-MUSCLE
+;; which requires https://github.com/rcedgar/vcxproj_make/
+
 (define-public muscle
   (package
     (name "muscle")
@@ -278,6 +281,8 @@ phylogenetically- and taxonomically-driven investigation.")
                (base32
                 "0s0rr0jlg5aa5l5mc7z4sd420b5yl8xfi6mxq8an1c9hwsa2mckl"))))
     (build-system gnu-build-system)
+    (propgated-inputs (list libomp
+                            python))
     (arguments
      `(#:make-flags (list "LDLIBS = -lm")
        #:phases

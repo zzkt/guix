@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework-desktop-system.org on 2026-01-19 14:26:23+01:00)
+;; tangled from framework13-system.org on 2026-04-15 11:54:14+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -58,7 +58,7 @@
                   #:options '("ctrl:nocaps"
                               "altwin:swap_lalt_lwin")))
 
-(kernel linux-6.17)
+(kernel linux-6.19)
 ;; (kernel linux-FWL13)
 
 ;; (kernel-arguments '("amdgpu.abmlevel=3"))

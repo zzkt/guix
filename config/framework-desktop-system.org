@@ -116,9 +116,9 @@ Kernel & driver details
 - https://gitlab.com/nonguix/nonguix
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 
-Using =linux-6.17= from nonguix
+Using =linux-6.19= from nonguix
 #+begin_src scheme
- (kernel linux-6.17)
+ (kernel linux-6.19)
  ;; (kernel linux-FWD395)
  #+end_src
 

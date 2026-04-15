@@ -1,6 +1,6 @@
 ;; -*- mode: scheme;  coding: utf-8; -*-
 ;;
-;; tangled from framework-desktop-system.org on 2026-01-20 23:22:19+01:00)
+;; tangled from framework-desktop-system.org on 2026-04-15 11:56:37+02:00)
 
 (use-modules (gnu)
              (gnu packages)
@@ -43,22 +43,13 @@
  (locale "en_GB.utf8")
  (timezone "Europe/Belgrade")
 
-;; (hosts-file (local-file "hosts.conf"))
-
-;; (simple-service 'add-extra-hosts
-;;                 hosts-service-type
-;;                 (list (host "192.0.2.1" "example.com"
-;;                             '("example.net" "example.org"))
-;;                       (host "2001:db8::1" "example.com"
-;;                             '("example.net" "example.org"))))
 
 (keyboard-layout (keyboard-layout
                   "us" "altgr-intl"
                   #:options '("ctrl:nocaps"
                               "altwin:swap_lalt_lwin")))
 
-(kernel linux-6.17)
-;; (kernel linux-FWD395)
+(kernel linux-6.19)
 
 (kernel-arguments (cons* "splash" "quiet"
                          "threadirqs"
@@ -248,9 +239,6 @@ COMMIT
                  EndSection"))))))
 
 (service plasma-desktop-service-type)
-;; (service gnome-desktop-service-type)
-;; (service xfce-desktop-service-type)
-;; (service lxqt-desktop-service-type)
 
 (service samba-service-type
                     (samba-configuration
@@ -282,15 +270,10 @@ writable = yes
 
 (service cups-service-type)
 
-;; (simple-service 'fwupd-dbus dbus-root-service-type
-;;     (list fwupd-nonfree))
-
 ) ;; end services list
 
 (modify-services %desktop-services
                  (delete gdm-service-type))))
-
-;; (name-service-switch %mdns-host-lookup-nss)
 
 (initrd (lambda (file-systems . rest)
           (apply microcode-initrd file-systems

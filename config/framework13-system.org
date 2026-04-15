@@ -120,9 +120,9 @@ Kernel & driver details
 - https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
 - https://community.frame.work/t/solved-backlight-brightness-issues/36065/13
 
-Using =linux-6.17= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
+Using =linux-6.19= from nonguix (which includes =CONFIG_MT7921E= by default as of 6.7.2)
 #+begin_src scheme
- (kernel linux-6.17)
+ (kernel linux-6.19)
  ;; (kernel linux-FWL13)
  #+end_src
 
